@@ -45,6 +45,7 @@ export default function Allpages() {
 
     return (
         <>
+        {/* about section */}
             <div className="absolute w-full h-full overflow-scroll opacity-0">
                 <section id="home" ref={homeTrigger} className="relative w-full h-screen"></section>
                 <section id="about" ref={aboutTrigger} className="relative w-full h-screen"></section>
@@ -63,12 +64,14 @@ export default function Allpages() {
                 <AboutBtn/>
             </section>
 
+        {/* projects section */}
             <section className={`${showProjects ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"}
             transition-opacity duration-500 
             `}>
                 <ProjectsBtn/>
             </section>
-
+        
+        {/* contact section */}
             <section className={`${showContact ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"}
             transition-opacity duration-500 
             `}>

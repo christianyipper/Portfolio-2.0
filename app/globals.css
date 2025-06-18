@@ -41,3 +41,43 @@ p {
 h1, h2, h3 {
   font-family: "aktiv" "sans-serif";
 }
+
+@keyframes aboutin {
+  0% {
+    opacity: 0%;
+    transform: translate(0%);
+  }
+  100% {
+    opacity: 100%;
+    transform: translate(100%);
+  }
+}
+@keyframes projectsin {
+  0% {
+    opacity: 0%;
+    transform: translate(0%, 0%);
+  }
+  100% {
+    opacity: 100%;
+    transform: translate(0%, -100%);
+  }
+}
+@keyframes contactin {
+  0% {
+    opacity: 0%;
+    transform: translate(0%);
+  }
+  100% {
+    opacity: 100%;
+    transform: translate(-100%);
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}

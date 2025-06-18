@@ -16,7 +16,7 @@ export default function Home() {
                 loop
                 playsInline/>
             </div>
-            <Navigation />
+            <Navigation/>
             <Allpages/>
         </main>
     );
