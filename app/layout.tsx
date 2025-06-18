@@ -4,7 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 const aktiv = localFont ({
-    src: "../public/AktivGroteskEx_XBd.ttf",
+    src: "../public/fonts/AktivGroteskEx_XBd.ttf",
     variable: "--font-aktiv",
 })
 

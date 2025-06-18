@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Navigation from "./components/navigation";
+import Allpages from "./components/allpages";
 
 export default function Home() {
     return (
-        <main>
+        <main className="">
             <div className="
-            absolute w-full h-full flex flex-row justify-center items-center 
+            absolute w-screen h-full flex flex-row justify-center items-center 
             overflow-hidden
             ">
                 <video className="absolute w-full" 
@@ -16,6 +17,7 @@ export default function Home() {
                 playsInline/>
             </div>
             <Navigation />
+            <Allpages/>
         </main>
     );
 }
