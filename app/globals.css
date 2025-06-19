@@ -108,6 +108,50 @@ h1, h2, h3 {
   }
 }
 
+@keyframes blinking {
+  0% {
+    opacity: 0%;
+  }
+  20% {
+    opacity: 40%;
+  }
+  40% {
+    opacity: 0%;
+  }
+  60% {
+    opacity: 80%;
+  }
+  80% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+@keyframes blinking-logo {
+  0% {
+    opacity: 100%;
+  }
+  17% {
+    opacity: 20%;
+  }
+  34% {
+    opacity: 60%;
+  }
+  51% {
+    opacity: 30%;
+  }
+  68% {
+    opacity: 80%;
+  }
+  85% {
+    opacity: 40%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
 
 /* Scrollbar styling for WebKit (Chrome, Edge, Safari) */
 ::-webkit-scrollbar {
