@@ -6,7 +6,7 @@ import Image from "next/image";
 import AfterEffects from "../svg/aftereffects";
 import Figma from "../svg/figma";
 import Illustrator from "../svg/illustrator";
-import Next from "../svg/next";
+import Next from "../svg/nextjs;
 import Photoshop from "../svg/photoshop";
 import Premiere from "../svg/premiere";
 import React from "../svg/react";
@@ -44,8 +44,8 @@ export default function About() {
                             <div className="flex flex-row gap-2">
                                 <AfterEffects/>
                                 <Premiere/>
-                                <Photoshop/>
                                 <Illustrator/>
+                                <Photoshop/>
                             </div>
                             <p className="font-nunito !text-[14px] opacity-50 w-full text-center mt-2.5 pt-1 border-t-2 border-white/50">Creative proficiencies</p>
                         </div>
