@@ -8,12 +8,12 @@ export default function Projects() {
             {projectsData.map((entry, i) => (
                 <section key={i} className="grid grid-cols-12 gap-4">
                     <article className="col-start-3 col-end-8 p-8">
-                        <div className="relative flex flex-row justify-between">
+                        <div className="relative flex flex-row justify-between items-center mb-4">
                             <div>
-                                <h2 className="font-aktiv !text-4xl pb-4">{entry.title}</h2>
-                                <p className="font-nunito !text-md -mt-4 mb-4 opacity-60">{entry.subtitle}</p>
+                                <h2 className="font-aktiv !text-4xl">{entry.title}</h2>
+                                <p className="font-nunito !text-md opacity-60">{entry.subtitle}</p>
                             </div>
-                            <div className="w-16 h-16">
+                            <div className="w-20 h-16">
                                 <Image 
                                     className="object-contain w-full h-full"
                                     src={entry.logo}
@@ -26,10 +26,6 @@ export default function Projects() {
                         </div>
                         <p className="font-nunito">{entry.description}</p>
                     </article>
-                    {/* <div style={{ backgroundImage: `url(${entry.thumbnail})`}}
-                    className="col-start-9 col-end-11 bg-amber-600
-                    bg-cover bg-center w-full z-50
-                    "></div> */}
                     <div className="relative col-start-8 col-end-11 flex flex-col justify-start items-start m-8
                     rounded-2xl overflow-hidden
                     ">
@@ -41,6 +37,12 @@ export default function Projects() {
                             height={640}
                             priority
                         />
+                        <video className="absolute"
+                        src={entry.video} 
+                        autoPlay
+                        muted
+                        loop
+                        playsInline/>
                     </div>
                     <hr className="col-start-3 col-end-11 h-0.5 bg-linear-to-r from-white/0 via-white/100 to-white/0 opacity-50 border-none" />
                     {/* <hr className="col-start-3 col-end-11 h-0.5 bg-white opacity-50 rounded-md border-none" /> */}
