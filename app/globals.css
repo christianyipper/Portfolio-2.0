@@ -81,3 +81,56 @@ h1, h2, h3 {
     opacity: 100%;
   }
 }
+
+
+/* Scrollbar styling for WebKit (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Track color */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 6px;
+  border: 2px solid transparent; /* Optional padding */
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Hover state */
+}
+
+.ink-mask {
+  mask: url('../public/img/masks/inkmask-right.png');
+  mask-size: 100% 3300%;
+  animation: ink-mask 0.5s steps(32) forwards;
+
+  &:hover {
+      animation: ink-mask-hover 0.5s steps(32) forwards;
+  }
+}
+@keyframes ink-mask {
+    from {
+        mask-position: 0 100%;
+    }
+    to {
+        mask-position: 0 0;
+    }
+}
+@keyframes ink-mask-hover {
+    from {
+        mask-position: 0 0;
+    }
+    to {
+        mask-position: 0 100%;
+    }
+}
+.ink-mask-load {
+  mask: url('../public/img/masks/inkmask-right.png');
+  mask-size: 100% 3300%;
+  animation: ink-mask-hover 0.8s steps(32) forwards 2s;
+}

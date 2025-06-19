@@ -4,7 +4,7 @@ export default function Navigation() {
     return (
         <>
             {/* logo */}
-            <a href="#home" className="absolute left-8 top-8 z-50 animate-[fade_1s_ease_2.4s_forwards] opacity-0">
+            <a href="#home" className="absolute left-8 top-8 z-50 animate-[fade_1s_ease_2.4s_forwards] opacity-100 ink-mask-load">
                 <svg id="Yipper_Logo" data-name="Yipper Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 441" className="w-16">
                     <g id="Logo">
                         <g id="Yipper">

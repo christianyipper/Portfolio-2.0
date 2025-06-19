@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import About from "./about";
 import AboutBtn from "./aboutbtn";
+import Projects from "./projects";
 import ProjectsBtn from "./projectsbtn";
 import ContactBtn from "./contactbtn";
 
@@ -45,13 +46,14 @@ export default function Allpages() {
 
     return (
         <>
-        {/* about section */}
-            <div className="absolute w-full h-full overflow-scroll opacity-0">
+            <div className="absolute w-full h-full overflow-scroll opacity-0 pointer-events-none">
                 <section id="home" ref={homeTrigger} className="relative w-full h-screen"></section>
                 <section id="about" ref={aboutTrigger} className="relative w-full h-screen"></section>
                 <section id="projects" ref={projectsTrigger} className="relative w-full h-screen"></section>
                 <section id="contact" ref={contactTrigger} className="relative w-full h-screen"></section>
             </div>
+
+        {/* about section */}
             <section className={`${showAbout ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
             absolute w-full h-full grid grid-cols-12 gap-4
             transition-opacity duration-1000
@@ -65,6 +67,12 @@ export default function Allpages() {
             </section>
 
         {/* projects section */}
+            <section className={`${showProjects ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
+            absolute w-full h-full grid grid-cols-12 gap-4
+            transition-opacity duration-1000
+            `}>
+                <Projects/>
+            </section>
             <section className={`${showProjects ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"}
             transition-opacity duration-500 
             `}>
@@ -84,7 +92,7 @@ export default function Allpages() {
             relative w-full h-full flex flex-row justify-center items-center
             `}>
                 <video className={`${showAbout || showProjects || showContact ? "blur-md" : "blur-none"} absolute w-full transition duration-1000 `} 
-                src="/yipper-bgvideo.webm" 
+                src="/yipper-bgvideo-21.webm" 
                 autoPlay
                 muted
                 loop

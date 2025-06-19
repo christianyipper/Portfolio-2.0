@@ -6,7 +6,7 @@ import Image from "next/image";
 import AfterEffects from "../svg/aftereffects";
 import Figma from "../svg/figma";
 import Illustrator from "../svg/illustrator";
-import Next from "../svg/nextjs;
+import Next from "../svg/next";
 import Photoshop from "../svg/photoshop";
 import Premiere from "../svg/premiere";
 import React from "../svg/react";
