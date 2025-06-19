@@ -47,7 +47,7 @@ export default function About() {
                                 <Illustrator/>
                                 <Photoshop/>
                             </div>
-                            <p className="font-nunito !text-[14px] opacity-50 w-full text-center mt-2.5 pt-1 border-t-2 border-white/50">Creative proficiencies</p>
+                            <p className="font-nunito !text-[14px] opacity-50 w-full text-center mt-2.5 pt-1 border-t-2 border-white/50">Creative Proficiencies</p>
                         </div>
                         <div>
                             <div className="flex flex-row gap-2">
@@ -57,7 +57,7 @@ export default function About() {
                                 <Webflow/>
                                 <Figma/>
                             </div>
-                            <p className="font-nunito !text-[14px] opacity-50 w-full text-center mt-2.5 pt-1 border-t-2 border-white/50">Front-End proficiencies</p>
+                            <p className="font-nunito !text-[14px] opacity-50 w-full text-center mt-2.5 pt-1 border-t-2 border-white/50">Front-End Proficiencies</p>
                         </div>
                     </div>
                 </div>

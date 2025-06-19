@@ -52,6 +52,15 @@ h1, h2, h3 {
     transform: translate(100%);
   }
 }
+@keyframes aboutani {
+  0%, 80% {
+    transform: translate(0px);
+  }
+  100% {
+    transform: translate(-6px);
+  }
+}
+
 @keyframes projectsin {
   0% {
     opacity: 0%;
@@ -62,6 +71,15 @@ h1, h2, h3 {
     transform: translate(0%, -100%);
   }
 }
+@keyframes projectsani {
+  0%, 80% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(6px);
+  }
+}
+
 @keyframes contactin {
   0% {
     opacity: 0%;
@@ -70,6 +88,14 @@ h1, h2, h3 {
   100% {
     opacity: 100%;
     transform: translate(-100%);
+  }
+}
+@keyframes contactani {
+  0%, 80% {
+    transform: translate(0px);
+  }
+  100% {
+    transform: translate(6px);
   }
 }
 
