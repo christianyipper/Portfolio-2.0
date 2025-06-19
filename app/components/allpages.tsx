@@ -9,12 +9,10 @@ import ContactBtn from "./contactbtn";
 
 export default function Allpages() {
 
-    const homeTrigger = useRef<HTMLDivElement>(null);
     const aboutTrigger = useRef<HTMLDivElement>(null);
     const projectsTrigger = useRef<HTMLDivElement>(null);
     const contactTrigger = useRef<HTMLDivElement>(null);
 
-    const [showHome, setShowHome] = useState(false);
     const [showAbout, setShowAbout] = useState(false);
     const [showProjects, setShowProjects] = useState(false);
     const [showContact, setShowContact] = useState(false);
@@ -27,14 +25,12 @@ export default function Allpages() {
             const id = entry.target.id;
             const visible = entry.isIntersecting;
 
-            if (id === "home") setShowHome(visible);
             if (id === "about") setShowAbout(visible);
             if (id === "projects") setShowProjects(visible);
             if (id === "contact") setShowContact(visible);
         });
         }, options);
 
-        if (homeTrigger.current) observer.observe(homeTrigger.current);
         if (aboutTrigger.current) observer.observe(aboutTrigger.current);
         if (projectsTrigger.current) observer.observe(projectsTrigger.current);
         if (contactTrigger.current) observer.observe(contactTrigger.current);
@@ -47,7 +43,7 @@ export default function Allpages() {
     return (
         <>
             <div className="absolute w-full h-full overflow-scroll opacity-0 pointer-events-none">
-                <section id="home" ref={homeTrigger} className="relative w-full h-screen"></section>
+                <section id="home" className="relative w-full h-screen"></section>
                 <section id="about" ref={aboutTrigger} className="relative w-full h-screen"></section>
                 <section id="projects" ref={projectsTrigger} className="relative w-full h-screen"></section>
                 <section id="contact" ref={contactTrigger} className="relative w-full h-screen"></section>
