@@ -4,7 +4,7 @@ export default function Navigation() {
     return (
         <>
             {/* logo */}
-            <a href="#home" className="absolute left-8 top-8 z-50">
+            <a href="#home" className="absolute left-8 top-8 z-50 animate-[fade_1s_ease_2.4s_forwards] opacity-0">
                 <svg id="Yipper_Logo" data-name="Yipper Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 441" className="w-16">
                     <g id="Logo">
                         <g id="Yipper">
@@ -35,7 +35,7 @@ export default function Navigation() {
 
             {/* links */}
             <section className="absolute right-0 px-6 py-6 flex flex-row gap-4 z-50">
-                <div className="hover:scale-[85%] transition duration-200">
+                <div className="hover:scale-[85%] transition duration-300">
                     <a id="linkedin" href="https://github.com/christianyip" className="animate-[fade_1s_ease_2s_forwards] opacity-0">
                         <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect y="-0.00146484" width="48" height="48" rx="8" fill="transparent"/>
@@ -43,7 +43,7 @@ export default function Navigation() {
                         </svg>
                     </a>
                 </div>
-                <div className="hover:scale-[85%] transition duration-200">
+                <div className="hover:scale-[85%] transition duration-300">
                     <a id="github" href="www.linkedin.com/in/christianyipper" className="animate-[fade_1s_ease_1.8s_forwards] opacity-0">
                         <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect y="-0.00146484" width="48" height="48" rx="8" fill="transparent"/>
@@ -51,7 +51,7 @@ export default function Navigation() {
                         </svg>
                     </a>  
                 </div>
-                <div className="hover:scale-[85%] transition duration-200">
+                <div className="hover:scale-[85%] transition duration-300">
                     <a id="instagram" href="https://github.com/christianyip" className="animate-[fade_1s_ease_1.6s_forwards] opacity-0">
                         <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect y="-0.00146484" width="48" height="48" rx="8" fill="transparent"/>

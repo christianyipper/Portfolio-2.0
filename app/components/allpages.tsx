@@ -54,7 +54,7 @@ export default function Allpages() {
             </div>
             <section className={`${showAbout ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
             absolute w-full h-full grid grid-cols-12 gap-4
-            transition-opacity duration-500
+            transition-opacity duration-1000
             `}>
                 <About />
             </section>
@@ -77,6 +77,20 @@ export default function Allpages() {
             `}>
                 <ContactBtn/>
             </section>
+
+        {/* background video */}
+        <section className="animate-[fade_3s_ease_forwards] opacity-0 absolute w-screen h-full flex flex-row justify-center items-center overflow-hidden -z-10">
+            <div className={`${showAbout || showProjects || showContact ? "brightness-75" : "brightness-100"} transition duration-1000
+            relative w-full h-full flex flex-row justify-center items-center
+            `}>
+                <video className={`${showAbout || showProjects || showContact ? "blur-md" : "blur-none"} absolute w-full transition duration-1000 `} 
+                src="/yipper-bgvideo.webm" 
+                autoPlay
+                muted
+                loop
+                playsInline/>
+            </div>
+        </section>
         </>
     );
 }

@@ -4,18 +4,7 @@ import Allpages from "./components/allpages";
 
 export default function Home() {
     return (
-        <main className="">
-            <div className="
-            absolute w-screen h-full flex flex-row justify-center items-center 
-            overflow-hidden
-            ">
-                <video className="absolute w-full" 
-                src="/yipper-bgvideo.webm" 
-                autoPlay
-                muted
-                loop
-                playsInline/>
-            </div>
+        <main className="bg-black">
             <Navigation/>
             <Allpages/>
         </main>
