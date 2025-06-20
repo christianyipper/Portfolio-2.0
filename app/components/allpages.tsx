@@ -59,7 +59,7 @@ export default function Allpages() {
             transition-opacity duration-500 
             `}>
                 <div className="absolute left-0 h-full flex items-center z-40 pointer-events-none
-                max-sm:left-auto max-sm:right-0 max-sm:h-auto max-sm:w-36 max-sm:top-2
+                max-sm:left-auto max-sm:right-0 max-sm:h-auto max-sm:w-32 max-sm:top-2
                 ">
                     <div className="animate-[aboutin_1s_ease_1s_forwards] -translate-x-full
                     w-full flex justify-center pt-2 
@@ -73,9 +73,9 @@ export default function Allpages() {
                             max-sm:ml-2 max-sm:w-full
                             `}>
                                 <p className="pl-10 font-aktiv !text-2xl text-right 
-                                max-sm:text-left max-sm:pl-0 max-sm:!text-2xl
+                                max-sm:text-left max-sm:pl-0 max-sm:!text-xl
                                 ">About</p>
-                                <hr className="h-0.5 bg-white my-2 max-sm:w-full"/>
+                                <hr className="h-0.5 bg-white my-2 max-sm:w-full max-sm:my-1"/>
                                 <p className="pl-10 font-nunito text-right opacity-0
                                 transition duration-300 group-hover:opacity-100
                                 max-sm:hidden
@@ -99,7 +99,7 @@ export default function Allpages() {
             transition-opacity duration-500 
             `}>
                 <div className="absolute bottom-0 w-full flex justify-center pt-2 overflow-hidden z-40
-                max-sm:w-36 max-sm:bottom-auto max-sm:right-0 max-sm:top-18
+                max-sm:w-32 max-sm:bottom-auto max-sm:right-0 max-sm:top-14
                 ">
                     <div className="animate-[projectsin_1s_ease_1.2s_forwards] translate-y-full
                     w-full flex justify-center pt-2
@@ -114,10 +114,10 @@ export default function Allpages() {
                             max-sm:mb-0 ml-2 max-sm:w-full
                             ">
                                 <p className="pr-3 -mt-1 font-aktiv !text-2xl text-left
-                                max-sm:pr-0 max-sm:mt-0
+                                max-sm:pr-0 max-sm:mt-0 max-sm:!text-xl
                                 ">Projects</p>
                                 <hr className="w-0.5 h-full bg-white mx-2
-                                max-sm:w-full max-sm:h-0.5 max-sm:mx-0 max-sm:my-2
+                                max-sm:w-full max-sm:h-0.5 max-sm:mx-0 max-sm:my-1
                                 "/>
                                 <p className="pl-3 max-sm:pr-8 pb-4 font-nunito text-left opacity-0
                                 transition duration-300 group-hover:opacity-100
@@ -136,11 +136,11 @@ export default function Allpages() {
             transition-opacity duration-500 
             `}>
                 <div className="absolute right-0 h-full flex items-center pl-2 overflow-hidden z-40 pointer-events-none
-                max-sm:h-auto max-sm:top-34
+                max-sm:h-auto max-sm:top-26
                 ">
                     <div className="animate-[contactin_1s_ease_1.4s_forwards] translate-x-full
                     w-full flex justify-center pt-2
-                    max-sm:w-34
+                    max-sm:w-30
                     ">
                         <div className="h-full flex items-center animate-[contactani_2s_ease-in-out_1.8s_infinite_alternate] hover:[animation-play-state:paused]
                         max-sm:w-full
@@ -149,8 +149,10 @@ export default function Allpages() {
                             group transition duration-300 -mr-2 hover:-translate-x-2 pointer-events-auto
                             max-sm:w-full
                             `}>
-                                <p className="pr-8 font-aktiv !text-2xl text-left">Contact</p>
-                                <hr className="h-0.5 bg-white my-2"/>
+                                <p className="pr-8 font-aktiv !text-2xl text-left
+                                max-sm:!text-xl
+                                ">Contact</p>
+                                <hr className="h-0.5 bg-white my-2 max-sm:my-1"/>
                                 <p className="pr-8 font-nunito text-left opacity-0
                                 transition duration-300 group-hover:opacity-100
                                 max-sm:hidden
