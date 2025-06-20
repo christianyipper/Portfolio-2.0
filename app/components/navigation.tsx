@@ -5,7 +5,7 @@ export default function Navigation() {
         <>
             {/* logo */}
             <a href="#home" className="absolute left-8 top-8 z-50 ink-mask-load
-            group scale-75 -translate-y-4 hover:scale-100 hover:-translate-y-1 ease duration-300
+            group scale-[70%] -translate-y-4 hover:scale-100 hover:-translate-y-1 ease duration-300
             ">
                 <svg id="Yipper_Logo" data-name="Yipper Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 441" className="w-16">
                     <g id="Logo">
@@ -36,7 +36,9 @@ export default function Navigation() {
             </a>
 
             {/* links */}
-            <section className="absolute right-0 px-6 py-6 flex flex-row gap-4 z-50">
+            <section className="absolute right-0 px-6 py-6 flex flex-row gap-4 z-50
+            max-sm:hidden
+            ">
                 <div className="hover:scale-[85%] transition duration-300">
                     <a id="linkedin" href="https://github.com/christianyip" target="_blank" rel="noopener noreferrer" className="animate-[fade_1s_ease_2s_forwards] opacity-0">
                         <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">

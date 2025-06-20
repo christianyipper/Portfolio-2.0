@@ -4,9 +4,9 @@ import Image from "next/image";
 export default function Projects() {
     return (
         <section className="col-start-1 col-end-13 flex flex-col justify-start items-start 
-        pt-24 h-full gap-12 overflow-y-scroll">
+        pt-28 h-full gap-12 overflow-y-scroll">
             {projectsData.map((entry, i) => (
-                <section key={i} className="grid grid-cols-12 gap-4">
+                <section key={i} className="grid grid-cols-12 gap-4 -mt-4">
                     <article className="col-start-3 col-end-8 p-8">
                         <div className="relative flex flex-row justify-between items-center mb-4">
                             <div>

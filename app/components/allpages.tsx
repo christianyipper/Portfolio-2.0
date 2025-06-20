@@ -58,18 +58,27 @@ export default function Allpages() {
             <section className={`${showAbout ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"}
             transition-opacity duration-500 
             `}>
-                <div className="absolute left-0 h-full flex items-center z-40 pointer-events-none">
+                <div className="absolute left-0 h-full flex items-center z-40 pointer-events-none
+                max-sm:left-auto max-sm:right-0 max-sm:h-auto max-sm:w-36 max-sm:top-2
+                ">
                     <div className="animate-[aboutin_1s_ease_1s_forwards] -translate-x-full
                     w-full flex justify-center pt-2 
+                    max-sm:animate-[contactin_1s_ease_1s_forwards] max-sm:translate-x-full
                     ">
-                        <div className="h-full flex items-center animate-[aboutani_2s_ease-in-out_1s_infinite_alternate] hover:[animation-play-state:paused]">
+                        <div className="h-full flex items-center animate-[aboutani_2s_ease-in-out_1s_infinite_alternate] hover:[animation-play-state:paused]
+                        max-sm:animate-[contactani_2s_ease-in-out_1s_infinite_alternate] max-sm:w-full
+                        ">
                             <a href="#about" className={`${showAbout ? "pointer-events-none" : "pointer-events-auto"}
                             group transition duration-300 -ml-2 hover:translate-x-2 pointer-events-auto
+                            max-sm:ml-2 max-sm:w-full
                             `}>
-                                <p className="pl-10 font-aktiv !text-2xl text-right">About</p>
-                                <hr className="h-0.5 bg-white my-2"/>
-                                <p className="pl-10 font-nunito text-right opacity-0 
+                                <p className="pl-10 font-aktiv !text-2xl text-right 
+                                max-sm:text-left max-sm:pl-0 max-sm:!text-2xl
+                                ">About</p>
+                                <hr className="h-0.5 bg-white my-2 max-sm:w-full"/>
+                                <p className="pl-10 font-nunito text-right opacity-0
                                 transition duration-300 group-hover:opacity-100
+                                max-sm:hidden
                                 ">Learn more <br/> about me</p>
                             </a>
                         </div>
@@ -89,18 +98,31 @@ export default function Allpages() {
             <section className={`${showProjects ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"}
             transition-opacity duration-500 
             `}>
-                <div className="absolute bottom-0 w-full flex justify-center pt-2 overflow-hidden z-40">
+                <div className="absolute bottom-0 w-full flex justify-center pt-2 overflow-hidden z-40
+                max-sm:w-36 max-sm:bottom-auto max-sm:right-0 max-sm:top-18
+                ">
                     <div className="animate-[projectsin_1s_ease_1.2s_forwards] translate-y-full
-                    w-full flex justify-center pt-2 
+                    w-full flex justify-center pt-2
+                    max-sm:animate-[contactin_1s_ease_1.2s_forwards] max-sm:translate-y-0 max-sm:translate-x-full max-sm:pt-0
                     ">
-                        <div className="relative h-full flex justify-center animate-[projectsani_2s_ease-in-out_1.4s_infinite_alternate] hover:[animation-play-state:paused]">
-                            <a href="#projects" className="relative flex flex-row items-start
+                        <div className="relative h-full flex justify-center animate-[projectsani_2s_ease-in-out_1.4s_infinite_alternate] hover:[animation-play-state:paused]
+                        max-sm:animate-[contactani_2s_ease-in-out_1.4s_infinite_alternate] max-sm:w-full
+                        ">
+                            <a href="#projects" className="relative flex flex-row items-start 
+                            max-sm:flex-col
                             group transition duration-300 -mb-2 hover:-translate-y-2
+                            max-sm:mb-0 ml-2 max-sm:w-full
                             ">
-                                <p className="pr-3 -mt-1 font-aktiv !text-2xl text-left">Projects</p>
-                                <hr className="w-0.5 h-full bg-white mx-2"/>
-                                <p className="pl-3 pb-4 font-nunito text-left opacity-0
-                                transition duration-300 group-hover:opacity-100">Check out <br/> my work</p>
+                                <p className="pr-3 -mt-1 font-aktiv !text-2xl text-left
+                                max-sm:pr-0 max-sm:mt-0
+                                ">Projects</p>
+                                <hr className="w-0.5 h-full bg-white mx-2
+                                max-sm:w-full max-sm:h-0.5 max-sm:mx-0 max-sm:my-2
+                                "/>
+                                <p className="pl-3 max-sm:pr-8 pb-4 font-nunito text-left opacity-0
+                                transition duration-300 group-hover:opacity-100
+                                max-sm:hidden max-sm:pb-0
+                                ">Check out <br/> my work</p>
                             </a>
                         </div>
                     </div>
@@ -108,23 +130,31 @@ export default function Allpages() {
             </section>
         
         {/* contact section */}
+
+        {/* contact navigation */}
             <section className={`${showContact ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"}
             transition-opacity duration-500 
             `}>
-
-        {/* contact navigation */}
-                <div className="absolute right-0 h-full flex items-center pl-2 overflow-hidden z-40 pointer-events-none">
+                <div className="absolute right-0 h-full flex items-center pl-2 overflow-hidden z-40 pointer-events-none
+                max-sm:h-auto max-sm:top-34
+                ">
                     <div className="animate-[contactin_1s_ease_1.4s_forwards] translate-x-full
                     w-full flex justify-center pt-2
+                    max-sm:w-34
                     ">
-                        <div className="h-full flex items-center animate-[contactani_2s_ease-in-out_1.8s_infinite_alternate] hover:[animation-play-state:paused]">
+                        <div className="h-full flex items-center animate-[contactani_2s_ease-in-out_1.8s_infinite_alternate] hover:[animation-play-state:paused]
+                        max-sm:w-full
+                        ">
                             <a href="#contact" className={`${showContact ? "pointer-events-none" : "pointer-events-auto"}
                             group transition duration-300 -mr-2 hover:-translate-x-2 pointer-events-auto
+                            max-sm:w-full
                             `}>
                                 <p className="pr-8 font-aktiv !text-2xl text-left">Contact</p>
                                 <hr className="h-0.5 bg-white my-2"/>
                                 <p className="pr-8 font-nunito text-left opacity-0
-                                transition duration-300 group-hover:opacity-100">Reach out <br/> for inquiries</p>
+                                transition duration-300 group-hover:opacity-100
+                                max-sm:hidden
+                                ">Reach out <br/> for inquiries</p>
                             </a>
                         </div>
                     </div>
@@ -136,7 +166,10 @@ export default function Allpages() {
             <div className={`${showAbout || showProjects || showContact ? "brightness-75" : "brightness-100"} transition duration-1000
             relative w-full h-full flex flex-row justify-center items-center
             `}>
-                <video className={`${showAbout || showProjects || showContact ? "blur-md" : "blur-none"} absolute w-full transition duration-1000 `} 
+                <video className={`${showAbout || showProjects || showContact ? "blur-md" : "blur-none"} absolute w-full 
+                max-sm:w-auto max-sm:h-screen max-sm:object-cover
+                transition duration-1000
+                `} 
                 src="/yipper-bg.webm" 
                 autoPlay
                 muted
