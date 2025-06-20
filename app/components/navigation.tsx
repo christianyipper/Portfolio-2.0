@@ -6,6 +6,7 @@ export default function Navigation() {
             {/* logo */}
             <a href="#home" className="absolute left-8 top-8 z-50 ink-mask-load
             group scale-[70%] -translate-y-4 hover:scale-100 hover:-translate-y-1 ease duration-300
+            max-sm:left-0 max-sm:top-4
             ">
                 <svg id="Yipper_Logo" data-name="Yipper Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 441" className="w-16">
                     <g id="Logo">

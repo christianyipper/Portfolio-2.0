@@ -15,6 +15,7 @@ export default function Allpages() {
     const [showContact, setShowContact] = useState(false);
 
     useEffect(() => {
+
         const options = { threshold: 0.6 };
 
         const observer = new IntersectionObserver((entries) => {
@@ -46,10 +47,13 @@ export default function Allpages() {
                 <section id="contact" ref={contactTrigger} className="relative w-full h-screen"></section>
             </div>
 
+            <div className={`${showAbout || showProjects || showContact ? "opacity-0 max-sm:opacity-100 pointer-events-none max-sm:visible max-sm:absolute max-sm:w-full max-sm:h-48 bg-gradient-to-b from-black/90 via-black/70 to-black/0 max-sm:z-30" : "opacity-0" } transition-opacity duration-1000`}></div>
+
         {/* about section */}
             <section className={`${showAbout ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
             absolute w-full h-full grid grid-cols-12 gap-4
             transition-opacity duration-1000
+            max-sm:flex max-sm:flex-col max-sm:w-full
             `}>
                 <About />
             </section>
@@ -90,6 +94,7 @@ export default function Allpages() {
             <section className={`${showProjects ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
             absolute w-full h-full grid grid-cols-12 gap-4
             transition-opacity duration-1000
+            max-sm:pt-0
             `}>
                 <Projects/>
             </section>
@@ -99,7 +104,7 @@ export default function Allpages() {
             transition-opacity duration-500 
             `}>
                 <div className="absolute bottom-0 w-full flex justify-center pt-2 overflow-hidden z-40
-                max-sm:w-32 max-sm:bottom-auto max-sm:right-0 max-sm:top-14
+                max-sm:w-32 max-sm:bottom-auto max-sm:right-0 max-sm:top-26
                 ">
                     <div className="animate-[projectsin_1s_ease_1.2s_forwards] translate-y-full
                     w-full flex justify-center pt-2
@@ -136,7 +141,7 @@ export default function Allpages() {
             transition-opacity duration-500 
             `}>
                 <div className="absolute right-0 h-full flex items-center pl-2 overflow-hidden z-40 pointer-events-none
-                max-sm:h-auto max-sm:top-26
+                max-sm:h-auto max-sm:top-14
                 ">
                     <div className="animate-[contactin_1s_ease_1.4s_forwards] translate-x-full
                     w-full flex justify-center pt-2
