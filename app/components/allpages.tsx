@@ -63,7 +63,7 @@ export default function Allpages() {
             transition-opacity duration-500 
             `}>
                 <div className="absolute left-0 h-full flex items-center z-40 pointer-events-none
-                max-sm:left-auto max-sm:right-0 max-sm:h-auto max-sm:w-32 max-sm:top-2
+                max-sm:left-auto max-sm:right-0 max-sm:h-auto max-sm:w-32 max-sm:top-2 max-sm:overflow-hidden
                 ">
                     <div className="animate-[aboutin_1s_ease_1s_forwards] -translate-x-full
                     w-full flex justify-center pt-2 
@@ -108,10 +108,10 @@ export default function Allpages() {
                 ">
                     <div className="animate-[projectsin_1s_ease_1.2s_forwards] translate-y-full
                     w-full flex justify-center pt-2
-                    max-sm:animate-[contactin_1s_ease_1.2s_forwards] max-sm:translate-y-0 max-sm:translate-x-full max-sm:pt-0
+                    max-sm:animate-[contactin_1s_ease_1.4s_forwards] max-sm:translate-y-0 max-sm:translate-x-full max-sm:pt-0
                     ">
                         <div className="relative h-full flex justify-center animate-[projectsani_2s_ease-in-out_1.4s_infinite_alternate] hover:[animation-play-state:paused]
-                        max-sm:animate-[contactani_2s_ease-in-out_1.4s_infinite_alternate] max-sm:w-full
+                        max-sm:animate-[contactani_2s_ease-in-out_1.8s_infinite_alternate] max-sm:w-full
                         ">
                             <a href="#projects" className="relative flex flex-row items-start 
                             max-sm:flex-col
@@ -145,10 +145,10 @@ export default function Allpages() {
                 ">
                     <div className="animate-[contactin_1s_ease_1.4s_forwards] translate-x-full
                     w-full flex justify-center pt-2
-                    max-sm:w-30
+                    max-sm:w-30 max-sm:animate-[contactin_1s_ease_1.2s_forwards]
                     ">
                         <div className="h-full flex items-center animate-[contactani_2s_ease-in-out_1.8s_infinite_alternate] hover:[animation-play-state:paused]
-                        max-sm:w-full
+                        max-sm:w-full max-sm:animate-[contactani_2s_ease-in-out_1.4s_infinite_alternate]
                         ">
                             <a href="#contact" className={`${showContact ? "pointer-events-none" : "pointer-events-auto"}
                             group transition duration-300 -mr-2 hover:-translate-x-2 pointer-events-auto
