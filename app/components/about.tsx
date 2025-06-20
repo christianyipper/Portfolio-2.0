@@ -21,23 +21,23 @@ export default function About() {
             <div className="relative w-full p-8 overflow-hidden
             max-sm:p-2 max-sm:pl-4
             ">
-                <div className="border-b-2 border-white/50 pb-8 mb-8
-                    relative flex flex-row justify-start items-center gap-4 w-0 h-0 pointer-events-none opacity-0
-                    max-sm:opacity-100 max-sm:w-fit max-sm:h-auto
-                    ">
-                        <Image 
-                            className="rounded-full"
-                            src="/img/yipper-pfp-a75.png"
-                            alt="Yipper profile"
-                            width={64}
-                            height={64}
-                            priority
-                        />
-                        <article>
-                            <p className="font-nunito">Christian Yip</p>
-                            <p className="font-aktiv">Graphics Artist</p>
-                        </article>
-                    </div>
+                <div className="max-sm:border-b-2 border-white/50 max-sm:pb-8 max-sm:mb-8
+                relative flex flex-row justify-start items-center gap-4 w-0 h-0 pointer-events-none opacity-0
+                max-sm:opacity-100 max-sm:w-fit max-sm:h-auto
+                ">
+                    <Image 
+                        className="rounded-full"
+                        src="/img/yipper-pfp-a75.png"
+                        alt="Yipper profile"
+                        width={64}
+                        height={64}
+                        priority
+                    />
+                    <article>
+                        <p className="font-nunito">Christian Yip</p>
+                        <p className="font-aktiv">Graphics Artist</p>
+                    </article>
+                </div>
                 <h2 className="font-aktiv text-4xl pb-4">About Me</h2>
                 <article className="space-y-4 text-base text-white font-nunito pb-8">
                     {bioData.bio.map((paragraph, index) => (
