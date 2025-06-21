@@ -1,6 +1,5 @@
 "use client"
 
-import bioData from "../../public/data/about.json";
 import Image from "next/image";
 
 export default function Contact() {
