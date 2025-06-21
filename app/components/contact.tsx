@@ -6,18 +6,21 @@ import Image from "next/image";
 export default function Contact() {
     return (
         <section className="col-start-3 col-end-11 flex justify-center items-start pt-24 h-full
-        max-sm:overflow-y-scroll max-sm:pt-40
+        max-sm:overflow-y-scroll max-sm:pt-40 max-sm:w-full
         ">
-            <div className="relative w-full p-8 overflow-hidden
-            max-sm:p-2 max-sm:pl-4
+            <div className="relative w-full p-8 
+            max-sm:p-2 max-sm:pl-4 max-sm:h-full 
             ">
             
-                <div className="relative flex flex-row justify-start gap-[20%]">
-                    <div className="relative w-1/3">
-                    <h2 className="font-aktiv text-4xl pb-8">Contact</h2>
+                <div className="relative flex flex-row justify-start gap-[20%]
+                max-sm:flex-col max-sm:gap-0
+                ">
+                    <div className="relative w-1/3
+                    max-sm:w-full max-sm:flex max-sm:flex-col max-sm:h-full
+                    ">
+                        <h2 className="font-aktiv text-4xl pb-8">Contact</h2>
                         <div className="border-t-2 border-white/50 py-[29px]
                         relative w-full flex flex-row justify-start items-center gap-4
-                        max-sm:hidden
                         ">
                             <Image 
                                 className="rounded-full"
@@ -34,7 +37,6 @@ export default function Contact() {
                         </div>
                         <a href="mailto:christian@yipper.ca" target="_blank" rel="noopener noreferrer" className="border-t-2 border-white/50 py-8
                         relative w-full flex flex-row justify-start items-center gap-4 
-                        max-sm:hidden
                         ">
                             <svg id="Text_Mail" data-name="Text / Mail" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 721.05 720.5" className="w-8 mx-4">
                             <path className="stroke-[60px] stroke-white fill-none" d="M72.5,576.25l180-216M648.5,576.25l-180-216M36.5,216.25l260.1,173.4c23.09,15.4,34.64,23.1,47.12,26.09,11.03,2.65,22.53,2.65,33.56,0,12.48-2.99,24.03-10.69,47.12-26.09l260.1-173.4M151.7,612.25h417.6c40.32,0,60.49,0,75.89-7.85,13.55-6.9,24.56-17.92,31.46-31.46,7.85-15.4,7.85-35.56,7.85-75.89V223.45c0-40.32,0-60.49-7.85-75.89-6.9-13.55-17.92-24.56-31.46-31.47-15.4-7.85-35.56-7.85-75.89-7.85H151.7c-40.32,0-60.49,0-75.89,7.85-13.55,6.9-24.56,17.92-31.47,31.47-7.85,15.4-7.85,35.56-7.85,75.89v273.6c0,40.32,0,60.49,7.85,75.89,6.9,13.55,17.92,24.56,31.47,31.46,15.4,7.85,35.56,7.85,75.89,7.85Z"/>
@@ -47,11 +49,12 @@ export default function Contact() {
                             </article>
                         </a>
                     </div>
-                    <div className="relative w-1/3">
+                    <div className="relative w-1/3
+                    max-sm:w-full max-sm:flex max-sm:flex-col max-sm:h-full max-sm:py-16
+                    ">
                     <h2 className="font-aktiv text-4xl pb-8">Socials</h2>
                         <a href="www.linkedin.com/in/christianyipper" target="_blank" rel="noopener noreferrer" className="border-t-2 border-white/50 py-8
                         relative w-full flex flex-row justify-start items-center gap-4 
-                        max-sm:hidden
                         ">
                             <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect y="-0.00146484" width="48" height="48" rx="8" fill="transparent"/>
@@ -66,7 +69,6 @@ export default function Contact() {
                         </a>
                         <a href="https://github.com/christianyip" target="_blank" rel="noopener noreferrer" className="border-t-2 border-white/50 py-8
                         relative w-full flex flex-row justify-start items-center gap-4 
-                        max-sm:hidden
                         ">
                             <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect y="-0.00146484" width="48" height="48" rx="8" fill="transparent"/>
@@ -81,7 +83,6 @@ export default function Contact() {
                         </a>
                         <a href="https://instagram.com/bchlofficials" target="_blank" rel="noopener noreferrer" className="border-t-2 border-white/50 py-8
                         relative w-full flex flex-row justify-start items-center gap-4 
-                        max-sm:hidden
                         ">
                             <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect y="-0.00146484" width="48" height="48" rx="8" fill="transparent"/>
