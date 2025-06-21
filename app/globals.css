@@ -153,6 +153,19 @@ h1, h2, h3 {
 }
 
 
+@keyframes blurin {
+  0% {
+    filter: blur(0px);
+  }
+  50% {
+    filter: blur(2px);
+  }
+  100% {
+    filter: blur(0px);
+  }
+}
+
+
 /* Scrollbar styling for WebKit (Chrome, Edge, Safari) */
 ::-webkit-scrollbar {
   width: 10px;
