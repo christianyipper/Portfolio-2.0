@@ -31,7 +31,7 @@ export default function Contact() {
                             />
                             <article>
                                 <p className="font-nunito">Christian Yip</p>
-                                <p className="font-aktiv">Graphics Artist</p>
+                                <p className="font-aktiv">Creative Designer</p>
                             </article>
                         </div>
                         <a href="mailto:christian@yipper.ca" target="_blank" rel="noopener noreferrer" className="border-t-2 border-white/50 py-8

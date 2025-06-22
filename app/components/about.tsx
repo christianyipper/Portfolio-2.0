@@ -35,7 +35,7 @@ export default function About() {
                     />
                     <article>
                         <p className="font-nunito">Christian Yip</p>
-                        <p className="font-aktiv">Graphics Artist</p>
+                        <p className="font-aktiv">Creative Designer</p>
                     </article>
                 </div>
                 <h2 className="font-aktiv text-4xl pb-4">About Me</h2>
