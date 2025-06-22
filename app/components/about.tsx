@@ -59,7 +59,7 @@ export default function About() {
                         />
                         <article>
                             <p className="font-nunito">Christian Yip</p>
-                            <p className="font-aktiv">Graphics Artist</p>
+                            <p className="font-aktiv">Creative Designer</p>
                         </article>
                     </div>
                     <div className="flex flex-row justify-center items-center pt-8 gap-9 h-full
