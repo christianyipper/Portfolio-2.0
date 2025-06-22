@@ -1,7 +1,56 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
 import projectsData from "../../public/data/projects.json";
 import Image from "next/image";
 
+// items used as reference point to trigger intersection observer
+const items = [
+    { id: 1, name: "BCHL Officials" },
+    { id: 2, name: "BCHL" },
+    { id: 3, name: "IIHF" },
+    { id: 4, name: "Stripes Nation" },
+];
+
 export default function Projects() {
+    const refs = useRef<(HTMLDivElement | null)[]>([]);
+    const [visibleStates, setVisibleStates] = useState<boolean[]>(
+        new Array(items.length).fill(false)
+    );
+
+    useEffect(() => {
+
+    // Only run observer if not on mobile
+    if (typeof window !== "undefined" && window.innerWidth < 640) {
+        return;
+    }
+    
+    const observers: IntersectionObserver[] = [];
+
+    refs.current.forEach((el, index) => {
+        if (!el) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+            setVisibleStates((prev) => {
+                const updated = [...prev];
+                updated[index] = entry.isIntersecting;
+                return updated;
+            });
+            },
+            { threshold: 0.5 }
+        );
+
+        observer.observe(el);
+        observers.push(observer);
+        });
+
+        return () => {
+        observers.forEach((observer) => observer.disconnect());
+        };
+    }, []);
+    
     return (
         <section className="col-start-1 col-end-13 flex flex-col justify-start items-start 
         pt-28 h-full gap-12 overflow-y-scroll
@@ -32,10 +81,12 @@ export default function Projects() {
                         </div>
                         <p className="font-nunito">{entry.description}</p>
                     </article>
-                    <div className="relative col-start-8 col-end-11 flex flex-col justify-start items-start m-8
+                    <div ref={(el) => (refs.current[i] = el)}
+                    className={`${visibleStates[i] ? "ink-mask-inview" : "ink-mask-outview"}
+                    relative col-start-8 col-end-11 flex flex-col justify-start items-start m-8
                     rounded-2xl overflow-hidden
                     max-sm:m-2 max-sm:ml-4 max-sm:mb-7
-                    ">
+                    `}>
                         <Image 
                             className="object-contain w-full h-auto"
                             src={entry.thumbnail}

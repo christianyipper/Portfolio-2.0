@@ -197,23 +197,77 @@ h1, h2, h3 {
   }
 }
 @keyframes ink-mask {
-    from {
-        mask-position: 0 100%;
-    }
-    to {
-        mask-position: 0 0;
-    }
+  from {
+      mask-position: 0 100%;
+  }
+  to {
+      mask-position: 0 0;
+  }
 }
 @keyframes ink-mask-hover {
-    from {
-        mask-position: 0 0;
-    }
-    to {
-        mask-position: 0 100%;
-    }
+  from {
+      mask-position: 0 0;
+  }
+  to {
+      mask-position: 0 100%;
+  }
 }
 .ink-mask-load {
   mask: url('../public/img/masks/inkmask-right.png');
   mask-size: 100% 3300%;
   animation: ink-mask-hover 0.8s steps(32) forwards 2s;
+}
+.ink-mask-inview {
+  mask: url('../public/img/masks/inkmask-right.png');
+  mask-size: 100% 3300%;
+  animation: ink-mask-hover 0.8s steps(32) forwards 0.5s;
+}
+.ink-mask-outview {
+  mask: url('../public/img/masks/inkmask-right.png');
+  mask-size: 100% 3300%;
+  animation: ink-mask 0.8s steps(32) forwards;
+}
+@media (max-width: 640px) {
+  .ink-mask-outview {
+    mask: url('../public/img/masks/inkmask-right.png');
+    mask-size: 100% 3300%;
+    animation: ink-mask-hover 0.8s steps(32) forwards;
+  }
+}
+
+.paint-mask {
+  mask: url('../public/img/masks/paint-mask-vertical.png');
+  mask-size: 3000% 100%;
+  animation: paint-mask 0.7s steps(29) forwards;
+
+  &:hover {
+      animation: paint-mask-hover 0.7s steps(29) forwards;
+  }
+}
+@keyframes paint-mask {
+  from {
+      mask-position: 0 0;
+  }
+  to {
+      mask-position: 0 100%;
+  }
+}
+@keyframes paint-mask-hover {
+  from {
+      mask-position: 0 100%;
+  }
+  to {
+      mask-position: 0 0;
+  }
+}
+.paint-mask-inview {
+  mask: url('../public/img/masks/paint-mask-vertical.png');
+  mask-size: 100% 3000%;
+  mask-position: 0 100%;
+  animation: paint-mask-hover 0.8s steps(29) forwards 0.5s;
+}
+.paint-mask-outview {
+  mask: url('../public/img/masks/paint-mask-vertical.png');
+  mask-size: 100% 3000%;
+  animation: paint-mask 0.8s steps(29) forwards;
 }
