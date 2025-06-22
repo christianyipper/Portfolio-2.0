@@ -28,6 +28,7 @@ export default function Projects() {
     
     const observers: IntersectionObserver[] = [];
 
+    
     refs.current.forEach((el, index) => {
         if (!el) return;
 
@@ -81,7 +82,11 @@ export default function Projects() {
                         </div>
                         <p className="font-nunito">{entry.description}</p>
                     </article>
-                    <div ref={(el) => (refs.current[i] = el)}
+                    <div ref={
+                        ((el: HTMLDivElement | null) => {
+                            refs.current[i] = el;
+                        }) as React.Ref<HTMLDivElement>
+                    }
                     className={`${visibleStates[i] ? "ink-mask-inview" : "ink-mask-outview"}
                     relative col-start-8 col-end-11 flex flex-col justify-start items-start m-8
                     rounded-2xl overflow-hidden
