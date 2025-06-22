@@ -5,6 +5,19 @@ import { useEffect, useRef, useState } from "react";
 import projectsData from "../../public/data/projects.json";
 import Image from "next/image";
 
+import AfterEffects from "../svg/aftereffects";
+import Figma from "../svg/figma";
+import Illustrator from "../svg/illustrator";
+import Photoshop from "../svg/photoshop";
+
+// Your component map
+const componentMap: Record<string, React.FC<any>> = {
+    AfterEffects,
+    Figma,
+    Illustrator,
+    Photoshop
+};
+
 // items used as reference point to trigger intersection observer
 const items = [
     { id: 1, name: "BCHL Officials" },
@@ -14,6 +27,9 @@ const items = [
 ];
 
 export default function Projects() {
+    // Created a filter for component entries (resolves issue with intersection observer not watching intended reference)
+    const filteredData = projectsData.filter((entry) => componentMap[entry.icon1]);
+
     const refs = useRef<(HTMLDivElement | null)[]>([]);
     const [visibleStates, setVisibleStates] = useState<boolean[]>(
         new Array(items.length).fill(false)
@@ -21,7 +37,7 @@ export default function Projects() {
 
     useEffect(() => {
 
-    // Only run observer if not on mobile
+    // Only run observer if not on mobile (doesn't actually work for unknown reason...)
     if (typeof window !== "undefined" && window.innerWidth < 640) {
         return;
     }
@@ -40,6 +56,7 @@ export default function Projects() {
                 return updated;
             });
             },
+            // Threshold tied to overflow-scroll box and not entire screen (doesn't work as intended...)
             { threshold: 0.5 }
         );
 
@@ -50,14 +67,20 @@ export default function Projects() {
         return () => {
         observers.forEach((observer) => observer.disconnect());
         };
-    }, []);
+    }, [filteredData.length]);
     
     return (
         <section className="col-start-1 col-end-13 flex flex-col justify-start items-start 
         pt-28 h-full gap-12 overflow-y-scroll
         max-sm:pt-40
         ">
-            {projectsData.map((entry, i) => (
+            {filteredData.map((entry, i) => {
+            const Icon1  = componentMap[entry.icon1];
+            const Icon2 = componentMap[entry.icon2];
+            const Icon3 = componentMap[entry.icon3];
+            const Icon4 = componentMap[entry.icon4];
+            
+            return (
                 <section key={i} className="grid grid-cols-12 gap-4 -mt-4
                 max-sm:flex max-sm:flex-col max-sm:w-full
                 ">
@@ -81,6 +104,14 @@ export default function Projects() {
                             </div>
                         </div>
                         <p className="font-nunito">{entry.description}</p>
+                        <div className="relative flex flex-row gap-2 pt-8 mt-8 border-t-2 border-white/50 w-fit
+                        max-sm:pt-4 max-sm:mt-4
+                        ">
+                            {Icon1 && <Icon1 {...entry} />}
+                            {Icon2 && <Icon2 {...entry} />}
+                            {Icon3 && <Icon3 {...entry} />}
+                            {Icon4 && <Icon4 {...entry} />}
+                        </div>
                     </article>
                     <div ref={
                         ((el: HTMLDivElement | null) => {
@@ -109,7 +140,7 @@ export default function Projects() {
                     </div>
                     <hr className="col-start-3 col-end-11 h-0.5 bg-linear-to-r from-white/0 via-white/100 to-white/0 opacity-50 border-none" />
                 </section>
-            ))}
+            )})}
         </section>
     );
 }
