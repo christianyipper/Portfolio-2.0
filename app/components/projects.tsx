@@ -11,7 +11,7 @@ import Illustrator from "../svg/illustrator";
 import Photoshop from "../svg/photoshop";
 
 // Your component map
-const componentMap: Record<string, React.FC<any>> = {
+const componentMap: Record<string, React.FC<unknown>> = {
     AfterEffects,
     Figma,
     Illustrator,
