@@ -15,7 +15,7 @@ const componentMap: Record<string, React.FC<unknown>> = {
     AfterEffects,
     Figma,
     Illustrator,
-    Photoshop
+    Photoshop,
 };
 
 // items used as reference point to trigger intersection observer
@@ -107,10 +107,10 @@ export default function Projects() {
                         <div className="relative flex flex-row gap-2 pt-8 mt-8 border-t-2 border-white/50 w-fit
                         max-sm:pt-4 max-sm:mt-4
                         ">
-                            {Icon1 && <Icon1 {...entry} />}
-                            {Icon2 && <Icon2 {...entry} />}
-                            {Icon3 && <Icon3 {...entry} />}
-                            {Icon4 && <Icon4 {...entry} />}
+                            {Icon1 && <Icon1/>}
+                            {Icon2 && <Icon2/>}
+                            {Icon3 && <Icon3/>}
+                            {Icon4 && <Icon4/>}
                         </div>
                     </article>
                     <div ref={
