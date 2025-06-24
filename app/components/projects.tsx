@@ -96,7 +96,7 @@ export default function Projects() {
                                 <Image 
                                     className="object-contain w-full h-full"
                                     src={entry.logo}
-                                    alt="Yipper profile"
+                                    alt={entry.logoAlt}
                                     width={640}
                                     height={640}
                                     priority
@@ -126,13 +126,14 @@ export default function Projects() {
                         <Image 
                             className="object-contain w-full h-auto"
                             src={entry.thumbnail}
-                            alt="Yipper profile"
+                            alt={entry.thumbnailAlt}
                             width={640}
                             height={640}
                             priority
                         />
                         <video className="absolute"
                         src={entry.video} 
+                        poster={entry.videoThumbnail}
                         autoPlay
                         muted
                         loop
