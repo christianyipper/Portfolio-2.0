@@ -71,6 +71,7 @@ export default function About() {
                                 <Premiere/>
                                 <Illustrator/>
                                 <Photoshop/>
+                                <Figma/>
                             </div>
                             <p className="font-nunito !text-[14px] opacity-50 w-full text-center mt-2.5 pt-1 border-t-2 border-white/50">Creative Proficiencies</p>
                         </div>
@@ -80,7 +81,6 @@ export default function About() {
                                 <Next/>
                                 <Tailwind/>
                                 <Webflow/>
-                                <Figma/>
                             </div>
                             <p className="font-nunito !text-[14px] opacity-50 w-full text-center mt-2.5 pt-1 border-t-2 border-white/50">Front-End Proficiencies</p>
                         </div>
