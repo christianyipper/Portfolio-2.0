@@ -175,7 +175,7 @@ export default function Projects() {
                 </div>
             </section>
         {/* motion */}
-            <section className={`${showMotion ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"}
+            <section className={`${showMotion ? "opacity-0 pointer-events-none" : "opacity-100"}
             transition-opacity duration-1000
             col-start-1 col-end-13 flex flex-col justify-start items-start 
             pt-28 h-full gap-12 overflow-y-scroll absolute z-0
@@ -251,7 +251,7 @@ export default function Projects() {
                 )})}
             </section>
         {/* graphics */}
-            <section className={`${showGraphics ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"}
+            <section className={`${showGraphics ? "opacity-0 pointer-events-none" : "opacity-100"}
             transition-opacity duration-1000
             col-start-1 col-end-13 flex flex-col justify-start items-start 
             pt-28 h-full gap-12 overflow-y-scroll absolute z-0

@@ -95,7 +95,7 @@ export default function Allpages() {
             </section>
 
         {/* projects section */}
-            <section className={`${showProjects ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
+            <section className={`${showProjects ? "opacity-100 pointer-events-auto" : "opacity-0 !pointer-events-none"}
             absolute w-full h-full grid grid-cols-12 gap-4
             transition-opacity duration-1000
             max-sm:pt-0
