@@ -271,3 +271,14 @@ h1, h2, h3 {
   mask-size: 100% 3000%;
   animation: paint-mask 0.8s steps(29) forwards;
 }
+
+@keyframes pingani {
+  0% {
+    transform: scale(1);
+    opacity: 100;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
