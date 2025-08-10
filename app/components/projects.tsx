@@ -151,7 +151,8 @@ export default function Projects() {
                 border-2 border-white rounded-full
                 max-sm:flex-col max-sm:w-full max-sm:h-22 max-sm:rounded-3xl
                 "> 
-                    <a  href="#motion" className={`hover:scale-90 transition-all duration-300 z-10
+                    <a  href="#motion" className={`${showMotion ? "" : "pointer-events-none"}
+                    hover:scale-90 transition-all duration-300 z-10
                     w-1/2 flex justify-center items-center
                     max-sm:w-full max-sm:h-1/2
                     `}>
@@ -165,7 +166,8 @@ export default function Projects() {
                         font-aktiv !text-md text-black
                         transition-all duration-500`}>Motion Design</p>
                     </a>
-                    <a  href="#graphics" className={`hover:scale-90 transition-all duration-300 z-10
+                    <a  href="#graphics" className={`${showGraphics ? "" : "pointer-events-none"}
+                    hover:scale-90 transition-all duration-300 z-10
                     w-1/2 flex justify-center items-center
                     max-sm:w-full max-sm:h-1/2
                     `}>
