@@ -47,10 +47,9 @@ export default function Allpages() {
                 <section id="projects" ref={projectsTrigger} className="relative w-full h-screen"></section>
                 <section id="contact" ref={contactTrigger} className="relative w-full h-screen"></section>
             </div>
+        {/* old faded edge mobile */}
+        {/* <div className={`${showAbout || showProjects || showContact ? "opacity-0 max-sm:opacity-100 pointer-events-none max-sm:visible max-sm:absolute max-sm:w-full max-sm:h-48 bg-gradient-to-b from-black/90 via-black/70 to-black/0 max-sm:z-30" : "opacity-0" } transition-opacity duration-1000`}></div> */}
 
-        {/* faded edge mobile */}
-            <div className={`${showAbout || showProjects || showContact ? "opacity-0 max-sm:opacity-100 pointer-events-none max-sm:visible max-sm:absolute max-sm:w-full max-sm:h-48 bg-gradient-to-b from-black/90 via-black/70 to-black/0 max-sm:z-30" : "opacity-0" } transition-opacity duration-1000`}></div>
-        {/* faded edge desktop located on projects page */}
         {/* about section */}
             <section className={`${showAbout ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
             absolute w-full h-full grid grid-cols-12 gap-4

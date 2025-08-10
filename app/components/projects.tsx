@@ -140,10 +140,12 @@ export default function Projects() {
             </div>
         {/* faded edge desktop */}
             <div className="opacity-100 pointer-events-none absolute w-full h-32 bg-gradient-to-b from-black/100 via-black/70 to-black/0 z-30 transition-opacity duration-1000 max-sm:hidden"></div>
+        {/* faded edge mobile */}
+        <div className="opacity-0 max-sm:opacity-100 pointer-events-none max-sm:visible max-sm:absolute max-sm:w-full max-sm:h-48 bg-gradient-to-b from-black/90 via-black/70 to-black/0 max-sm:z-30 transition-opacity duration-1000"></div>
         {/* slider */}
             <section className={`
             col-start-5 col-end-9 h-18 flex flex-col justify-end items-center z-50 relative
-            max-sm:col-start-1 max-sm:col-end-10 max-sm:h-26 max-sm:ml-16 max-sm:mr-6
+            max-sm:col-start-1 max-sm:col-end-10 max-sm:h-26 max-sm:ml-[20%] max-sm:mr-[10%]
             `}>
                 <div className="w-full h-10 flex flex-row relative
                 border-2 border-white rounded-full
@@ -154,7 +156,7 @@ export default function Projects() {
                     max-sm:w-full max-sm:h-1/2
                     `}>
                         {/* ping effect */}
-                        <div className="w-2 h-2 rounded-full bg-white mr-2 -ml-4 max-sm:-ml-2">
+                        <div className="w-2 h-2 rounded-full bg-white mr-2 -ml-4 max-sm:-ml-2 max-sm:hidden">
                             <div className="w-2 h-2 rounded-full bg-white
                             animate-[pingani_2s_ease-in-out_1.4s_infinite]
                             "></div>
@@ -168,7 +170,7 @@ export default function Projects() {
                     max-sm:w-full max-sm:h-1/2
                     `}>
                         {/* ping effect */}
-                        <div className="w-2 h-2 rounded-full bg-white mr-2 -ml-4 max-sm:-ml-2">
+                        <div className="w-2 h-2 rounded-full bg-white mr-2 -ml-4 max-sm:-ml-2 max-sm:hidden">
                             <div className="w-2 h-2 rounded-full bg-white
                             animate-[pingani_2s_ease-in-out_1.4s_infinite]
                             "></div>
@@ -179,7 +181,7 @@ export default function Projects() {
                     </a>
                     <div className={`${showMotion ? "translate-x-full max-sm:translate-x-0 max-sm:translate-y-full" : "translate-x-0 max-sm:translate-y-0"}
                     transition-all duration-500
-                    w-1/2 h-full rounded-full absolute bg-white z-0
+                    w-1/2 h-full rounded-full absolute bg-white -z-10
                     max-sm:w-full max-sm:h-1/2
                     `}>
                     </div>
@@ -190,7 +192,7 @@ export default function Projects() {
             transition-opacity duration-1000
             col-start-1 col-end-13 flex flex-col justify-start items-start 
             pt-32 h-full gap-12 overflow-y-scroll absolute z-0
-            max-sm:pt-40
+            max-sm:pt-44
             `}>
                 {motionData.map((entry, j) => {
                 const Icon1  = componentMap[entry.icon1];
@@ -266,7 +268,7 @@ export default function Projects() {
             transition-opacity duration-1000
             col-start-1 col-end-13 flex flex-col justify-start items-start 
             pt-32 h-full gap-12 overflow-y-scroll absolute z-0
-            max-sm:pt-40
+            max-sm:pt-44
             `}>
                 {graphicsData.map((entry, i) => {
                 const Icon1  = componentMap[entry.icon1];

@@ -4,6 +4,9 @@ import Image from "next/image";
 
 export default function Contact() {
     return (
+                <>
+        {/* faded edge mobile */}
+        <div className="opacity-0 max-sm:opacity-100 pointer-events-none max-sm:visible max-sm:absolute max-sm:w-full max-sm:h-48 bg-gradient-to-b from-black/90 via-black/70 to-black/0 max-sm:z-30 transition-opacity duration-1000"></div>
         <section className="col-start-3 col-end-11 flex justify-center items-start pt-24 h-full
         max-sm:overflow-y-scroll max-sm:pt-40 max-sm:w-full
         ">
@@ -105,5 +108,6 @@ export default function Contact() {
                 </div>
             </div>
         </section>
+        </>
     );
 }

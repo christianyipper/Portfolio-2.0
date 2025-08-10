@@ -18,7 +18,7 @@
     {
         "title": "BCHL Officials",
         "subtitle": "2026 Officiating Team",
-        "description": "The BCHL Officiating Team graphics were created to stand apart from traditional sports roster designs. The name and number on the referee jerseys represent the new season and used transform tools to warp them into its natural place. The cherry on top was applying an immersive wave animation to the jersey. The result is a bold, distinctive look that elevates the visuals and enhances the overall experience.",
+        "description": "The BCHL Officiating Team graphics were created to stand apart from traditional sports roster designs. The name and number on the referee jerseys represent the new season and I used transform tools to warp them into its natural place. The cherry on top was applying an immersive wave animation to the jersey. The result is a bold, distinctive look that elevates the visuals and enhances the overall experience.",
         "logo": "/img/bchlofficials/bchl-officials-logo-2025-tpt.png",
         "logoAlt": "BCHL Officials logo",
         "thumbnail": "/img/blank-bg-1080x1450.jpg",
@@ -34,7 +34,7 @@
         {
         "title": "BCHL Officials",
         "subtitle": "BCHL League Standings",
-        "description": "The goal of this project was to elevate the classic linear design of sports league standings. I wanted the theme of neon lights to be prevalent throughout the entire graphic. Line animations and fill gradients were used to illustrate a loading effect when the ticker loads. Additionally, masks outlined team logos and key features to bring them to life. Behind the scenes, I linked a CSV file to update each team's point totals for a seamless export.",
+        "description": "The goal of this project was to elevate the classic linear design of sports league standings. I wanted the theme of neon lights to be prevalent throughout the entire graphic. Line animations and fill gradients were used to illustrate a loading effect when the numbers tick. Additionally, masks outlined team logos and key features to bring them to life. Behind the scenes, I linked a CSV file to update each team's point totals for a seamless export.",
         "logo": "/img/bchlofficials/bchl-officials-logo-2025-tpt.png",
         "logoAlt": "BCHL Officials logo",
         "thumbnail": "/img/blank-bg-1080x1450.jpg",
