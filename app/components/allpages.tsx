@@ -184,7 +184,7 @@ export default function Allpages() {
                 max-sm:w-auto max-sm:h-screen max-sm:object-cover
                 transition duration-1000
                 `} 
-                src="/yipper-bg.webm"
+                src="/yipper-bg-alt.webm"
                 poster="/blank-bg-wide.jpg"
                 autoPlay
                 muted
