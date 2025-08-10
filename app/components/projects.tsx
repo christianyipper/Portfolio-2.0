@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 
-import projectsData from "../../public/data/projects.json";
+import motionProjectsData from "../../public/data/motion-projects.json";
+import graphicsProjectsData from "../../public/data/graphics-projects.json";
 import Image from "next/image";
 
 import AfterEffects from "../svg/aftereffects";
@@ -28,120 +29,296 @@ const items = [
 
 export default function Projects() {
     // Created a filter for component entries (resolves issue with intersection observer not watching intended reference)
-    const filteredData = projectsData.filter((entry) => componentMap[entry.icon1]);
+    const motionData = motionProjectsData.filter((entry) => componentMap[entry.icon1]);
+    const graphicsData = graphicsProjectsData.filter((entry) => componentMap[entry.icon1]);
 
-    const refs = useRef<(HTMLDivElement | null)[]>([]);
+    const motionRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const graphicsRefs = useRef<(HTMLDivElement | null)[]>([]);
     const [visibleStates, setVisibleStates] = useState<boolean[]>(
         new Array(items.length).fill(false)
     );
 
     useEffect(() => {
 
-    // Only run observer if not on mobile (doesn't actually work for unknown reason...)
-    if (typeof window !== "undefined" && window.innerWidth < 640) {
-        return;
-    }
-    
-    const observers: IntersectionObserver[] = [];
+        // Only run observer if not on mobile (doesn't actually work for unknown reason...)
+        if (typeof window !== "undefined" && window.innerWidth < 640) {
+            return;
+        }
+        
+        const observers: IntersectionObserver[] = [];
 
-    
-    refs.current.forEach((el, index) => {
-        if (!el) return;
+        motionRefs.current.forEach((el, index) => {
+            if (!el) return;
 
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-            setVisibleStates((prev) => {
-                const updated = [...prev];
-                updated[index] = entry.isIntersecting;
-                return updated;
+            const observer = new IntersectionObserver(
+                ([entry]) => {
+                setVisibleStates((prev) => {
+                    const updated = [...prev];
+                    updated[index] = entry.isIntersecting;
+                    return updated;
+                });
+                },
+                // Threshold tied to overflow-scroll box and not entire screen (doesn't work as intended...)
+                { threshold: 0.5 }
+            );
+
+            observer.observe(el);
+            observers.push(observer);
             });
-            },
-            // Threshold tied to overflow-scroll box and not entire screen (doesn't work as intended...)
-            { threshold: 0.5 }
-        );
 
-        observer.observe(el);
-        observers.push(observer);
+            return () => {
+            observers.forEach((observer) => observer.disconnect());
+        };
+    }, [motionData.length]);
+
+    useEffect(() => {
+
+        // Only run observer if not on mobile (doesn't actually work for unknown reason...)
+        if (typeof window !== "undefined" && window.innerWidth < 640) {
+            return;
+        }
+        
+        const observers: IntersectionObserver[] = [];
+
+        graphicsRefs.current.forEach((el, index) => {
+            if (!el) return;
+
+            const observer = new IntersectionObserver(
+                ([entry]) => {
+                setVisibleStates((prev) => {
+                    const updated = [...prev];
+                    updated[index] = entry.isIntersecting;
+                    return updated;
+                });
+                },
+                // Threshold tied to overflow-scroll box and not entire screen (doesn't work as intended...)
+                { threshold: 0.5 }
+            );
+
+            observer.observe(el);
+            observers.push(observer);
+            });
+
+            return () => {
+            observers.forEach((observer) => observer.disconnect());
+        };
+    }, [graphicsData.length]);
+    
+    const motionTrigger = useRef<HTMLDivElement>(null);
+    const graphicsTrigger = useRef<HTMLDivElement>(null);
+
+    const [showMotion, setShowMotion] = useState(false);
+    const [showGraphics, setShowGraphics] = useState(false);
+
+    useEffect(() => {
+
+        const options = { threshold: 0.6 };
+
+        const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            const id = entry.target.id;
+            const visible = entry.isIntersecting;
+
+            if (id === "graphics") setShowMotion(visible);
+            if (id === "motion") setShowGraphics(visible);
         });
+        }, options);
+
+        if (motionTrigger.current) observer.observe(motionTrigger.current);
+        if (graphicsTrigger.current) observer.observe(graphicsTrigger.current);
 
         return () => {
-        observers.forEach((observer) => observer.disconnect());
+        observer.disconnect();
         };
-    }, [filteredData.length]);
-    
+    }, []);
+
     return (
-        <section className="col-start-1 col-end-13 flex flex-col justify-start items-start 
-        pt-28 h-full gap-12 overflow-y-scroll
-        max-sm:pt-40
-        ">
-            {filteredData.map((entry, i) => {
-            const Icon1  = componentMap[entry.icon1];
-            const Icon2 = componentMap[entry.icon2];
-            const Icon3 = componentMap[entry.icon3];
-            const Icon4 = componentMap[entry.icon4];
-            
-            return (
-                <section key={i} className="grid grid-cols-12 gap-4 -mt-4
-                max-sm:flex max-sm:flex-col max-sm:w-full
-                ">
-                    <article className="col-start-3 col-end-8 p-8
-                    max-sm:w-full max-sm:p-2 max-sm:pl-4
-                    ">
-                        <div className="relative flex flex-row justify-between items-center mb-4">
-                            <div>
-                                <h2 className="font-aktiv !text-4xl">{entry.title}</h2>
-                                <p className="font-nunito !text-md opacity-60">{entry.subtitle}</p>
-                            </div>
-                            <div className="w-20 h-16">
-                                <Image 
-                                    className="object-contain w-full h-full"
-                                    src={entry.logo}
-                                    alt={entry.logoAlt}
-                                    width={640}
-                                    height={640}
-                                    priority
-                                />
-                            </div>
-                        </div>
-                        <p className="font-nunito">{entry.description}</p>
-                        <div className="relative flex flex-row gap-2 pt-8 mt-8 border-t-2 border-white/50 w-fit
-                        max-sm:pt-4 max-sm:mt-4
-                        ">
-                            {Icon1 && <Icon1/>}
-                            {Icon2 && <Icon2/>}
-                            {Icon3 && <Icon3/>}
-                            {Icon4 && <Icon4/>}
-                        </div>
-                    </article>
-                    <div ref={
-                        ((el: HTMLDivElement | null) => {
-                            refs.current[i] = el;
-                        }) as React.Ref<HTMLDivElement>
-                    }
-                    className={`${visibleStates[i] ? "ink-mask-inview" : "ink-mask-outview"}
-                    relative col-start-8 col-end-11 flex flex-col justify-start items-start m-8
-                    rounded-2xl overflow-hidden
-                    max-sm:m-2 max-sm:ml-4 max-sm:mb-7
+        <>
+            <div className="absolute w-full h-full overflow-scroll opacity-0 pointer-events-none">
+                <section id="motion" ref={motionTrigger} className="relative w-full h-screen"></section>
+                <section id="graphics" ref={graphicsTrigger} className="relative w-full h-screen"></section>
+            </div>
+        {/* slider */}
+            <section className={`
+            col-start-5 col-end-9 h-18 flex flex-col justify-end items-center z-50 relative
+            max-sm:col-start-2 max-sm:col-end-9 max-sm:h-26 max-sm:ml-16 max-sm:mr-6
+            `}>
+                <div className="w-72 h-10 flex flex-row relative
+                border-2 border-white rounded-full
+                max-sm:flex-col max-sm:w-full max-sm:h-22 max-sm:rounded-3xl
+                "> 
+                    <a  href="#motion" className={`group
+                    w-1/2 flex justify-center items-center
+                    max-sm:w-full max-sm:h-1/2
                     `}>
-                        <Image 
-                            className="object-contain w-full h-auto"
-                            src={entry.thumbnail}
-                            alt={entry.thumbnailAlt}
-                            width={640}
-                            height={640}
-                            priority
-                        />
-                        <video className="absolute"
-                        src={entry.video} 
-                        poster={entry.videoThumbnail}
-                        autoPlay
-                        muted
-                        loop
-                        playsInline/>
+                        <p className={`${showMotion ? "text-white" : "text-black"}
+                        group-hover:scale-90
+                        font-aktiv !text-md text-black
+                        transition-all duration-300
+                        `}>Motion</p>
+                    </a>
+                    <a  href="#graphics" className={`group
+                    w-1/2 flex justify-center items-center
+                    max-sm:w-full max-sm:h-1/2
+                    `}>
+                        <p className={`${showGraphics ? "text-white" : "text-black"}
+                        group-hover:scale-90
+                        font-aktiv !text-md text-black
+                        transition-all duration-300`}>Graphics</p>
+                    </a>
+                    <div className={`${showMotion ? "translate-x-full max-sm:translate-x-0 max-sm:translate-y-full" : "translate-x-0 max-sm:translate-y-0"}
+                    transition-all duration-500
+                    w-1/2 h-full rounded-full absolute bg-white -z-10
+                    max-sm:w-full max-sm:h-1/2
+                    `}>
                     </div>
-                    <hr className="col-start-3 col-end-11 h-0.5 bg-linear-to-r from-white/0 via-white/100 to-white/0 opacity-50 border-none" />
-                </section>
-            )})}
-        </section>
+                </div>
+            </section>
+        {/* motion */}
+            <section className={`${showMotion ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"}
+            transition-opacity duration-1000
+            col-start-1 col-end-13 flex flex-col justify-start items-start 
+            pt-28 h-full gap-12 overflow-y-scroll absolute z-0
+            max-sm:pt-40
+            `}>
+                {motionData.map((entry, i) => {
+                const Icon1  = componentMap[entry.icon1];
+                const Icon2 = componentMap[entry.icon2];
+                const Icon3 = componentMap[entry.icon3];
+                const Icon4 = componentMap[entry.icon4];
+                
+                return (
+                    <section key={i} className="grid grid-cols-12 gap-4 -mt-4
+                    max-sm:flex max-sm:flex-col max-sm:w-full
+                    ">
+                        <article className="col-start-3 col-end-8 p-8
+                        max-sm:w-full max-sm:p-2 max-sm:pl-4
+                        ">
+                            <div className="relative flex flex-row justify-between items-center mb-4">
+                                <div>
+                                    <h2 className="font-aktiv !text-4xl">{entry.title}</h2>
+                                    <p className="font-nunito !text-md opacity-60">{entry.subtitle}</p>
+                                </div>
+                                <div className="w-20 h-16">
+                                    <Image 
+                                        className="object-contain w-full h-full"
+                                        src={entry.logo}
+                                        alt={entry.logoAlt}
+                                        width={640}
+                                        height={640}
+                                        priority
+                                    />
+                                </div>
+                            </div>
+                            <p className="font-nunito">{entry.description}</p>
+                            <div className="relative flex flex-row gap-2 pt-8 mt-8 border-t-2 border-white/50 w-fit
+                            max-sm:pt-4 max-sm:mt-4
+                            ">
+                                {Icon1 && <Icon1/>}
+                                {Icon2 && <Icon2/>}
+                                {Icon3 && <Icon3/>}
+                                {Icon4 && <Icon4/>}
+                            </div>
+                        </article>
+                        <div ref={
+                            ((el: HTMLDivElement | null) => {
+                                motionRefs.current[i] = el;
+                            }) as React.Ref<HTMLDivElement>
+                        }
+                        className={`${visibleStates[i] ? "ink-mask-inview" : "ink-mask-outview"}
+                        relative col-start-8 col-end-11 flex flex-col justify-start items-start m-8
+                        rounded-2xl overflow-hidden
+                        max-sm:m-2 max-sm:ml-4 max-sm:mb-7
+                        `}>
+                            <Image 
+                                className="object-contain w-full h-auto"
+                                src={entry.thumbnail}
+                                alt={entry.thumbnailAlt}
+                                width={640}
+                                height={640}
+                                priority
+                            />
+                            <video className="absolute"
+                            src={entry.video} 
+                            poster={entry.videoThumbnail}
+                            autoPlay
+                            muted
+                            loop
+                            playsInline/>
+                        </div>
+                        <hr className="col-start-3 col-end-11 h-0.5 bg-linear-to-r from-white/0 via-white/100 to-white/0 opacity-50 border-none" />
+                    </section>
+                )})}
+            </section>
+        {/* graphics */}
+            <section className={`${showGraphics ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"}
+            transition-opacity duration-1000
+            col-start-1 col-end-13 flex flex-col justify-start items-start 
+            pt-28 h-full gap-12 overflow-y-scroll absolute z-0
+            max-sm:pt-40
+            `}>
+                {graphicsData.map((entry, i) => {
+                const Icon1  = componentMap[entry.icon1];
+                const Icon2 = componentMap[entry.icon2];
+                const Icon3 = componentMap[entry.icon3];
+                const Icon4 = componentMap[entry.icon4];
+                
+                return (
+                    <section key={i} className="grid grid-cols-12 gap-4 -mt-4
+                    max-sm:flex max-sm:flex-col max-sm:w-full
+                    ">
+                        <article className="col-start-3 col-end-8 p-8
+                        max-sm:w-full max-sm:p-2 max-sm:pl-4
+                        ">
+                            <div className="relative flex flex-row justify-between items-center mb-4">
+                                <div>
+                                    <h2 className="font-aktiv !text-4xl">{entry.title}</h2>
+                                    <p className="font-nunito !text-md opacity-60">{entry.subtitle}</p>
+                                </div>
+                                <div className="w-20 h-16">
+                                    <Image 
+                                        className="object-contain w-full h-full"
+                                        src={entry.logo}
+                                        alt={entry.logoAlt}
+                                        width={640}
+                                        height={640}
+                                        priority
+                                    />
+                                </div>
+                            </div>
+                            <p className="font-nunito">{entry.description}</p>
+                            <div className="relative flex flex-row gap-2 pt-8 mt-8 border-t-2 border-white/50 w-fit
+                            max-sm:pt-4 max-sm:mt-4
+                            ">
+                                {Icon1 && <Icon1/>}
+                                {Icon2 && <Icon2/>}
+                                {Icon3 && <Icon3/>}
+                                {Icon4 && <Icon4/>}
+                            </div>
+                        </article>
+                        <div ref={
+                            ((el: HTMLDivElement | null) => {
+                                graphicsRefs.current[i] = el;
+                            }) as React.Ref<HTMLDivElement>
+                        }
+                        className={`${visibleStates[i] ? "ink-mask-inview" : "ink-mask-outview"}
+                        relative col-start-8 col-end-11 flex flex-col justify-start items-start m-8
+                        rounded-2xl overflow-hidden
+                        max-sm:m-2 max-sm:ml-4 max-sm:mb-7
+                        `}>
+                            <Image 
+                                className="object-contain w-full h-auto"
+                                src={entry.thumbnail}
+                                alt={entry.thumbnailAlt}
+                                width={640}
+                                height={640}
+                                priority
+                            />
+                        </div>
+                        <hr className="col-start-3 col-end-11 h-0.5 bg-linear-to-r from-white/0 via-white/100 to-white/0 opacity-50 border-none" />
+                    </section>
+                )})}
+            </section>
+        </>
     );
 }
