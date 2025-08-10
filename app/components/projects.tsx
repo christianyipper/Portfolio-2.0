@@ -189,7 +189,7 @@ export default function Projects() {
             <section className={`${showMotion ? "opacity-0 pointer-events-none" : "opacity-100"}
             transition-opacity duration-1000
             col-start-1 col-end-13 flex flex-col justify-start items-start 
-            pt-28 h-full gap-12 overflow-y-scroll absolute z-0
+            pt-32 h-full gap-12 overflow-y-scroll absolute z-0
             max-sm:pt-40
             `}>
                 {motionData.map((entry, j) => {
@@ -265,7 +265,7 @@ export default function Projects() {
             <section className={`${showGraphics ? "opacity-0 pointer-events-none" : "opacity-100"}
             transition-opacity duration-1000
             col-start-1 col-end-13 flex flex-col justify-start items-start 
-            pt-28 h-full gap-12 overflow-y-scroll absolute z-0
+            pt-32 h-full gap-12 overflow-y-scroll absolute z-0
             max-sm:pt-40
             `}>
                 {graphicsData.map((entry, i) => {
