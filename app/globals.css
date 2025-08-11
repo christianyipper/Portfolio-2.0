@@ -5,6 +5,11 @@
   --foreground: #171717;
 }
 
+html {
+  color-scheme: light;
+  forced-color-adjust: none;
+}
+
 @font-face {
   font-family: "aktiv";
   src: url("/public/fonts/aktiv.ttf") format("truetype");
