@@ -1,5 +1,19 @@
 [
     {
+        "title": "Flick'd Studios",
+        "subtitle": "Brand Development",
+        "description": "Flick'd Studios is a photography brand centered around car enthusiasts. The goal was to create a logo that inherites sharp sleek lines of sports cars and a simplistic, but bold esthetic.",
+        "logo": "/img/flickd/flickd-submark-white.png",
+        "logoAlt": "Flickd Studios Logo",
+        "thumbnail": "/img/flickd/flickd-studios-branding.png",
+        "thumbnailAlt": "Flickd Studios Branding",
+        "button": "",
+        "icon1": "Illustrator",
+        "icon2": "",
+        "icon3": "",
+        "icon4": ""
+    },
+    {
         "title": "BCHL",
         "subtitle": "2025 Officiating Combine",
         "description": "For the BCHL’s inaugural Officiating Combine, I was tasked with creating a suite of marketing materials to promote the event across digital platforms. Given full creative freedom, I developed a visual theme that highlighted the professionalism of BCHL officials while incorporating a nostalgic, retro-inspired aesthetic.",
