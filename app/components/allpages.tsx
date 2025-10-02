@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import About from "./about";
 import Projects from "./projects";
 import Contact from "./contact";
+import Copyright from "./copyright";
 
 export default function Allpages() {
 
@@ -192,6 +193,9 @@ export default function Allpages() {
                 playsInline/>
             </div>
         </section>
+
+        {/* Copyright */}
+        <Copyright/>
         </>
     );
 }

@@ -253,13 +253,13 @@ export default function Projects() {
                                 height={640}
                                 priority
                             />
-                            <video className="absolute"
+                            {/* <video className="absolute"
                             src={entry.video} 
                             poster={entry.videoThumbnail}
                             autoPlay
                             muted
                             loop
-                            playsInline/>
+                            playsInline/> */}
                         </div>
                         <hr className="col-start-3 col-end-11 h-0.5 bg-linear-to-r from-white/0 via-white/100 to-white/0 opacity-50 border-none" />
                     </section>
