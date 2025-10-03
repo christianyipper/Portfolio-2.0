@@ -25,7 +25,7 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-    title: "Yipper | Creative Designer",
+    title: "Yipper Creative",
     description: "Explore the portfolio of Christian Yip — specializing in creative content for sports and design-forward brands.",
     keywords: [
         "Christian Yip",
