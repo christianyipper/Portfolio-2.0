@@ -26,10 +26,11 @@ const nunito = Nunito({
 
 export const metadata: Metadata = {
     title: "Yipper Creative",
-    description: "Explore the portfolio of Christian Yip — specializing in creative content for sports and design-forward brands.",
+    description: "Explore Yipper Creative — putting sports and design-forward brands in motion.",
     keywords: [
         "Christian Yip",
         "Yipper",
+        "Yipper Creative",
         "creative",
         "creative designer",
         "visual design",
@@ -43,15 +44,16 @@ export const metadata: Metadata = {
         "brand-centric",
         "sports branding",
         "motion graphics",
+        "motion design",
         "freelance designer",
         "sports graphics",
     ],
     openGraph: {
-        title: "Yipper | Creative Designer",
+        title: "Yipper Creative",
         description:
-            "Explore the portfolio of Christian Yip — specializing in creative content for sports and design-forward brands.",
+            "Explore Yipper Creative — putting sports and design-forward brands in motion.",
         url: "https://yipper.ca",
-        siteName: "Christian Yip Portfolio",
+        siteName: "Yipper Creative",
         locale: "en_US",
         type: "website",
     },
