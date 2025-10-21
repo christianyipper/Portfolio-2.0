@@ -61,8 +61,8 @@ export default function Allpages() {
             </section>
 
         {/* about navigation */}
-            <section className={`${showAbout ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"}
-            transition-opacity duration-500 
+            <section className={`${showAbout ? "opacity-0 max-sm:opacity-100 pointer-events-none" : "opacity-100 pointer-events-auto"}
+            transition-opacity duration-500
             `}>
                 <div className="absolute left-0 h-full flex items-center z-40 pointer-events-none
                 max-sm:left-auto max-sm:right-0 max-sm:h-auto max-sm:w-32 max-sm:top-2 max-sm:overflow-hidden
@@ -102,7 +102,7 @@ export default function Allpages() {
             </section>
 
         {/* projects navigation */}
-            <section className={`${showProjects ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"}
+            <section className={`${showProjects ? "opacity-0 max-sm:opacity-100 pointer-events-none" : "opacity-100 pointer-events-auto"}
             transition-opacity duration-500 
             `}>
                 <div className="absolute bottom-0 w-full flex justify-center pt-2 overflow-hidden z-40
@@ -144,8 +144,9 @@ export default function Allpages() {
             `}>
                 <Contact/>
             </section>
+
         {/* contact navigation */}
-            <section className={`${showContact ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"}
+            <section className={`${showContact ? "opacity-0 max-sm:opacity-100 pointer-events-none" : "opacity-100 pointer-events-auto"}
             transition-opacity duration-500 
             `}>
                 <div className="absolute right-0 h-full flex items-center pl-2 overflow-hidden z-40 pointer-events-none
