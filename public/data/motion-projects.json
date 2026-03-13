@@ -1,4 +1,4 @@
-[
+ [
     {
         "title": "BCHL Officials",
         "subtitle": "2026 Gameday Graphics Package",
@@ -45,22 +45,6 @@
         "icon1": "AfterEffects",
         "icon2": "Illustrator",
         "icon3": "",
-        "icon4": ""
-    },
-    {
-        "title": "BCHL Officials",
-        "subtitle": "2024-25 Motion Graphics",
-        "description": "The BCHL Officials social media project is an ongoing initiative focused on promoting and elevating the officiating community. As the lead designer and content creator, I use the platform to experiment with new styles, motion techniques, and visual storytelling formats. This project not only helps highlight the personalities and work of BCHL officials but also serves as a creative outlet to push the boundaries of sports-focused content design.",
-        "logo": "/img/bchlofficials/bchl-officials-logo-2025-tpt.png",
-        "logoAlt": "BCHL Officials logo",
-        "thumbnail": "/img/blank-bg-1080x1920.jpg",
-        "thumbnailAlt": "Video background",
-        "video": "",
-        "videoThumbnail": "/img/blank-bg-1080x1920.jpg",
-        "button": "",
-        "icon1": "AfterEffects",
-        "icon2": "Illustrator",
-        "icon3": "Photoshop",
         "icon4": ""
     }
 ]
