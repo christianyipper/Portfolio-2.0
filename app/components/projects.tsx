@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Lottie from "lottie-react";
+import eyeAnimation from "../../public/svg/Eye.json";
 import motionProjectsData from "../../public/data/motion-projects.json";
 import graphicsProjectsData from "../../public/data/graphics-projects.json";
 
@@ -139,6 +141,24 @@ function ProjectCard({ entry, visible, index }: { entry: ProjectEntry; visible: 
 export default function Projects() {
     const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
     const [visibleStates, setVisibleStates] = useState<boolean[]>(new Array(totalCards).fill(false));
+    const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+    const [cursorVisible, setCursorVisible] = useState(false);
+    const targetPos = useRef({ x: 0, y: 0 });
+    const currentPos = useRef({ x: 0, y: 0 });
+    const rafRef = useRef<number | null>(null);
+
+    useEffect(() => {
+        const animate = () => {
+            const dx = targetPos.current.x - currentPos.current.x;
+            const dy = targetPos.current.y - currentPos.current.y;
+            currentPos.current.x += dx * 0.1;
+            currentPos.current.y += dy * 0.1;
+            setCursorPos({ x: currentPos.current.x, y: currentPos.current.y });
+            rafRef.current = requestAnimationFrame(animate);
+        };
+        rafRef.current = requestAnimationFrame(animate);
+        return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
+    }, []);
 
     useEffect(() => {
         const observers: IntersectionObserver[] = [];
@@ -164,11 +184,35 @@ export default function Projects() {
 
     return (
         <>
+            {/* Lottie cursor — fixed, follows mouse over cards */}
+            <div
+                className="fixed pointer-events-none z-9999 w-8 h-8 transition-opacity duration-200"
+                style={{
+                    left: cursorPos.x,
+                    top: cursorPos.y,
+                    transform: "translate(4px, -100%)",
+                    opacity: cursorVisible ? 1 : 0,
+                }}
+            >
+                <div className="w-full h-full rounded-full overflow-hidden bg-[#00BBFF]">
+                    <Lottie animationData={eyeAnimation} loop style={{ filter: "brightness(0) invert(1)" }} />
+                </div>
+            </div>
+
             <section className="col-start-1 col-end-13 h-full bg-white p-8 rounded-4xl shadow-2xl">
                 <h2 className="font-zuume text-[64px] font-bold pb-4">My Projects</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-8 pb-32">
+                <div
+                    className="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-8 pb-32"
+                    onMouseMove={(e) => { targetPos.current = { x: e.clientX, y: e.clientY }; }}
+                >
                     {motionProjectsData.map((entry, i) => (
-                        <div key={`motion-${i}`} ref={(el) => { cardRefs.current[i] = el; }} className={i % 3 === 1 ? "sm:translate-y-32" : ""}>
+                        <div
+                            key={`motion-${i}`}
+                            ref={(el) => { cardRefs.current[i] = el; }}
+                            className={`${i % 3 === 1 ? "sm:translate-y-32" : ""} ${cursorVisible ? "cursor-none" : ""}`}
+                            onMouseEnter={() => setCursorVisible(true)}
+                            onMouseLeave={() => setCursorVisible(false)}
+                        >
                             <ProjectCard entry={entry as ProjectEntry} visible={visibleStates[i]} index={i} />
                         </div>
                     ))}

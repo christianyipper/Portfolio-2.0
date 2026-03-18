@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import Lottie from "lottie-react";
+import paperPlaneAnimation from "../../public/svg/Paper plane.json";
 
 export default function Navigation() {
     const [activeSection, setActiveSection] = useState<string>("");
@@ -31,6 +33,23 @@ export default function Navigation() {
         return () => clearTimeout(t);
     }, [activeSection]);
 
+    const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+    const [cursorVisible, setCursorVisible] = useState(false);
+    const targetPos = useRef({ x: 0, y: 0 });
+    const currentPos = useRef({ x: 0, y: 0 });
+    const rafRef = useRef<number | null>(null);
+
+    useEffect(() => {
+        const animate = () => {
+            currentPos.current.x += (targetPos.current.x - currentPos.current.x) * 0.1;
+            currentPos.current.y += (targetPos.current.y - currentPos.current.y) * 0.1;
+            setCursorPos({ x: currentPos.current.x, y: currentPos.current.y });
+            rafRef.current = requestAnimationFrame(animate);
+        };
+        rafRef.current = requestAnimationFrame(animate);
+        return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
+    }, []);
+
     const scrollTo = (id: string) => (e: React.MouseEvent) => {
         e.preventDefault();
         document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -38,10 +57,26 @@ export default function Navigation() {
 
     return (
         <div className="flex flex-col items-center justify-between h-full py-8">
+            {/* Paper plane cursor */}
+            <div
+                className="fixed pointer-events-none z-9999 w-8 h-8 transition-opacity duration-200"
+                style={{
+                    left: cursorPos.x,
+                    top: cursorPos.y,
+                    transform: "translate(4px, -100%)",
+                    opacity: cursorVisible ? 1 : 0,
+                }}
+            >
+                <div className="w-full h-full rounded-full overflow-hidden bg-[#00BBFF]">
+                    <div className="w-[200%] h-[200%] -translate-x-1/4 -translate-y-1/4">
+                        <Lottie animationData={paperPlaneAnimation} loop />
+                    </div>
+                </div>
+            </div>
             <section className="relative flex flex-col gap-4 items-center">
                 {/* logo */}
                 <a href="#home" onClick={scrollTo("home")} className="ink-mask-load z-50
-                group scale-[100%] -translate-y-4 hover:scale-100 hover:-translate-y-1 ease duration-300
+                group scale-[100%] -translate-y-4 hover:scale-100 hover:-translate-y-1 ease duration-200
                 ">
                     <svg id="Yipper_Logo" data-name="Yipper Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 441" className="w-16">
                         <g id="Logo">
@@ -73,7 +108,7 @@ export default function Navigation() {
                 <div className="relative flex flex-col items-center gap-8">
                     {/* sliding blue background */}
                     <div
-                        className="absolute h-24 bg-[#00BBFF] rounded-2xl outline-4 outline-[#00BBFF] transition-all duration-300 ease-in-out"
+                        className="absolute h-24 bg-[#00BBFF] rounded-2xl outline-4 outline-[#00BBFF] transition-all duration-200 ease-in-out"
                         style={{
                             transform: `translateY(${activeSection === "projects" ? 128 : activeSection === "about" ? 256 : 0}px)`,
                             width: activeSection === "projects" ? "320px" : activeSection === "about" ? "236px" : "222px"
@@ -81,14 +116,14 @@ export default function Navigation() {
                     />
                     {/* clip container — same position as blue div, reveals white text */}
                     <div
-                        className="absolute h-24 overflow-hidden rounded-2xl transition-all duration-300 ease-in-out pointer-events-none z-60"
+                        className="absolute h-24 overflow-hidden rounded-2xl transition-all duration-200 ease-in-out pointer-events-none z-60"
                         style={{
                             transform: `translateY(${activeSection === "projects" ? 128 : activeSection === "about" ? 256 : 0}px)`,
                             width: activeSection === "projects" ? "320px" : activeSection === "about" ? "236px" : "222px"
                         }}
                     >
                         <div
-                            className="flex flex-col gap-8 transition-transform duration-300 ease-in-out z-50"
+                            className="flex flex-col gap-8 transition-transform duration-200 ease-in-out z-50"
                             style={{ transform: `translateY(-${activeSection === "projects" ? 128 : activeSection === "about" ? 256 : 0}px)` }}
                         >
                             <div className="h-24 flex items-center justify-center">
@@ -105,7 +140,7 @@ export default function Navigation() {
                     {/* black text nav links */}
                     <a href="#home" onClick={scrollTo("home")} className="relative group flex items-center justify-center z-50">
                         <div className="relative w-[222px] h-24 flex items-center justify-center rounded-2xl">
-                            <svg className="absolute inset-0 w-full h-full overflow-visible pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <svg className="absolute inset-0 w-full h-full overflow-visible pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                                 <rect x="0" y="0" width="100%" height="100%" rx="16" ry="16" fill="none" stroke="#00BBFF" strokeWidth="3" strokeDasharray="10 8" style={{ animation: 'marching-ants 2s linear infinite' }} />
                             </svg>
                             <span className={`font-zuume font-bold text-8xl px-8 inline-block ${jigglingSection === "home" ? "animate-[jiggle_0.5s_ease-out]" : ""}`}>Home</span>
@@ -113,7 +148,7 @@ export default function Navigation() {
                     </a>
                     <a href="#projects" onClick={scrollTo("projects")} className="relative group flex items-center justify-center z-50">
                         <div className="relative w-[320px] h-24 flex items-center justify-center rounded-2xl">
-                            <svg className="absolute inset-0 w-full h-full overflow-visible pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <svg className="absolute inset-0 w-full h-full overflow-visible pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                                 <rect x="0" y="0" width="100%" height="100%" rx="16" ry="16" fill="none" stroke="#00BBFF" strokeWidth="3" strokeDasharray="10 8" style={{ animation: 'marching-ants 2s linear infinite' }} />
                             </svg>
                             <span className={`font-zuume font-bold text-8xl px-8 inline-block ${jigglingSection === "projects" ? "animate-[jiggle_0.5s_ease-out]" : ""}`}>Projects</span>
@@ -121,7 +156,7 @@ export default function Navigation() {
                     </a>
                     <a href="#about" onClick={scrollTo("about")} className="relative group flex items-center justify-center z-50">
                         <div className="relative w-[236px] h-24 flex items-center justify-center rounded-2xl">
-                            <svg className="absolute inset-0 w-full h-full overflow-visible pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <svg className="absolute inset-0 w-full h-full overflow-visible pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                                 <rect x="0" y="0" width="100%" height="100%" rx="16" ry="16" fill="none" stroke="#00BBFF" strokeWidth="3" strokeDasharray="10 8" style={{ animation: 'marching-ants 2s linear infinite' }} />
                             </svg>
                             <span className={`font-zuume font-bold text-8xl px-8 inline-block ${jigglingSection === "about" ? "animate-[jiggle_0.5s_ease-out]" : ""}`}>About</span>
@@ -131,11 +166,16 @@ export default function Navigation() {
             </section>
 
             {/* links */}
-            <section className="flex flex-col">
-                <span className="font-zuume font-bold text-4xl">Reach Out!</span>
+            <section
+                className="flex flex-col"
+                onMouseMove={(e) => { targetPos.current = { x: e.clientX, y: e.clientY }; }}
+                onMouseEnter={() => setCursorVisible(true)}
+                onMouseLeave={() => setCursorVisible(false)}
+            >
+                <span className="w-full text-center font-zuume font-bold text-4xl">More of me</span>
                 {/* <a href="" className="font-nunito text-white px-4 py-1 bg-[#00bbff] rounded-2xl">christian@yipper.ca</a> */}
                 <div className="flex flex-row gap-4">
-                    <div className="hover:scale-[85%] transition duration-300">
+                    <div className="hover:scale-[85%] transition duration-200">
                         <a id="linkedin" href="www.linkedin.com/in/christianyipper" target="_blank" rel="noopener noreferrer" className="animate-[fade_1s_ease_2s_forwards] opacity-0">
                             <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect y="-0.00146484" width="48" height="48" rx="8" fill="transparent"/>
@@ -143,7 +183,7 @@ export default function Navigation() {
                             </svg>
                         </a>
                     </div>
-                    <div className="hover:scale-[85%] transition duration-300">
+                    <div className="hover:scale-[85%] transition duration-200">
                         <a id="github" href="https://github.com/christianyip" target="_blank" rel="noopener noreferrer" className="animate-[fade_1s_ease_1.8s_forwards] opacity-0">
                             <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect y="-0.00146484" width="48" height="48" rx="8" fill="transparent"/>
@@ -151,7 +191,7 @@ export default function Navigation() {
                             </svg>
                         </a>  
                     </div>
-                    <div className="hover:scale-[85%] transition duration-300">
+                    <div className="hover:scale-[85%] transition duration-200">
                         <a id="instagram" href="https://instagram.com/bchlofficials" target="_blank" rel="noopener noreferrer" className="animate-[fade_1s_ease_1.6s_forwards] opacity-0">
                             <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect y="-0.00146484" width="48" height="48" rx="8" fill="transparent"/>

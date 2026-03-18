@@ -186,7 +186,7 @@ p {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: hsl(196, 60%, 80%);
+  background-color: hsl(196, 10%, 80%);
   border-radius: 6px;
   border: 2px solid transparent; /* Optional padding */
   background-clip: content-box;
