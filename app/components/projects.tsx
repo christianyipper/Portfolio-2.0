@@ -18,31 +18,46 @@ interface ProjectEntry {
     video?: string;
 }
 
-const MASK_STYLE: React.CSSProperties = {
-    WebkitMaskImage: "url('/img/card-mask.svg')",
-    maskImage: "url('/img/card-mask.svg')",
-    WebkitMaskSize: "100% 100%",
-    maskSize: "100% 100%",
-    WebkitMaskRepeat: "no-repeat",
-    maskRepeat: "no-repeat",
-};
+// Notch shape path (400×500 coordinate space)
+const NOTCH_PATH = "M0 16 C0 7.16 7.16 0 16 0 H384 C392.84 0 400 7.16 400 16 V438 C400 446.84 392.84 454 384 454 H259 C252 454 245 458 241 464 L225 489 C221 496 214 500 207 500 H16 C7.16 500 0 492.84 0 484 V16 Z";
+// Rectangle path — same command structure, notch points collapsed to bottom-right corner
+const RECT_PATH  = "M0 16 C0 7.16 7.16 0 16 0 H384 C392.84 0 400 7.16 400 16 V484 C400 492.84 392.84 500 384 500 H384 C384 500 384 500 384 500 L384 500 C384 500 384 500 384 500 H16 C7.16 500 0 492.84 0 484 V16 Z";
 
-// Border path inset ~2 units from the card boundary so the stroke sits
-// fully inside the visible area — no masking or clipping needed (LN technique)
-// Exact card boundary path — stroke straddles the edge so the outer half
-// covers the mask's anti-aliased soft edge (overflow="visible" on the SVG lets it render outside viewBox)
-const BORDER_PATH = "M0 10 C0 4.48 4.48 0 10 0 H390 C395.52 0 400 4.48 400 10 V444 C400 449.52 395.52 454 390 454 H259 C252 454 245 458 241 464 L225 489 C221 496 214 500 207 500 H10 C4.48 500 0 495.52 0 490 V10 Z";
 
-function ProjectCard({ entry, visible }: { entry: ProjectEntry; visible: boolean }) {
+function ProjectCard({ entry, visible, index }: { entry: ProjectEntry; visible: boolean; index: number }) {
     const [animDone, setAnimDone] = useState(false);
+    const [hovered, setHovered] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+    const clipId = `card-clip-${index}`;
+
+    useEffect(() => {
+        const mq = window.matchMedia("(max-width: 639px)");
+        if (mq.matches) {
+            setIsMobile(true);
+            setHovered(true);
+        }
+    }, []);
+
+    const active = isMobile || hovered;
 
     return (
         <div
             className={`${animDone ? "" : visible ? "ink-mask-inview" : "ink-mask-outview"} relative aspect-[4/5] group cursor-pointer`}
             onAnimationEnd={() => { if (visible) setAnimDone(true); }}
+            onMouseEnter={() => { if (!isMobile) setHovered(true); }}
+            onMouseLeave={() => { if (!isMobile) setHovered(false); }}
         >
-            {/* Content — masked to card shape */}
-            <div className="absolute inset-0 overflow-hidden" style={MASK_STYLE}>
+            {/* Per-card clipPath — morphs between rect and notch on hover */}
+            <svg width="0" height="0" className="absolute">
+                <defs>
+                    <clipPath id={clipId} clipPathUnits="objectBoundingBox" transform="scale(0.0025 0.002)">
+                        <path d={active ? NOTCH_PATH : RECT_PATH} style={{ transition: 'd 0.2s ease-in-out' }} />
+                    </clipPath>
+                </defs>
+            </svg>
+
+            {/* Content — clipped to card shape */}
+            <div className="absolute inset-0" style={{ clipPath: `url(#${clipId})` }}>
                 {/* Media */}
                 {entry.video ? (
                     <video
@@ -64,7 +79,7 @@ function ProjectCard({ entry, visible }: { entry: ProjectEntry; visible: boolean
                 )}
 
                 {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent transition-opacity duration-300 group-hover:opacity-90" />
+                {/* <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent transition-opacity duration-300 group-hover:opacity-90" /> */}
 
                 {/* Logo — top left */}
                 {entry.logo && (
@@ -74,42 +89,47 @@ function ProjectCard({ entry, visible }: { entry: ProjectEntry; visible: boolean
                 )}
 
                 {/* Accent lines tracing the cut edges */}
-                <svg
+                {/* <svg
                     className="absolute inset-0 w-full h-full pointer-events-none"
                     viewBox="0 0 400 500"
                     preserveAspectRatio="none"
                 >
                     <line x1="390" y1="454" x2="259" y2="454" stroke="rgba(255,255,255,0.18)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
                     <path d="M259 454 C252 454 245 458 241 464 L225 489 C221 496 214 500 207 500" fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
-                </svg>
+                </svg> */}
             </div>
 
-            {/* Text — in the notch cut-out area, bottom-right */}
-            <div className="absolute w-full bottom-0 pr-2 text-right pointer-events-none bg-amber-600">
+            {/* Text — in the notch cut-out area, bottom-right, revealed on hover */}
+            <div className="absolute flex flex-col justify-end w-full bottom-0 pr-2 text-right pointer-events-none transition-opacity duration-200" style={{ opacity: active ? 1 : 0 }}>
                 {/* <p className="font-nunito text-[9px] uppercase tracking-widest opacity-50 mb-0.5 truncate">
                     {entry.subtitle}
                 </p> */}
-                <span className="block font-aktive text-[12px] tracking-widest opacity-100 truncate">
-                    {entry.year}
-                </span>
-                <h3 className="font-aktiv text-[12px] leading-tight truncate">
-                    {entry.title}
-                </h3>
+                {/* <span className="block font-zuume font-bold uppercase rounded-2xl tracking-widest opacity-100">
+                    Learn More
+                </span> */}
+                <div>
+                    <span className="block font-aktive text-[12px] font-bold text-[#00bbff] -mb-1 tracking-widest opacity-100 truncate">
+                        {entry.year}
+                    </span>
+                    <h3 className="font-aktiv text-[16px] leading-tight truncate">
+                        {entry.title}
+                    </h3>
+                </div>
             </div>
 
-            {/* Border — inset SVG stroke, no masking needed, no fraying */}
+            {/* Border — morphs with clip shape */}
             <svg
                 className="absolute inset-0 w-full h-full pointer-events-none"
                 viewBox="0 0 400 500"
                 overflow="visible"
             >
-                <path d={BORDER_PATH} fill="none" stroke="rgba(255,255,255,1)" strokeWidth="2" />
+                <path d={active ? NOTCH_PATH : RECT_PATH} fill="none" stroke="rgba(255,255,255,1)" strokeWidth="4" style={{ transition: 'd 0.2s ease-in-out, opacity 0.2s ease-in-out', opacity: active ? 0 : 1 }} />
                 <path
-                    className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    d={BORDER_PATH}
+                    d={active ? NOTCH_PATH : RECT_PATH}
                     fill="none"
-                    stroke="rgba(249,115,22,1)"
-                    strokeWidth="2"
+                    stroke="rgba(0,187,255,1)"
+                    strokeWidth="4"
+                    style={{ transition: 'd 0.2s ease-in-out, opacity 0.2s ease-in-out', opacity: active ? 1 : 0 }}
                 />
             </svg>
         </div>
@@ -144,14 +164,12 @@ export default function Projects() {
 
     return (
         <>
-            {/* Faded bottom overlay */}
-            {/* <div className="pointer-events-none absolute bottom-0 left-0 w-full h-32 bg-linear-to-t from-black/90 via-black/50 to-black/0 z-30" /> */}
-
-            <section className="col-start-1 col-end-13 overflow-y-scroll h-full pt-16">
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-8 p-2 px-[calc(2/12*100%)]">
+            <section className="col-start-1 col-end-13 h-full bg-white p-8 rounded-4xl shadow-2xl">
+                <h2 className="font-zuume text-[64px] font-bold pb-4">My Projects</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-8 pb-32">
                     {motionProjectsData.map((entry, i) => (
                         <div key={`motion-${i}`} ref={(el) => { cardRefs.current[i] = el; }} className={i % 3 === 1 ? "sm:translate-y-32" : ""}>
-                            <ProjectCard entry={entry as ProjectEntry} visible={visibleStates[i]} />
+                            <ProjectCard entry={entry as ProjectEntry} visible={visibleStates[i]} index={i} />
                         </div>
                     ))}
                     {/* {graphicsProjectsData.map((entry, i) => {

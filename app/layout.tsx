@@ -66,6 +66,9 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
+        <head>
+            <link rel="stylesheet" href="https://use.typekit.net/qmx0bst.css" />
+        </head>
         <body
             className={`${geistSans.variable} ${geistMono.variable} ${nunito.variable} ${aktiv.variable} antialiased`}
         >
