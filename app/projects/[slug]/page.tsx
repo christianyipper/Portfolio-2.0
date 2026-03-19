@@ -62,7 +62,7 @@ function ProcessCard({ src, label, index }: { src: string; label?: string; index
                 viewBox="0 0 400 500"
                 overflow="visible"
             >
-                <path d={NOTCH_PATH} fill="none" stroke="rgba(0,187,255,1)" strokeWidth="4" />
+                <path d={NOTCH_PATH} fill="none" stroke="rgba(255,255,255,1)" strokeWidth="4" />
             </svg>
         </div>
     );
@@ -107,19 +107,18 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
                         {/* Row 1: Text (9 cols) + Main video (3 cols, portrait) */}
                         <div className="col-span-8 flex flex-col gap-4">
-                            {"year" in project && project.year && (
-                                <p className="font-aktiv text-sm text-[#00bbff] tracking-widest">{project.year as string}</p>
+                            {project.year && (
+                                <p className="-mb-4 font-aktiv text-sm text-[#00bbff] tracking-widest">{project.year}</p>
                             )}
                             <h1 className="font-zuume font-bold text-8xl leading-none">{project.title}</h1>
                             {project.subtitle && (
-                                <p className="font-nunito text-xl text-black/50">{project.subtitle}</p>
+                                <p className="-mt-4 font-nunito text-xl text-black/50">{project.subtitle}</p>
                             )}
                             {project.description && (
                                 <p className="font-nunito text-lg text-black/80 leading-relaxed max-w-2xl">{project.description}</p>
                             )}
                             {(Icon1 || Icon2 || Icon3 || Icon4) && (
                                 <div>
-                                    <p className="font-nunito text-sm text-black/40 mb-3 uppercase tracking-widest">Tools Used</p>
                                     <div className="flex flex-row gap-3">
                                         {Icon1 && <Icon1 />}
                                         {Icon2 && <Icon2 />}
@@ -151,7 +150,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                     </div>
 
                     <section className="grid grid-cols-12 gap-4 bg-white rounded-4xl shadow-2xl p-8">
-                        <h2 className="col-span-12 row-start-1 font-zuume font-bold text-[64px]">The Process</h2>
+                        <h2 className="col-span-12 row-start-1 font-zuume font-bold text-[64px]">Screens</h2>
                         
                         {/* Row 2: Process videos with notch + label */}
                         {processes.map((p, i) => (

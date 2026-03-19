@@ -180,7 +180,7 @@ export default function Navigation() {
                 onMouseEnter={() => setCursorVisible(true)}
                 onMouseLeave={() => setCursorVisible(false)}
             >
-                <span className="w-full text-center font-zuume font-bold text-4xl">More of me</span>
+                <span className="w-full text-center font-zuume font-bold text-4xl">Find me here</span>
                 {/* <a href="" className="font-nunito text-white px-4 py-1 bg-[#00bbff] rounded-2xl">christian@yipper.ca</a> */}
                 <div className="flex flex-row gap-4">
                     <div className="hover:scale-[85%] transition duration-200">
