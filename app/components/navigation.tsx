@@ -1,12 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
+import { useTransition } from "../context/TransitionContext";
 import Lottie from "lottie-react";
 import paperPlaneAnimation from "../../public/svg/Paper plane.json";
 
 export default function Navigation() {
     const [activeSection, setActiveSection] = useState<string>("");
     const [jigglingSection, setJigglingSection] = useState<string>("");
+    const pathname = usePathname();
+    const { navigate } = useTransition();
 
     useEffect(() => {
         const ids = ["home", "projects", "about"];
@@ -24,7 +28,7 @@ export default function Navigation() {
         });
 
         return () => observers.forEach((o) => o.disconnect());
-    }, []);
+    }, [pathname]);
 
     useEffect(() => {
         if (!activeSection) return;
@@ -52,7 +56,11 @@ export default function Navigation() {
 
     const scrollTo = (id: string) => (e: React.MouseEvent) => {
         e.preventDefault();
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+        if (pathname === "/") {
+            document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+        } else {
+            navigate(`/#${id}`);
+        }
     };
 
     return (

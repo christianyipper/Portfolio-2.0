@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Lottie from "lottie-react";
+import { useTransition } from "../context/TransitionContext";
 import eyeAnimation from "../../public/svg/Eye.json";
 import motionProjectsData from "../../public/data/motion-projects.json";
 import graphicsProjectsData from "../../public/data/graphics-projects.json";
@@ -140,6 +141,7 @@ function ProjectCard({ entry, visible, index }: { entry: ProjectEntry; visible: 
 }
 
 export default function Projects() {
+    const { navigate } = useTransition();
     const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
     const [visibleStates, setVisibleStates] = useState<boolean[]>(new Array(totalCards).fill(false));
     const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -214,6 +216,10 @@ export default function Projects() {
                             className={`block ${i % 3 === 1 ? "sm:translate-y-32" : ""} ${cursorVisible ? "cursor-none" : ""}`}
                             onMouseEnter={() => setCursorVisible(true)}
                             onMouseLeave={() => setCursorVisible(false)}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                navigate(`/projects/${entry.title.toLowerCase().replace(/\s+/g, "-")}`);
+                            }}
                         >
                             <ProjectCard entry={entry as ProjectEntry} visible={visibleStates[i]} index={i} />
                         </Link>

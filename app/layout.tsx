@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Nunito } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import { TransitionProvider } from "./context/TransitionContext";
+import LayoutShell from "./components/LayoutShell";
 
 const aktiv = localFont ({
     src: "../public/fonts/AktivGroteskEx_XBd.ttf",
@@ -72,7 +74,11 @@ export default function RootLayout({
         <body
             className={`${geistSans.variable} ${geistMono.variable} ${nunito.variable} ${aktiv.variable} antialiased`}
         >
-            {children}
+            <TransitionProvider>
+                <LayoutShell>
+                    {children}
+                </LayoutShell>
+            </TransitionProvider>
         </body>
         </html>
     );
