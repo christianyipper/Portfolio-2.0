@@ -4,7 +4,7 @@
   --background: #fff;
   --foreground: #000;
   --font-zuume: "zuume-cut", sans-serif;
-  --deepblue: #00bbff;
+  --deepblue: rgb(0, 187, 255);
 }
 
 html {

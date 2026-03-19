@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Lottie from "lottie-react";
 import eyeAnimation from "../../public/svg/Eye.json";
 import motionProjectsData from "../../public/data/motion-projects.json";
@@ -199,22 +200,23 @@ export default function Projects() {
                 </div>
             </div>
 
-            <section className="col-start-1 col-end-13 h-full bg-white p-8 rounded-4xl shadow-2xl">
+            <section className="h-full bg-white p-8 rounded-4xl shadow-2xl">
                 <h2 className="font-zuume text-[64px] font-bold pb-4">My Projects</h2>
                 <div
                     className="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-8 pb-32"
                     onMouseMove={(e) => { targetPos.current = { x: e.clientX, y: e.clientY }; }}
                 >
                     {motionProjectsData.map((entry, i) => (
-                        <div
+                        <Link
                             key={`motion-${i}`}
-                            ref={(el) => { cardRefs.current[i] = el; }}
-                            className={`${i % 3 === 1 ? "sm:translate-y-32" : ""} ${cursorVisible ? "cursor-none" : ""}`}
+                            href={`/projects/${entry.title.toLowerCase().replace(/\s+/g, "-")}`}
+                            ref={(el) => { cardRefs.current[i] = el as HTMLDivElement | null; }}
+                            className={`block ${i % 3 === 1 ? "sm:translate-y-32" : ""} ${cursorVisible ? "cursor-none" : ""}`}
                             onMouseEnter={() => setCursorVisible(true)}
                             onMouseLeave={() => setCursorVisible(false)}
                         >
                             <ProjectCard entry={entry as ProjectEntry} visible={visibleStates[i]} index={i} />
-                        </div>
+                        </Link>
                     ))}
                     {/* {graphicsProjectsData.map((entry, i) => {
                         const idx = motionProjectsData.length + i;
