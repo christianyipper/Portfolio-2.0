@@ -4,7 +4,7 @@
   --background: #fff;
   --foreground: #000;
   --font-zuume: "zuume-cut", sans-serif;
-  --deepblue: rgb(0, 187, 255);
+  --deepblue: #00bbff;
 }
 
 html {
@@ -280,6 +280,12 @@ p {
   mask: url('../public/img/masks/paint-mask-vertical.png');
   mask-size: 100% 3000%;
   animation: paint-mask 0.8s steps(29) forwards;
+}
+
+@keyframes bounce-pause {
+  0%        { transform: translateY(0px); }
+  50%       { transform: translateY(8px); }
+  100%       { transform: translateY(0px); }
 }
 
 @keyframes marching-ants {

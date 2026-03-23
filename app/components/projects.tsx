@@ -205,7 +205,7 @@ export default function Projects() {
             <section className="h-full bg-white p-8 rounded-4xl shadow-2xl">
                 <h2 className="font-zuume text-[64px] font-bold pb-4">My Projects</h2>
                 <div
-                    className="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-8 pb-32"
+                    className="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-8"
                     onMouseMove={(e) => { targetPos.current = { x: e.clientX, y: e.clientY }; }}
                 >
                     {motionProjectsData.map((entry, i) => (
@@ -213,7 +213,7 @@ export default function Projects() {
                             key={`motion-${i}`}
                             href={`/projects/${entry.title.toLowerCase().replace(/\s+/g, "-")}`}
                             ref={(el) => { cardRefs.current[i] = el as HTMLDivElement | null; }}
-                            className={`block ${i % 3 === 1 ? "sm:translate-y-32" : ""} ${cursorVisible ? "cursor-none" : ""}`}
+                            className={`block ${i % 3 === 1 ? "sm:-translate-y-22" : ""} ${cursorVisible ? "cursor-none" : ""}`}
                             onMouseEnter={() => setCursorVisible(true)}
                             onMouseLeave={() => setCursorVisible(false)}
                             onClick={(e) => {
