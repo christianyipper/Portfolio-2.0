@@ -6,21 +6,10 @@ import Link from "next/link";
 import Lottie from "lottie-react";
 import { useTransition } from "../context/TransitionContext";
 import eyeAnimation from "../../public/svg/Eye.json";
-import motionProjectsData from "../../public/data/motion-projects.json";
-import graphicsProjectsData from "../../public/data/graphics-projects.json";
+import motionProjectsData from "../data/motion-projects";
+import type { Project as ProjectEntry } from "../data/types";
 
-const totalCards = motionProjectsData.length + graphicsProjectsData.length;
-
-interface ProjectEntry {
-    title: string;
-    year: string;
-    subtitle: string;
-    logo: string;
-    logoAlt: string;
-    thumbnail: string;
-    thumbnailAlt: string;
-    video?: string;
-}
+const totalCards = motionProjectsData.length;
 
 // Notch shape path (400×500 coordinate space)
 const NOTCH_PATH = "M0 16 C0 7.16 7.16 0 16 0 H384 C392.84 0 400 7.16 400 16 V438 C400 446.84 392.84 454 384 454 H259 C252 454 245 458 241 464 L225 489 C221 496 214 500 207 500 H16 C7.16 500 0 492.84 0 484 V16 Z";
@@ -29,7 +18,6 @@ const RECT_PATH  = "M0 16 C0 7.16 7.16 0 16 0 H384 C392.84 0 400 7.16 400 16 V48
 
 
 function ProjectCard({ entry, visible, index }: { entry: ProjectEntry; visible: boolean; index: number }) {
-    const [animDone, setAnimDone] = useState(false);
     const [hovered, setHovered] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const clipId = `card-clip-${index}`;
@@ -46,8 +34,12 @@ function ProjectCard({ entry, visible, index }: { entry: ProjectEntry; visible: 
 
     return (
         <div
-            className={`${animDone ? "" : visible ? "ink-mask-inview" : "ink-mask-outview"} relative aspect-[4/5] group cursor-pointer`}
-            onAnimationEnd={() => { if (visible) setAnimDone(true); }}
+            className="relative aspect-4/5 group cursor-pointer"
+            style={{
+                opacity: visible ? 1 : 0,
+                transform: visible ? "translateY(0)" : "translateY(64px)",
+                transition: "opacity 1s ease, transform 1s ease",
+            }}
             onMouseEnter={() => { if (!isMobile) setHovered(true); }}
             onMouseLeave={() => { if (!isMobile) setHovered(false); }}
         >
@@ -88,7 +80,7 @@ function ProjectCard({ entry, visible, index }: { entry: ProjectEntry; visible: 
                 {/* Logo — top left */}
                 {entry.logo && (
                     <div className="absolute top-3 left-3 w-8 h-8">
-                        <Image src={entry.logo} alt={entry.logoAlt} fill className="object-contain" />
+                        <Image src={entry.logo} alt={entry.logoAlt ?? ""} fill className="object-contain" />
                     </div>
                 )}
 
@@ -224,14 +216,6 @@ export default function Projects() {
                             <ProjectCard entry={entry as ProjectEntry} visible={visibleStates[i]} index={i} />
                         </Link>
                     ))}
-                    {/* {graphicsProjectsData.map((entry, i) => {
-                        const idx = motionProjectsData.length + i;
-                        return (
-                            <div key={`graphics-${i}`} ref={(el) => { cardRefs.current[idx] = el; }} className={idx % 3 === 1 ? "sm:translate-y-32" : ""}>
-                                <ProjectCard entry={entry as ProjectEntry} visible={visibleStates[idx]} />
-                            </div>
-                        );
-                    })} */}
                 </div>
             </section>
         </>

@@ -1,6 +1,6 @@
 "use client"
 
-import bioData from "../../public/data/about.json";
+import bioData from "../data/about.json";
 import Image from "next/image";
 import AfterEffects from "../svg/aftereffects";
 import Figma from "../svg/figma";
@@ -73,7 +73,7 @@ export default function About() {
                                     <Photoshop/>
                                     <Figma/>
                                 </div>
-                                <p className="font-nunito !text-[14px] opacity-50 w-full text-center mt-2.5 pt-1 border-t-2 border-black/20">Creative Proficiencies</p>
+                                <p className="font-nunito text-[14px]! opacity-50 w-full text-center mt-2.5 pt-1 border-t-2 border-black/20">Creative Proficiencies</p>
                             </div>
                             <div>
                                 <div className="flex flex-row gap-2">
@@ -82,7 +82,7 @@ export default function About() {
                                     <Tailwind/>
                                     <Webflow/>
                                 </div>
-                                <p className="font-nunito !text-[14px] opacity-50 w-full text-center mt-2.5 pt-1 border-t-2 border-black/20">Front-End Proficiencies</p>
+                                <p className="font-nunito text-[14px]! opacity-50 w-full text-center mt-2.5 pt-1 border-t-2 border-black/20">Front-End Proficiencies</p>
                             </div>
                         </div>
                     </div>
