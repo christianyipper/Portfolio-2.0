@@ -118,6 +118,15 @@ p {
   }
 }
 
+@keyframes blinking-out {
+  0%   { opacity: 100%; }
+  20%  { opacity: 0%; }
+  40%  { opacity: 80%; }
+  60%  { opacity: 0%; }
+  80%  { opacity: 40%; }
+  100% { opacity: 0%; }
+}
+
 @keyframes blinking {
   0% {
     opacity: 0%;

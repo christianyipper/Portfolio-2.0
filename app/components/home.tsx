@@ -13,7 +13,7 @@ export default function Home() {
             />
             <div className="relative flex flex-col items-center justify-center p-8">
                 <div className="flex flex-col w-full justify-center items-center">
-                    <span className="font-zuume font-bold text-[48px]">Stop settling for static.</span>
+                    <h1 className="font-zuume font-bold text-[48px]">Stop settling for static.</h1>
                     <a href="mailto:christian@yipper.ca" className="group relative h-14 -mt-4 flex items-center justify-center rounded-2xl text-[#00BBFF] hover:text-white cursor-pointer hover:bg-[#00BBFF] transition duration-200 ease ">
                         <span className="font-zuume font-bold text-[48px] inline-block transition-transform duration-200 ease group-hover:scale-90">Start your project.</span>
                     </a>
