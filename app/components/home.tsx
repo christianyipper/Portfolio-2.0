@@ -4,7 +4,7 @@ export default function Home() {
     return (
         <section className="relative grid grid-rows-[1fr_auto] items-center h-[calc(100vh-32px)] rounded-4xl">
             <video
-                src="/img/yipper-logo-bg.mp4"
+                src="/img/s.mp4"
                 autoPlay
                 loop
                 muted
