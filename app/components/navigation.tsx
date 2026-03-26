@@ -1,12 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useTransition } from "../context/TransitionContext";
-import Lottie from "lottie-react";
-import paperPlaneAnimation from "../../public/svg/Paper plane.json";
 
 export default function Navigation() {
+    const [menuOpen, setMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState<string>("");
     const [jigglingSection, setJigglingSection] = useState<string>("");
     const pathname = usePathname();
@@ -37,22 +36,6 @@ export default function Navigation() {
         return () => clearTimeout(t);
     }, [activeSection]);
 
-    const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-    const [cursorVisible, setCursorVisible] = useState(false);
-    const targetPos = useRef({ x: 0, y: 0 });
-    const currentPos = useRef({ x: 0, y: 0 });
-    const rafRef = useRef<number | null>(null);
-
-    useEffect(() => {
-        const animate = () => {
-            currentPos.current.x += (targetPos.current.x - currentPos.current.x) * 0.1;
-            currentPos.current.y += (targetPos.current.y - currentPos.current.y) * 0.1;
-            setCursorPos({ x: currentPos.current.x, y: currentPos.current.y });
-            rafRef.current = requestAnimationFrame(animate);
-        };
-        rafRef.current = requestAnimationFrame(animate);
-        return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
-    }, []);
 
     const scrollTo = (id: string) => (e: React.MouseEvent) => {
         e.preventDefault();
@@ -64,23 +47,35 @@ export default function Navigation() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-between h-full py-8">
-            {/* Paper plane cursor */}
-            <div
-                className="fixed pointer-events-none z-9999 w-8 h-8 transition-opacity duration-200"
-                style={{
-                    left: cursorPos.x,
-                    top: cursorPos.y,
-                    transform: "translate(4px, -100%)",
-                    opacity: cursorVisible ? 1 : 0,
-                }}
-            >
-                <div className="w-full h-full rounded-full overflow-hidden bg-[#00BBFF]">
-                    <div className="w-[200%] h-[200%] -translate-x-1/4 -translate-y-1/4">
-                        <Lottie animationData={paperPlaneAnimation} loop />
-                    </div>
-                </div>
+        <>
+        {/* Hamburger button — mobile only */}
+        <button
+            className="fixed top-4 right-4 z-[200] md:hidden flex flex-col gap-1.5 p-2 bg-white rounded-xl shadow"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+        >
+            <span className={`block w-6 h-0.5 bg-black transition-all duration-300 origin-center ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
+            <span className={`block w-6 h-0.5 bg-black transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
+            <span className={`block w-6 h-0.5 bg-black transition-all duration-300 origin-center ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+        </button>
+
+        {/* Backdrop */}
+        <div
+            className={`fixed inset-0 bg-black/20 z-[198] md:hidden transition-opacity duration-300 ${menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+            onClick={() => setMenuOpen(false)}
+        />
+
+        {/* Mobile slide-in overlay */}
+        <div className={`fixed inset-y-0 right-0 w-72 bg-white shadow-2xl z-[199] flex flex-col gap-8 p-8 md:hidden transition-transform duration-300 ease-in-out ${menuOpen ? "translate-x-0" : "translate-x-full"}`}>
+            <div className="flex flex-col gap-4 mt-12">
+                <a href="#home" onClick={(e) => { scrollTo("home")(e); setMenuOpen(false); }} className={`font-zuume font-bold text-7xl ${activeSection === "home" ? "text-[#00BBFF]" : "text-black"}`}>Home</a>
+                <a href="#projects" onClick={(e) => { scrollTo("projects")(e); setMenuOpen(false); }} className={`font-zuume font-bold text-7xl ${activeSection === "projects" ? "text-[#00BBFF]" : "text-black"}`}>Projects</a>
+                <a href="#about" onClick={(e) => { scrollTo("about")(e); setMenuOpen(false); }} className={`font-zuume font-bold text-7xl ${activeSection === "about" ? "text-[#00BBFF]" : "text-black"}`}>About</a>
             </div>
+        </div>
+
+        {/* Desktop nav */}
+        <div className="hidden md:flex flex-col items-center justify-between h-full py-8">
             <section className="relative flex flex-col gap-4 items-center">
                 {/* logo */}
                 <a href="#home" onClick={scrollTo("home")} className="ink-mask-load z-50
@@ -91,17 +86,17 @@ export default function Navigation() {
                             <g id="Yipper">
                                 {/* <path className="fill-black group-hover:animate-[blinking_0.3s_ease_forwards_alternate] opacity-0" d="M264.29,7.14c15.79,0,28.57,12.79,28.57,28.57v369.56c0,15.79-12.79,28.57-28.57,28.57H35.71c-15.79,0-28.57-12.79-28.57-28.57V35.71c0-15.79,12.79-28.57,28.57-28.57h228.57M264.29,0H35.71C16.01,0,0,16.01,0,35.71v369.56c0,19.7,16.01,35.71,35.71,35.71h228.57c19.7,0,35.71-16.01,35.71-35.71V35.71c0-19.7-16.01-35.71-35.71-35.71h0Z"/> */}
                             <g>
-                                <path className="fill-black group-hover:animate-[blinking_0.3s_0.1s_ease_forwards_alternate] opacity-0" d="M70.31,364.66l-6.34,10.64c-.27.47-.94.46-1.23,0l-6.29-10.64c-.13-.21-.36-.34-.61-.34h-11.3c-.57,0-.9.63-.6,1.1l13.04,20.13c.07.11.11.24.11.39v11.49c0,.4.31.71.71.71h10.79c.4,0,.71-.31.71-.71v-11.53c0-.14.04-.27.11-.39l13.04-20.09c.31-.47-.03-1.1-.6-1.1h-10.97c-.26,0-.49.13-.61.34h.03Z"/>
-                                <path className="fill-black group-hover:animate-[blinking_0.3s_0.3s_ease_forwards_alternate] opacity-0" d="M87.17,365.03v32.39c0,.4.31.71.71.71h10.79c.4,0,.71-.31.71-.71v-32.39c0-.4-.31-.71-.71-.71h-10.79c-.4,0-.71.31-.71.71Z"/>
-                                <path className="fill-black group-hover:animate-[blinking_0.3s_ease_forwards_alternate] opacity-0" d="M135.69,367.3c-2.64-1.99-6.64-2.99-12.01-2.99h-16.37c-.4,0-.71.31-.71.71v32.39c0,.4.31.71.71.71h10.31c.4,0,.71-.31.71-.71v-8.09c0-.4.31-.71.71-.71h4.07c5.54,0,9.69-.99,12.43-2.97,2.73-1.97,4.09-5.04,4.09-9.2s-1.31-7.16-3.94-9.14h0ZM126.59,379.04c-.8.47-2.07.71-3.81.71h-3.73c-.4,0-.71-.31-.71-.71v-5.16c0-.4.31-.71.71-.71h3.83c1.7,0,2.96.24,3.74.74.79.49,1.19,1.33,1.19,2.53s-.4,2.13-1.21,2.6h0Z"/>
-                                <path className="fill-black group-hover:animate-[blinking_0.3s_0.1s_ease_forwards_alternate] opacity-0" d="M174.03,367.3c-2.63-1.99-6.64-2.99-12-2.99h-16.39c-.4,0-.71.31-.71.71v32.39c0,.4.31.71.71.71h10.31c.4,0,.71-.31.71-.71v-8.09c0-.4.31-.71.71-.71h4.07c5.56,0,9.7-.99,12.43-2.97,2.73-1.97,4.1-5.04,4.1-9.2s-1.31-7.16-3.96-9.14h0ZM164.94,379.04c-.81.47-2.09.71-3.81.71h-3.74c-.4,0-.71-.31-.71-.71v-5.16c0-.4.31-.71.71-.71h3.84c1.7,0,2.94.24,3.73.74.8.49,1.19,1.33,1.19,2.53s-.4,2.13-1.2,2.6h0Z"/>
-                                <path className="fill-black group-hover:animate-[blinking_0.3s_ease_forwards_alternate] opacity-0" d="M213.87,372.27v-7.24c0-.4-.31-.71-.71-.71h-29.16c-.4,0-.71.31-.71.71v32.39c0,.4.31.71.71.71h29.16c.4,0,.71-.31.71-.71v-7.24c0-.4-.31-.71-.71-.71h-17.23c-.4,0-.71-.31-.71-.71v-2.64c0-.4.31-.71.71-.71h16.29c.4,0,.71-.31.71-.71v-7.19c0-.4-.31-.71-.71-.71h-16.29c-.4,0-.71-.31-.71-.71v-2.36c0-.4.31-.71.71-.71h17.23c.4,0,.71-.31.71-.71h0Z"/>
-                                <path className="fill-black group-hover:animate-[blinking_0.3s_0.3s_ease_forwards_alternate] opacity-0" d="M249.1,386.13c-.23-.34-.1-.8.27-1.01,1.53-.87,2.71-1.96,3.56-3.29.96-1.51,1.44-3.49,1.44-5.93,0-3.81-1.33-6.7-3.96-8.66-2.64-1.96-6.64-2.94-12-2.94h-17.23c-.4,0-.71.31-.71.71v32.39c0,.4.31.71.71.71h9.93c.4,0,.71-.31.71-.71v-8.9c0-.4.31-.71.71-.71h4.71c.24,0,.49.13.61.34l5.87,9.64c.13.21.36.34.61.34h11.27c.57,0,.9-.63.6-1.1l-7.1-10.9h-.03ZM241.6,378.61c-.81.47-2.11.71-3.91.71h-5.16c-.4,0-.71-.31-.71-.71v-5.1c0-.4.31-.71.71-.71h5.26c1.76,0,3.04.23,3.83.7.79.49,1.19,1.31,1.19,2.51s-.4,2.13-1.2,2.6Z"/>
+                                <path className="fill-black group-hover:fill-[#00BBFF] group-hover:animate-[blinking_0.3s_0.1s_ease_forwards_alternate] opacity-0 transition-colors ease duration-200" d="M70.31,364.66l-6.34,10.64c-.27.47-.94.46-1.23,0l-6.29-10.64c-.13-.21-.36-.34-.61-.34h-11.3c-.57,0-.9.63-.6,1.1l13.04,20.13c.07.11.11.24.11.39v11.49c0,.4.31.71.71.71h10.79c.4,0,.71-.31.71-.71v-11.53c0-.14.04-.27.11-.39l13.04-20.09c.31-.47-.03-1.1-.6-1.1h-10.97c-.26,0-.49.13-.61.34h.03Z"/>
+                                <path className="fill-black group-hover:fill-[#00BBFF] group-hover:animate-[blinking_0.3s_0.3s_ease_forwards_alternate] opacity-0 transition-colors ease duration-200" d="M87.17,365.03v32.39c0,.4.31.71.71.71h10.79c.4,0,.71-.31.71-.71v-32.39c0-.4-.31-.71-.71-.71h-10.79c-.4,0-.71.31-.71.71Z"/>
+                                <path className="fill-black group-hover:fill-[#00BBFF] group-hover:animate-[blinking_0.3s_ease_forwards_alternate] opacity-0 transition-colors ease duration-200" d="M135.69,367.3c-2.64-1.99-6.64-2.99-12.01-2.99h-16.37c-.4,0-.71.31-.71.71v32.39c0,.4.31.71.71.71h10.31c.4,0,.71-.31.71-.71v-8.09c0-.4.31-.71.71-.71h4.07c5.54,0,9.69-.99,12.43-2.97,2.73-1.97,4.09-5.04,4.09-9.2s-1.31-7.16-3.94-9.14h0ZM126.59,379.04c-.8.47-2.07.71-3.81.71h-3.73c-.4,0-.71-.31-.71-.71v-5.16c0-.4.31-.71.71-.71h3.83c1.7,0,2.96.24,3.74.74.79.49,1.19,1.33,1.19,2.53s-.4,2.13-1.21,2.6h0Z"/>
+                                <path className="fill-black group-hover:fill-[#00BBFF] group-hover:animate-[blinking_0.3s_0.1s_ease_forwards_alternate] opacity-0 transition-colors ease duration-200" d="M174.03,367.3c-2.63-1.99-6.64-2.99-12-2.99h-16.39c-.4,0-.71.31-.71.71v32.39c0,.4.31.71.71.71h10.31c.4,0,.71-.31.71-.71v-8.09c0-.4.31-.71.71-.71h4.07c5.56,0,9.7-.99,12.43-2.97,2.73-1.97,4.1-5.04,4.1-9.2s-1.31-7.16-3.96-9.14h0ZM164.94,379.04c-.81.47-2.09.71-3.81.71h-3.74c-.4,0-.71-.31-.71-.71v-5.16c0-.4.31-.71.71-.71h3.84c1.7,0,2.94.24,3.73.74.8.49,1.19,1.33,1.19,2.53s-.4,2.13-1.2,2.6h0Z"/>
+                                <path className="fill-black group-hover:fill-[#00BBFF] group-hover:animate-[blinking_0.3s_ease_forwards_alternate] opacity-0 transition-colors ease duration-200" d="M213.87,372.27v-7.24c0-.4-.31-.71-.71-.71h-29.16c-.4,0-.71.31-.71.71v32.39c0,.4.31.71.71.71h29.16c.4,0,.71-.31.71-.71v-7.24c0-.4-.31-.71-.71-.71h-17.23c-.4,0-.71-.31-.71-.71v-2.64c0-.4.31-.71.71-.71h16.29c.4,0,.71-.31.71-.71v-7.19c0-.4-.31-.71-.71-.71h-16.29c-.4,0-.71-.31-.71-.71v-2.36c0-.4.31-.71.71-.71h17.23c.4,0,.71-.31.71-.71h0Z"/>
+                                <path className="fill-black group-hover:fill-[#00BBFF] group-hover:animate-[blinking_0.3s_0.3s_ease_forwards_alternate] opacity-0 transition-colors ease duration-200" d="M249.1,386.13c-.23-.34-.1-.8.27-1.01,1.53-.87,2.71-1.96,3.56-3.29.96-1.51,1.44-3.49,1.44-5.93,0-3.81-1.33-6.7-3.96-8.66-2.64-1.96-6.64-2.94-12-2.94h-17.23c-.4,0-.71.31-.71.71v32.39c0,.4.31.71.71.71h9.93c.4,0,.71-.31.71-.71v-8.9c0-.4.31-.71.71-.71h4.71c.24,0,.49.13.61.34l5.87,9.64c.13.21.36.34.61.34h11.27c.57,0,.9-.63.6-1.1l-7.1-10.9h-.03ZM241.6,378.61c-.81.47-2.11.71-3.91.71h-5.16c-.4,0-.71-.31-.71-.71v-5.1c0-.4.31-.71.71-.71h5.26c1.76,0,3.04.23,3.83.7.79.49,1.19,1.31,1.19,2.51s-.4,2.13-1.2,2.6Z"/>
                             </g>
                             </g>
                             <g id="Y">
-                                <path className="fill-black" d="M257.14,164.29v42.86c0,7.89-6.4,14.29-14.29,14.29h-42.86c-7.89,0-14.29,6.4-14.29,14.29v78.57c0,7.89-6.4,14.29-14.29,14.29h-42.86c-7.89,0-14.29-6.4-14.29-14.29v-78.57c0-7.89-6.4-14.29-14.29-14.29h-42.86c-7.89,0-14.29-6.4-14.29-14.29V57.14c0-7.89,6.4-14.29,14.29-14.29h42.86c7.89,0,14.29,6.4,14.29,14.29v78.57c0,7.89,6.4,14.29,14.29,14.29h114.29c7.89,0,14.29,6.4,14.29,14.29Z"/>
-                                <rect className="fill-black" x="185.71" y="42.86" width="71.43" height="71.43" rx="10" ry="10"/>
+                                <path className="fill-black group-hover:fill-[#00BBFF] transition-colors ease duration-200" d="M257.14,164.29v42.86c0,7.89-6.4,14.29-14.29,14.29h-42.86c-7.89,0-14.29,6.4-14.29,14.29v78.57c0,7.89-6.4,14.29-14.29,14.29h-42.86c-7.89,0-14.29-6.4-14.29-14.29v-78.57c0-7.89-6.4-14.29-14.29-14.29h-42.86c-7.89,0-14.29-6.4-14.29-14.29V57.14c0-7.89,6.4-14.29,14.29-14.29h42.86c7.89,0,14.29,6.4,14.29,14.29v78.57c0,7.89,6.4,14.29,14.29,14.29h114.29c7.89,0,14.29,6.4,14.29,14.29Z"/>
+                                <rect className="fill-black group-hover:fill-[#00BBFF] transition-colors ease duration-200" x="185.71" y="42.86" width="71.43" height="71.43" rx="10" ry="10"/>
                             </g>
                         </g>
                     </svg>
@@ -174,43 +169,39 @@ export default function Navigation() {
             </section>
 
             {/* links */}
-            <section
-                className="flex flex-col"
-                onMouseMove={(e) => { targetPos.current = { x: e.clientX, y: e.clientY }; }}
-                onMouseEnter={() => setCursorVisible(true)}
-                onMouseLeave={() => setCursorVisible(false)}
-            >
+            <section className="flex flex-col">
                 <span className="w-full text-center font-zuume font-bold text-4xl">Find me here</span>
                 {/* <a href="" className="font-nunito text-white px-4 py-1 bg-[#00bbff] rounded-2xl">christian@yipper.ca</a> */}
-                <div className="flex flex-row gap-4">
-                    <div className="hover:scale-[85%] transition duration-200">
+                <div className="flex flex-row justify-center gap-4 w-full">
+                    <div className="group hover:scale-[85%] transition duration-200 hover:bg-[#00BBFF] rounded-xl">
                         <a id="linkedin" href="www.linkedin.com/in/christianyipper" target="_blank" rel="noopener noreferrer" className="animate-[fade_1s_ease_2s_forwards] opacity-0">
                             <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect y="-0.00146484" width="48" height="48" rx="8" fill="transparent"/>
-                                <path fillRule="evenodd" fill="black" d="M19.1988 18.2235H25.2852V21.2773H25.3736C26.2214 19.789 28.294 18.2235 31.3847 18.2235C37.8117 18.2235 39 22.1383 39 27.2311V37.9985H32.653L32.6521 28.4089C32.6521 26.2162 32.606 23.3945 29.3516 23.3945C26.0473 23.3945 25.5402 25.7806 25.5402 28.2496V37.9985H19.1988V18.2235ZM15.602 12.2291C15.602 14.0121 14.1229 15.4598 12.3014 15.4598C10.479 15.4598 9 14.0121 9 12.2291C9 10.4453 10.479 8.99854 12.3014 8.99854C14.1229 8.99854 15.602 10.4453 15.602 12.2291ZM9 18.2235H15.602V37.9985H9V18.2235Z"/>
+                                <path className="group-hover:fill-white transition-colors ease duration-200" fillRule="evenodd" fill="black" d="M19.1988 18.2235H25.2852V21.2773H25.3736C26.2214 19.789 28.294 18.2235 31.3847 18.2235C37.8117 18.2235 39 22.1383 39 27.2311V37.9985H32.653L32.6521 28.4089C32.6521 26.2162 32.606 23.3945 29.3516 23.3945C26.0473 23.3945 25.5402 25.7806 25.5402 28.2496V37.9985H19.1988V18.2235ZM15.602 12.2291C15.602 14.0121 14.1229 15.4598 12.3014 15.4598C10.479 15.4598 9 14.0121 9 12.2291C9 10.4453 10.479 8.99854 12.3014 8.99854C14.1229 8.99854 15.602 10.4453 15.602 12.2291ZM9 18.2235H15.602V37.9985H9V18.2235Z"/>
                             </svg>
                         </a>
                     </div>
-                    <div className="hover:scale-[85%] transition duration-200">
+                    {/* <div className="hover:scale-[85%] transition duration-200">
                         <a id="github" href="https://github.com/christianyip" target="_blank" rel="noopener noreferrer" className="animate-[fade_1s_ease_1.8s_forwards] opacity-0">
                             <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect y="-0.00146484" width="48" height="48" rx="8" fill="transparent"/>
                                 <path fill="black" d="M9.03459 23.3713C9.11529 22.8042 9.17293 22.249 9.26516 21.6937C9.61102 19.4963 10.4295 17.4997 11.6516 15.6686C13.5077 12.9041 15.9863 10.9666 19.0645 9.84427C21.1511 9.07636 23.307 8.86371 25.5205 9.07636C28.2643 9.33627 30.7429 10.3405 32.9449 12.018C35.6311 14.0619 37.4411 16.7436 38.3979 20.0279C39.0089 22.1308 39.1473 24.2928 38.8475 26.4666C38.2596 30.7551 36.1844 34.1457 32.8527 36.7566C31.6422 37.7017 30.2818 38.3751 28.8522 38.8831C28.1951 39.1194 27.7455 38.7886 27.7455 38.0797C27.7455 36.7448 27.7455 35.4216 27.7455 34.0866C27.7455 33.425 27.7109 32.7634 27.4227 32.1491C27.2613 31.7947 27.0307 31.4639 26.8232 31.1331C27.3651 31.0268 27.9645 30.9559 28.541 30.8023C30.0627 30.4006 31.4347 29.7036 32.3569 28.3332C33.0256 27.329 33.3484 26.1949 33.4752 25.0016C33.579 24.092 33.6136 23.1941 33.4406 22.2844C33.2562 21.2802 32.8296 20.3942 32.1725 19.6263C32.0572 19.4845 32.0341 19.3782 32.0918 19.201C32.5183 17.9369 32.3569 16.6964 31.8958 15.4914C31.8727 15.4205 31.7459 15.3496 31.6537 15.3378C31.1349 15.2669 30.6392 15.4087 30.178 15.6331C29.4171 15.9994 28.6908 16.4129 27.9415 16.8027C27.8031 16.8736 27.6187 16.909 27.4803 16.8736C25.14 16.2711 22.8113 16.2711 20.4825 16.8736C20.3441 16.909 20.1482 16.8736 20.0329 16.7909C19.076 16.1648 18.073 15.6804 16.9893 15.385C16.9663 15.385 16.9547 15.3732 16.9317 15.3732C16.2284 15.2196 16.1131 15.3023 15.9056 16.0112C15.5944 17.0981 15.5367 18.185 15.9056 19.2837C15.9402 19.3664 15.9056 19.5199 15.848 19.5908C14.5914 21.0558 14.3032 22.7924 14.4761 24.659C14.5798 25.7577 14.8335 26.7974 15.3061 27.7897C15.9863 29.1838 17.1277 30.0226 18.4996 30.5188C19.3181 30.8141 20.1943 30.9323 21.0474 31.1331C21.0935 31.1331 21.1396 31.1449 21.1511 31.1449C20.9321 31.5466 20.7131 31.9483 20.5055 32.3618C20.4364 32.5035 20.3787 32.6689 20.3787 32.8225C20.3672 33.1415 20.2058 33.2951 19.9176 33.3778C18.9722 33.6377 18.0269 33.8149 17.1161 33.236C16.6435 32.9407 16.2861 32.5153 16.0094 32.031C15.5828 31.2749 14.9718 30.7314 14.1533 30.4833C13.8535 30.3888 13.5077 30.4125 13.1849 30.4361C12.9889 30.4479 12.9197 30.6133 13.0581 30.7787C13.1964 30.9441 13.3232 31.1449 13.4962 31.2512C14.3032 31.7238 14.7528 32.4799 15.1102 33.3187C15.3177 33.7913 15.5137 34.2638 15.9056 34.6301C16.5397 35.2089 17.2891 35.4334 18.1076 35.4688C18.8108 35.5043 19.5256 35.4688 20.275 35.4688C20.275 35.906 20.275 36.414 20.275 36.922C20.275 37.3118 20.2865 37.7017 20.2865 38.0916C20.2865 38.8122 19.8254 39.1548 19.1567 38.9304C16.9432 38.1624 14.9949 36.9338 13.3578 35.2208C11.7784 33.555 10.5679 31.6411 9.81853 29.4319C9.39197 28.1796 9.14987 26.8919 9.04611 25.5687C9.04611 25.4506 9.01153 25.3324 9 25.2143C9 24.6118 9 24.0093 9 23.4186L9.03459 23.3713Z"/>
                             </svg>
                         </a>  
-                    </div>
-                    <div className="hover:scale-[85%] transition duration-200">
+                    </div> */}
+                    <div className="group hover:scale-[85%] transition duration-200 hover:bg-[#00BBFF] rounded-xl">
                         <a id="instagram" href="https://instagram.com/bchlofficials" target="_blank" rel="noopener noreferrer" className="animate-[fade_1s_ease_1.6s_forwards] opacity-0">
                             <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect y="-0.00146484" width="48" height="48" rx="8" fill="transparent"/>
-                                <path fillRule="evenodd" fill="black" d="M23.9999 32.1803C28.5186 32.1803 32.1818 28.5172 32.1818 23.9985C32.1818 19.4798 28.5186 15.8167 23.9999 15.8167C19.4812 15.8167 15.8181 19.4798 15.8181 23.9985C15.8181 28.5172 19.4812 32.1803 23.9999 32.1803ZM23.9999 29.453C27.0123 29.453 29.4545 27.0109 29.4545 23.9985C29.4545 20.986 27.0123 18.5439 23.9999 18.5439C20.9875 18.5439 18.5454 20.986 18.5454 23.9985C18.5454 27.0109 20.9875 29.453 23.9999 29.453Z"/>
-                                <path d="M32.1818 14.4531C31.4286 14.4531 30.8181 15.0637 30.8181 15.8168C30.8181 16.5699 31.4286 17.1804 32.1818 17.1804C32.9349 17.1804 33.5454 16.5699 33.5454 15.8168C33.5454 15.0637 32.9349 14.4531 32.1818 14.4531Z" fill="black"/>
-                                <path fillRule="evenodd" fill="black" d="M9.89176 13.4659C9 15.2161 9 17.5072 9 22.0894V25.9076C9 30.4899 9 32.781 9.89176 34.5311C10.6762 36.0707 11.9278 37.3224 13.4674 38.1067C15.2175 38.9985 17.5087 38.9985 22.0909 38.9985H25.9091C30.4913 38.9985 32.7825 38.9985 34.5326 38.1067C36.0721 37.3224 37.3238 36.0707 38.1082 34.5311C39 32.781 39 30.4899 39 25.9076V22.0894C39 17.5072 39 15.2161 38.1082 13.4659C37.3238 11.9264 36.0721 10.6747 34.5326 9.8903C32.7825 8.99854 30.4913 8.99854 25.9091 8.99854H22.0909C17.5087 8.99854 15.2175 8.99854 13.4674 9.8903C11.9278 10.6747 10.6762 11.9264 9.89176 13.4659ZM25.9091 11.7258H22.0909C19.7548 11.7258 18.1667 11.7279 16.9392 11.8282C15.7435 11.9259 15.1321 12.103 14.7055 12.3203C13.6792 12.8433 12.8447 13.6777 12.3218 14.704C12.1044 15.1306 11.9274 15.742 11.8297 16.9377C11.7294 18.1652 11.7273 19.7533 11.7273 22.0894V25.9076C11.7273 28.2438 11.7294 29.8318 11.8297 31.0593C11.9274 32.2551 12.1044 32.8665 12.3218 33.2931C12.8447 34.3194 13.6792 35.1538 14.7055 35.6767C15.1321 35.8941 15.7435 36.0712 16.9392 36.1689C18.1667 36.2691 19.7548 36.2713 22.0909 36.2713H25.9091C28.2453 36.2713 29.8332 36.2691 31.0608 36.1689C32.2565 36.0712 32.868 35.8941 33.2945 35.6767C34.3208 35.1538 35.1552 34.3194 35.6782 33.2931C35.8955 32.8665 36.0727 32.2551 36.1703 31.0593C36.2705 29.8318 36.2727 28.2438 36.2727 25.9076V22.0894C36.2727 19.7533 36.2705 18.1652 36.1703 16.9377C36.0727 15.742 35.8955 15.1306 35.6782 14.704C35.1552 13.6777 34.3208 12.8433 33.2945 12.3203C32.868 12.103 32.2565 11.9259 31.0608 11.8282C29.8332 11.7279 28.2453 11.7258 25.9091 11.7258Z"/>
+                                <path className="group-hover:fill-white transition-colors ease duration-200" fillRule="evenodd" fill="black" d="M23.9999 32.1803C28.5186 32.1803 32.1818 28.5172 32.1818 23.9985C32.1818 19.4798 28.5186 15.8167 23.9999 15.8167C19.4812 15.8167 15.8181 19.4798 15.8181 23.9985C15.8181 28.5172 19.4812 32.1803 23.9999 32.1803ZM23.9999 29.453C27.0123 29.453 29.4545 27.0109 29.4545 23.9985C29.4545 20.986 27.0123 18.5439 23.9999 18.5439C20.9875 18.5439 18.5454 20.986 18.5454 23.9985C18.5454 27.0109 20.9875 29.453 23.9999 29.453Z"/>
+                                <path className="group-hover:fill-white transition-colors ease duration-200" d="M32.1818 14.4531C31.4286 14.4531 30.8181 15.0637 30.8181 15.8168C30.8181 16.5699 31.4286 17.1804 32.1818 17.1804C32.9349 17.1804 33.5454 16.5699 33.5454 15.8168C33.5454 15.0637 32.9349 14.4531 32.1818 14.4531Z" fill="black"/>
+                                <path className="group-hover:fill-white transition-colors ease duration-200" fillRule="evenodd" fill="black" d="M9.89176 13.4659C9 15.2161 9 17.5072 9 22.0894V25.9076C9 30.4899 9 32.781 9.89176 34.5311C10.6762 36.0707 11.9278 37.3224 13.4674 38.1067C15.2175 38.9985 17.5087 38.9985 22.0909 38.9985H25.9091C30.4913 38.9985 32.7825 38.9985 34.5326 38.1067C36.0721 37.3224 37.3238 36.0707 38.1082 34.5311C39 32.781 39 30.4899 39 25.9076V22.0894C39 17.5072 39 15.2161 38.1082 13.4659C37.3238 11.9264 36.0721 10.6747 34.5326 9.8903C32.7825 8.99854 30.4913 8.99854 25.9091 8.99854H22.0909C17.5087 8.99854 15.2175 8.99854 13.4674 9.8903C11.9278 10.6747 10.6762 11.9264 9.89176 13.4659ZM25.9091 11.7258H22.0909C19.7548 11.7258 18.1667 11.7279 16.9392 11.8282C15.7435 11.9259 15.1321 12.103 14.7055 12.3203C13.6792 12.8433 12.8447 13.6777 12.3218 14.704C12.1044 15.1306 11.9274 15.742 11.8297 16.9377C11.7294 18.1652 11.7273 19.7533 11.7273 22.0894V25.9076C11.7273 28.2438 11.7294 29.8318 11.8297 31.0593C11.9274 32.2551 12.1044 32.8665 12.3218 33.2931C12.8447 34.3194 13.6792 35.1538 14.7055 35.6767C15.1321 35.8941 15.7435 36.0712 16.9392 36.1689C18.1667 36.2691 19.7548 36.2713 22.0909 36.2713H25.9091C28.2453 36.2713 29.8332 36.2691 31.0608 36.1689C32.2565 36.0712 32.868 35.8941 33.2945 35.6767C34.3208 35.1538 35.1552 34.3194 35.6782 33.2931C35.8955 32.8665 36.0727 32.2551 36.1703 31.0593C36.2705 29.8318 36.2727 28.2438 36.2727 25.9076V22.0894C36.2727 19.7533 36.2705 18.1652 36.1703 16.9377C36.0727 15.742 35.8955 15.1306 35.6782 14.704C35.1552 13.6777 34.3208 12.8433 33.2945 12.3203C32.868 12.103 32.2565 11.9259 31.0608 11.8282C29.8332 11.7279 28.2453 11.7258 25.9091 11.7258Z"/>
                             </svg>
                         </a>
                     </div>
                 </div>
             </section>
         </div>
+        </>
     );
 }
