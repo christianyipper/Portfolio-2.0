@@ -89,7 +89,27 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                     </div>
 
                     {screens.length > 0 && (
-                        <ScreensSection title={project.screensTitle ?? "Screens"} screens={screens} />
+                        <ScreensSection
+                            title={project.screensTitle ?? "Screens"}
+                            screens={screens}
+                            description={project.screensDescription}
+                        />
+                    )}
+
+                    {project.backend && (
+                        <section className="grid grid-cols-12 gap-8 bg-white rounded-4xl shadow-2xl p-8 items-start">
+                            <div className="col-span-4 relative aspect-4/5 rounded-2xl overflow-hidden">
+                                <Image src={project.backend.image} alt={project.backend.imageAlt} fill className="object-cover" />
+                            </div>
+                            <div className="col-span-8 flex flex-col gap-4">
+                                <h2 className="font-zuume font-bold text-[64px] leading-none">Backend</h2>
+                                <ul className="font-nunito text-base text-black/70 leading-relaxed list-disc list-inside flex flex-col gap-1">
+                                    {project.backend.description.map((item, i) => (
+                                        <li key={i}>{item}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </section>
                     )}
                 </div>
                 <Footer />

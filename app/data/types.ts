@@ -5,6 +5,12 @@ export interface Screen {
     description?: string;
 }
 
+export interface Backend {
+    image: string;
+    imageAlt: string;
+    description: string[];
+}
+
 export interface Project {
     title: string;
     year?: string;
@@ -17,6 +23,8 @@ export interface Project {
     video?: string;
     videoThumbnail?: string;
     screensTitle?: string;
+    screensDescription?: string;
     screens?: Screen[];
+    backend?: Backend;
     icons?: string[];
 }
