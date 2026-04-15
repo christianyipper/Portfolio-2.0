@@ -21,8 +21,7 @@ const motionProjects: Project[] = [
         ],
         // screensDescription: "A bold and modern approach to sports graphics, utilizing strobe effects and smooth sweeping motions. These choices were made to emphasize the fast-paced nature of the game.",
         backend: {
-            image: "/img/bchlrefs/2025-gameday/gameday-graphics-template-2025.png",
-            imageAlt: "Backend screenshot",
+            video: "/img/bchlrefs/2025-gameday/gameday-bts-2025.mp4",
             description: [
                 "Customizable Premiere Pro template file featuring dropdown menus for team and officials selection.",
                 "Team intros and lineup cards are loaded based on dropdown menu selection.",
@@ -50,8 +49,7 @@ const motionProjects: Project[] = [
             { src: "/img/bchlrefs/2026-playoffs/playoff-lineup-2026.mp4",       type: "video", label: "Team Transition" },
         ],
         backend: {
-            image: "/img/bchlrefs/2026-playoffs/playoffs-graphics-template-2026.png",
-            imageAlt: "Backend screenshot",
+            video: "/img/bchlrefs/2026-playoffs/playoffs-bts-2026.mp4",
             description: [
                 "Customizable Premiere Pro template file featuring dropdown menus for teams, officials, and playoff information.",
                 "Team intros and lineup cards are loaded based on dropdown menu selection.",

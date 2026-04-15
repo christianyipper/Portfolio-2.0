@@ -56,15 +56,19 @@ function ScreenCard({ screen, index }: { screen: Screen; index: number }) {
 }
 
 export default function ScreensSection({ title, screens, description }: { title: string; screens: Screen[]; description?: string }) {
-    return (
-        <section className="grid grid-cols-12 gap-4 bg-white rounded-4xl shadow-2xl p-8 justify-center items-center">
-            <h2 className="col-span-12 font-zuume font-bold text-[64px]">{title}</h2>
+    const centered = screens.length < 4;
 
-            {screens.map((s, i) => (
-                <div key={i} className="col-span-3">
-                    <ScreenCard screen={s} index={i} />
-                </div>
-            ))}
+    return (
+        <section className="flex flex-col gap-4 bg-white rounded-4xl shadow-2xl p-8">
+            <h2 className="font-zuume font-bold text-[64px]">{title}</h2>
+
+            <div className={`flex flex-row gap-4 ${centered ? "justify-center" : ""}`}>
+                {screens.map((s, i) => (
+                    <div key={i} className="w-1/4">
+                        <ScreenCard screen={s} index={i} />
+                    </div>
+                ))}
+            </div>
 
             {description && (
                 <div className="col-span-12 font-nunito text-black/70 text-center leading-relaxed">

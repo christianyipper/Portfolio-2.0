@@ -6,8 +6,7 @@ export interface Screen {
 }
 
 export interface Backend {
-    image: string;
-    imageAlt: string;
+    video: string;
     description: string[];
 }
 

@@ -98,10 +98,10 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
                     {project.backend && (
                         <section className="grid grid-cols-12 gap-8 bg-white rounded-4xl shadow-2xl p-8 items-start">
-                            <div className="col-span-4 relative aspect-4/5 rounded-2xl overflow-hidden">
-                                <Image src={project.backend.image} alt={project.backend.imageAlt} fill className="object-cover" />
+                            <div className="col-span-12 relative aspect-2/1 rounded-2xl overflow-hidden">
+                                <video className="absolute inset-0 w-full h-full object-cover" src={project.backend.video} autoPlay muted loop playsInline />
                             </div>
-                            <div className="col-span-8 flex flex-col gap-4">
+                            <div className="col-span-12 flex flex-col gap-4">
                                 <h2 className="font-zuume font-bold text-[64px] leading-none">Backend</h2>
                                 <ul className="font-nunito text-base text-black/70 leading-relaxed list-disc list-inside flex flex-col gap-1">
                                     {project.backend.description.map((item, i) => (
