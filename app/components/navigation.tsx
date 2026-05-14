@@ -82,7 +82,7 @@ export default function Navigation() {
                 pb-4
                 ">
                     <video
-                        src="/img/Yipper-Logo-Ani.mp4"
+                        src="/img/yipper-logo-ani.mp4"
                         autoPlay
                         loop
                         muted
