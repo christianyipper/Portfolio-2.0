@@ -172,7 +172,7 @@ export default function Navigation() {
                         </a>  
                     </div> */}
                     <div className="group hover:scale-[85%] transition duration-200 hover:bg-[#00BBFF] rounded-xl">
-                        <a id="instagram" href="https://instagram.com/bchlofficials" target="_blank" rel="noopener noreferrer" className="animate-[fade_1s_ease_1.6s_forwards] opacity-0">
+                        <a id="instagram" href="https://instagram.com/bchlrefs" target="_blank" rel="noopener noreferrer" className="animate-[fade_1s_ease_1.6s_forwards] opacity-0">
                             <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect y="-0.00146484" width="48" height="48" rx="8" fill="transparent"/>
                                 <path className="group-hover:fill-white transition-colors ease duration-200" fillRule="evenodd" fill="black" d="M23.9999 32.1803C28.5186 32.1803 32.1818 28.5172 32.1818 23.9985C32.1818 19.4798 28.5186 15.8167 23.9999 15.8167C19.4812 15.8167 15.8181 19.4798 15.8181 23.9985C15.8181 28.5172 19.4812 32.1803 23.9999 32.1803ZM23.9999 29.453C27.0123 29.453 29.4545 27.0109 29.4545 23.9985C29.4545 20.986 27.0123 18.5439 23.9999 18.5439C20.9875 18.5439 18.5454 20.986 18.5454 23.9985C18.5454 27.0109 20.9875 29.453 23.9999 29.453Z"/>
