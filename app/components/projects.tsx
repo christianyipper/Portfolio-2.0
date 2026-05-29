@@ -11,15 +11,20 @@ import type { Project as ProjectEntry } from "../data/types";
 
 const totalCards = motionProjectsData.length;
 
-// Notch shape path (400×500 coordinate space)
-const NOTCH_PATH = "M0 16 C0 7.16 7.16 0 16 0 H384 C392.84 0 400 7.16 400 16 V438 C400 446.84 392.84 454 384 454 H259 C252 454 245 458 241 464 L225 489 C221 496 214 500 207 500 H16 C7.16 500 0 492.84 0 484 V16 Z";
-// Rectangle path — same command structure, notch points collapsed to bottom-right corner
-const RECT_PATH  = "M0 16 C0 7.16 7.16 0 16 0 H384 C392.84 0 400 7.16 400 16 V484 C400 492.84 392.84 500 384 500 H384 C384 500 384 500 384 500 L384 500 C384 500 384 500 384 500 H16 C7.16 500 0 492.84 0 484 V16 Z";
+// Rectangle path — notch points collapsed to bottom-right corner
+const RECT_PATH = "M0 16 C0 7.16 7.16 0 16 0 H384 C392.84 0 400 7.16 400 16 V484 C400 492.84 392.84 500 384 500 H384 C384 500 384 500 384 500 L384 500 C384 500 384 500 384 500 H16 C7.16 500 0 492.84 0 484 V16 Z";
+
+function makeNotchPath(nx: number) {
+    return `M0 16 C0 7.16 7.16 0 16 0 H384 C392.84 0 400 7.16 400 16 V438 C400 446.84 392.84 454 384 454 H${nx} C${nx - 7} 454 ${nx - 14} 458 ${nx - 18} 464 L${nx - 34} 489 C${nx - 38} 496 ${nx - 45} 500 ${nx - 52} 500 H16 C7.16 500 0 492.84 0 484 V16 Z`;
+}
 
 
 function ProjectCard({ entry, visible, index }: { entry: ProjectEntry; visible: boolean; index: number }) {
     const [hovered, setHovered] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
+    const [notchX, setNotchX] = useState(259);
+    const cardRef = useRef<HTMLDivElement>(null);
+    const labelRef = useRef<HTMLHeadingElement>(null);
     const clipId = `card-clip-${index}`;
 
     useEffect(() => {
@@ -30,10 +35,27 @@ function ProjectCard({ entry, visible, index }: { entry: ProjectEntry; visible: 
         }
     }, []);
 
+    useEffect(() => {
+        const measure = () => {
+            if (!cardRef.current || !labelRef.current) return;
+            const cardW = cardRef.current.getBoundingClientRect().width;
+            const textW = labelRef.current.getBoundingClientRect().width;
+            const totalPx = textW + 48;
+            const nx = Math.round(452 - (totalPx / cardW) * 400);
+            setNotchX(Math.max(160, Math.min(340, nx)));
+        };
+        measure();
+        document.fonts.ready.then(measure);
+        window.addEventListener("resize", measure);
+        return () => window.removeEventListener("resize", measure);
+    }, []);
+
     const active = isMobile || hovered;
+    const notchPath = makeNotchPath(notchX);
 
     return (
         <div
+            ref={cardRef}
             className="relative aspect-4/5 group cursor-pointer"
             style={{
                 opacity: visible ? 1 : 0,
@@ -47,7 +69,7 @@ function ProjectCard({ entry, visible, index }: { entry: ProjectEntry; visible: 
             <svg width="0" height="0" className="absolute">
                 <defs>
                     <clipPath id={clipId} clipPathUnits="objectBoundingBox" transform="scale(0.0025 0.002)">
-                        <path d={active ? NOTCH_PATH : RECT_PATH} style={{ transition: 'd 0.2s ease-in-out' }} />
+                        <path d={active ? notchPath : RECT_PATH} style={{ transition: 'd 0.2s ease-in-out' }} />
                     </clipPath>
                 </defs>
             </svg>
@@ -104,12 +126,16 @@ function ProjectCard({ entry, visible, index }: { entry: ProjectEntry; visible: 
                     Learn More
                 </span> */}
                 <div>
-                    <span className="block font-aktive text-[12px] font-bold text-[#00bbff] -mb-1 tracking-widest opacity-100 truncate">
-                        {entry.year}
+                    <span className="block font-aktiv text-[12px] text-[#00bbff] -mb-1 tracking-widest opacity-100 truncate">
+                        {entry.client}
                     </span>
                     <h3 className="font-aktiv text-[16px] leading-tight truncate">
                         {entry.title}
                     </h3>
+                    {/* Hidden span for measuring true text width */}
+                    <span ref={labelRef} className="font-aktiv text-[16px] leading-tight absolute opacity-0 pointer-events-none whitespace-nowrap">
+                        {entry.title}
+                    </span>
                 </div>
             </div>
 
@@ -119,9 +145,9 @@ function ProjectCard({ entry, visible, index }: { entry: ProjectEntry; visible: 
                 viewBox="0 0 400 500"
                 overflow="visible"
             >
-                <path d={active ? NOTCH_PATH : RECT_PATH} fill="none" stroke="rgba(255,255,255,1)" strokeWidth="4" style={{ transition: 'd 0.2s ease-in-out, opacity 0.2s ease-in-out', opacity: active ? 0 : 1 }} />
+                <path d={active ? notchPath : RECT_PATH} fill="none" stroke="rgba(255,255,255,1)" strokeWidth="4" style={{ transition: 'd 0.2s ease-in-out, opacity 0.2s ease-in-out', opacity: active ? 0 : 1 }} />
                 <path
-                    d={active ? NOTCH_PATH : RECT_PATH}
+                    d={active ? notchPath : RECT_PATH}
                     fill="none"
                     stroke="rgba(0,187,255,1)"
                     strokeWidth="4"

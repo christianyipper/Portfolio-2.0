@@ -10,6 +10,7 @@ import PageWrapper from "../../components/PageWrapper";
 import BackButton from "../../components/BackButton";
 import Footer from "../../components/footer";
 import ScreensSection from "../../components/ScreensSection";
+import ProjectNav from "../../components/ProjectNav";
 
 const componentMap: Record<string, React.FC> = {
     AfterEffects,
@@ -38,6 +39,18 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
     const icons = (project.icons ?? []).map((name) => componentMap[name]).filter(Boolean) as React.FC[];
     const screens = project.screens ?? [];
 
+    const currentIndex = allProjects.findIndex((p) => toSlug(p.title) === slug);
+    const makeNavProject = (p: typeof allProjects[0]) => ({
+        slug: toSlug(p.title),
+        title: p.title,
+        client: p.client,
+        video: p.video,
+        thumbnail: p.thumbnail,
+        thumbnailAlt: p.thumbnailAlt,
+    });
+    const prevProject = currentIndex > 0 ? makeNavProject(allProjects[currentIndex - 1]) : undefined;
+    const nextProject = currentIndex < allProjects.length - 1 ? makeNavProject(allProjects[currentIndex + 1]) : undefined;
+
     return (
         <PageWrapper>
             <div className="flex flex-col mt-8 gap-4">
@@ -51,8 +64,8 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
                         {/* Row 1: Text (9 cols) + Main video (3 cols, portrait) */}
                         <div className="col-span-8 flex flex-col gap-4">
-                            {project.year && (
-                                <p className="-mb-4 font-aktiv text-sm text-[#00bbff] tracking-widest">{project.year}</p>
+                            {project.client && (
+                                <p className="-mb-4 font-aktiv font-black text-sm text-[#00bbff] tracking-widest">{project.client}</p>
                             )}
                             <h1 className="font-zuume font-bold text-8xl leading-none">{project.title}</h1>
                             {project.subtitle && (
@@ -116,6 +129,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                         </section>
                     )}
                 </div>
+                <ProjectNav prev={prevProject} next={nextProject} />
                 <Footer />
             </div>
         </PageWrapper>

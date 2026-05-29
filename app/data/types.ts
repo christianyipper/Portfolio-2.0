@@ -14,7 +14,7 @@ export interface Backend {
 
 export interface Project {
     title: string;
-    year?: string;
+    client?: string;
     subtitle?: string;
     description?: string;
     logo?: string;
