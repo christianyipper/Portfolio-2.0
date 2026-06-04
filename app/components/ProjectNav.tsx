@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useTransition } from "../context/TransitionContext";
+import LazyVideo from "./LazyVideo";
 
 interface NavProject {
     slug: string;
@@ -22,13 +23,9 @@ function NavCard({ project, label }: { project: NavProject; label: string }) {
         >
             <div className="relative aspect-video w-full overflow-hidden">
                 {project.video ? (
-                    <video
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    <LazyVideo
                         src={project.video}
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     />
                 ) : (
                     <Image

@@ -11,6 +11,7 @@ import BackButton from "../../components/BackButton";
 import Footer from "../../components/footer";
 import ScreensSection from "../../components/ScreensSection";
 import ProjectNav from "../../components/ProjectNav";
+import LazyVideo from "../../components/LazyVideo";
 
 const componentMap: Record<string, React.FC> = {
     AfterEffects,
@@ -55,7 +56,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         <PageWrapper>
             <div className="flex flex-col mt-8 gap-4">
                 <div className="flex flex-col gap-8">
-                    <div className="grid grid-cols-12 gap-4 bg-white rounded-4xl shadow-2xl p-8">
+                    <div className="grid grid-cols-12 gap-4 bg-white rounded-4xl shadow-2xl p-4 md:p-8">
 
                         {/* Back button */}
                         <div className="col-span-12">
@@ -67,7 +68,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                             {project.client && (
                                 <p className="-mb-4 font-aktiv font-black text-sm text-[#00bbff] tracking-widest">{project.client}</p>
                             )}
-                            <h1 className="font-zuume font-bold text-8xl leading-none">{project.title}</h1>
+                            <h1 className="font-zuume font-bold text-[36px] md:text-8xl leading-none">{project.title}</h1>
                             {project.subtitle && (
                                 <p className="-mt-4 font-nunito text-xl text-black/50">{project.subtitle}</p>
                             )}
@@ -110,16 +111,16 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                     )}
 
                     {project.backend && (
-                        <section className="grid grid-cols-12 gap-8 bg-white rounded-4xl shadow-2xl p-8 items-start">
+                        <section className="grid grid-cols-12 gap-8 bg-white rounded-4xl shadow-2xl p-4 md:p-8 items-start">
                             <div className="col-span-12 relative aspect-2/1 rounded-2xl overflow-hidden">
                                 {project.backend.video ? (
-                                    <video className="absolute inset-0 w-full h-full object-cover" src={project.backend.video} autoPlay muted loop playsInline />
+                                    <LazyVideo src={project.backend.video} className="absolute inset-0 w-full h-full object-cover" />
                                 ) : (
                                     <Image src={project.backend.image!} alt={project.backend.imageAlt ?? ""} fill className="object-cover" />
                                 )}
                             </div>
                             <div className="col-span-12 flex flex-col gap-4">
-                                <h2 className="font-zuume font-bold text-[64px] leading-none">Backend</h2>
+                                <h2 className="font-zuume font-bold text-[36px] md:text-[64px] leading-none">Backend</h2>
                                 <ul className="font-nunito text-base text-black/70 leading-relaxed list-disc list-inside flex flex-col gap-1">
                                     {project.backend.description.map((item, i) => (
                                         <li key={i}>{item}</li>

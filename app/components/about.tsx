@@ -16,7 +16,7 @@ import Footer from "../components/footer";
 export default function About() {
     return (
         <div className="relative flex flex-col gap-4">
-            <section className="flex justify-center items-start h-full bg-white p-8 rounded-4xl shadow-2xl
+            <section className="flex justify-center items-start h-full bg-white p-4 md:p-8 rounded-4xl shadow-2xl
             ">
                 <div className="relative w-full overflow-hidden
                 max-sm:p-2 max-sm:pl-4
@@ -38,7 +38,7 @@ export default function About() {
                             <p className="font-aktiv">Creative Designer</p>
                         </article>
                     </div>
-                    <h2 className="font-zuume font-bold text-[64px] pb-4">About Me</h2>
+                    <h2 className="font-zuume font-bold text-[36px] md:text-[64px] pb-4">About Me</h2>
                     <article className="space-y-4 text-base text-black font-nunito pb-8">
                         {bioData.bio.map((paragraph, index) => (
                             <p key={index}>{paragraph}</p>

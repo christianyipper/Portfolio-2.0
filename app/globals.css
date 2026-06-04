@@ -11,6 +11,7 @@ html {
   color-scheme: light;
   forced-color-adjust: none;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 @font-face {

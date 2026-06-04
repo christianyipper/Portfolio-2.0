@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import LazyVideo from "./LazyVideo";
 import type { Screen } from "../data/types";
 
 const NOTCH_PATH = "M0 16 C0 7.16 7.16 0 16 0 H384 C392.84 0 400 7.16 400 16 V438 C400 446.84 392.84 454 384 454 H259 C252 454 245 458 241 464 L225 489 C221 496 214 500 207 500 H16 C7.16 500 0 492.84 0 484 V16 Z";
@@ -21,14 +22,7 @@ function ScreenCard({ screen, index }: { screen: Screen; index: number }) {
 
             <div className="absolute inset-0" style={{ clipPath: `url(#${clipId})` }}>
                 {screen.type === "video" ? (
-                    <video
-                        className="absolute inset-0 w-full h-full object-cover"
-                        src={screen.src}
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                    />
+                    <LazyVideo src={screen.src} className="absolute inset-0 w-full h-full object-cover" />
                 ) : (
                     <Image src={screen.src} alt={screen.label ?? ""} fill className="object-cover" />
                 )}
@@ -59,8 +53,8 @@ export default function ScreensSection({ title, screens, description }: { title:
     const centered = screens.length < 4;
 
     return (
-        <section className="flex flex-col gap-4 bg-white rounded-4xl shadow-2xl p-8">
-            <h2 className="font-zuume font-bold text-[64px]">{title}</h2>
+        <section className="flex flex-col gap-4 bg-white rounded-4xl shadow-2xl p-4 md:p-8">
+            <h2 className="font-zuume font-bold text-[36px] md:text-[64px]">{title}</h2>
 
             <div className={`flex flex-row gap-4 ${centered ? "justify-center" : ""}`}>
                 {screens.map((s, i) => (

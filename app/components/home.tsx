@@ -4,7 +4,7 @@ export default function Home() {
     return (
         <section className="relative grid grid-rows-[1fr_auto] items-center rounded-4xl">
             
-            <div className="relative w-full h-full flex flex-row items-center justify-center pt-8 gap-8">
+            <div className="relative w-full h-full flex flex-col sm:flex-row items-center justify-center pt-8 gap-4 sm:gap-8">
                 <svg id="Yipper_Logo" data-name="Yipper Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 441" className="w-16 group">
                     <g id="Logo">
                         <g id="Yipper">
@@ -24,10 +24,10 @@ export default function Home() {
                         </g>
                     </g>
                 </svg>
-                <div className="w-0.5 h-3/4 bg-black"/>
+                <div className="w-0.5 h-3/4 bg-black hidden sm:block"/>
                 <div className="flex flex-col justify-center items-start">
-                    <h1 className="font-zuume font-bold text-[48px] -mt-2">Yipper Creative</h1>
-                    <span className="font-zuume font-bold text-[32px] text-[#00BBFF] -mt-4">Motion | Design | Media</span>
+                    <h1 className="font-zuume font-bold text-[36px] sm:text-[48px] -mt-2">Yipper Creative</h1>
+                    <span className="font-zuume font-bold text-[24px] sm:text-[32px] text-[#00BBFF] -mt-4">Motion | Design | Media</span>
                     {/* <div className="relative flex flex-row">
                         <a href="mailto:christian@yipper.ca" className="group relative h-14 -mt-4 flex items-center justify-center rounded-2xl text-[#00BBFF] hover:text-white cursor-pointer hover:bg-[#00BBFF] transition duration-200 ease ">
                         <span className="font-zuume font-bold text-[48px] inline-block transition-transform duration-200 ease group-hover:scale-90">Start your project.</span>

@@ -14,7 +14,7 @@ export default function PageWrapper({ children }: { children: React.ReactNode })
 
     return (
         <div
-            className="pl-8 transition-opacity duration-500 ease-in-out"
+            className="px-4 md:pl-8 md:pr-0 transition-opacity duration-500 ease-in-out"
             style={{ opacity: isExiting ? 0 : mounted ? 1 : 0 }}
         >
             {children}

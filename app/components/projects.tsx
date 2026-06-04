@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import LazyVideo from "./LazyVideo";
 import Link from "next/link";
 import Lottie from "lottie-react";
 import { useTransition } from "../context/TransitionContext";
@@ -78,14 +79,10 @@ function ProjectCard({ entry, visible, index }: { entry: ProjectEntry; visible: 
             <div className="absolute inset-0" style={{ clipPath: `url(#${clipId})` }}>
                 {/* Media */}
                 {entry.video ? (
-                    <video
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    <LazyVideo
                         src={entry.video}
                         poster={entry.thumbnail}
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     />
                 ) : (
                     <Image
@@ -151,7 +148,7 @@ function ProjectCard({ entry, visible, index }: { entry: ProjectEntry; visible: 
                     fill="none"
                     stroke="rgba(0,187,255,1)"
                     strokeWidth="4"
-                    style={{ transition: 'd 0.2s ease-in-out, opacity 0.2s ease-in-out', opacity: active ? 1 : 0 }}
+                    style={{ transition: 'd 0.2s ease-in-out, opacity 0.2s ease-in-out', opacity: active && !isMobile ? 1 : 0 }}
                 />
             </svg>
         </div>
@@ -220,8 +217,8 @@ export default function Projects() {
                 </div>
             </div>
 
-            <section className="h-full bg-white p-8 rounded-4xl shadow-2xl">
-                <h2 className="font-zuume text-[64px] font-bold pb-4">My Projects</h2>
+            <section className="h-full bg-white p-4 md:p-8 rounded-4xl shadow-2xl">
+                <h2 className="font-zuume text-[36px] md:text-[64px] font-bold pb-4">My Projects</h2>
                 <div
                     className="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-8"
                     onMouseMove={(e) => { targetPos.current = { x: e.clientX, y: e.clientY }; }}
