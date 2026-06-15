@@ -2,7 +2,7 @@
 
 export default function Home() {
     return (
-        <section className="relative grid grid-rows-[1fr_auto] items-center rounded-4xl">
+        <section className="relative grid grid-rows-[1fr_auto] items-center rounded-4xl sm:my-12">
             
             <div className="relative w-full h-full flex flex-col sm:flex-row items-center justify-center pt-8 gap-4 sm:gap-8">
                 <svg id="Yipper_Logo" data-name="Yipper Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 441" className="w-16 group">
