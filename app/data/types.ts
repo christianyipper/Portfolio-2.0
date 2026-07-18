@@ -29,3 +29,21 @@ export interface Project {
     backend?: Backend;
     icons?: string[];
 }
+
+export interface GalleryImage {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+}
+
+export interface PhotoGallery {
+    title: string;
+    client?: string;
+    subtitle?: string;
+    description?: string;
+    thumbnail: string;
+    thumbnailAlt: string;
+    video?: string;
+    images: GalleryImage[];
+}

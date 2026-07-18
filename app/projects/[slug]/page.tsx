@@ -12,6 +12,7 @@ import Footer from "../../components/footer";
 import ScreensSection from "../../components/ScreensSection";
 import ProjectNav from "../../components/ProjectNav";
 import LazyVideo from "../../components/LazyVideo";
+import { toSlug } from "../../lib/slug";
 
 const componentMap: Record<string, React.FC> = {
     AfterEffects,
@@ -20,11 +21,6 @@ const componentMap: Record<string, React.FC> = {
     Photoshop,
     Premiere,
 };
-
-function toSlug(title: string) {
-    return title.toLowerCase().replace(/\s+/g, "-");
-}
-
 
 const allProjects = motionProjectsData.map((p) => ({ ...p, category: "motion" }));
 

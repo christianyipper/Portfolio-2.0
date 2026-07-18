@@ -12,7 +12,14 @@ export default function Navigation() {
     const { navigate } = useTransition();
 
     useEffect(() => {
-        const ids = ["home", "projects", "about"];
+        if (pathname !== "/") {
+            if (pathname.startsWith("/photos")) setActiveSection("gallery");
+            else if (pathname.startsWith("/projects")) setActiveSection("projects");
+            else setActiveSection("");
+            return;
+        }
+
+        const ids = ["home", "projects", "gallery", "about"];
         const observers: IntersectionObserver[] = [];
 
         ids.forEach((id) => {
@@ -70,6 +77,7 @@ export default function Navigation() {
             <div className="flex flex-col gap-4 mt-12">
                 <a href="#home" onClick={(e) => { scrollTo("home")(e); setMenuOpen(false); }} className={`font-zuume font-bold text-7xl ${activeSection === "home" ? "text-[#00BBFF]" : "text-black"}`}>Home</a>
                 <a href="#projects" onClick={(e) => { scrollTo("projects")(e); setMenuOpen(false); }} className={`font-zuume font-bold text-7xl ${activeSection === "projects" ? "text-[#00BBFF]" : "text-black"}`}>Projects</a>
+                <a href="#gallery" onClick={(e) => { scrollTo("gallery")(e); setMenuOpen(false); }} className={`font-zuume font-bold text-7xl ${activeSection === "gallery" ? "text-[#00BBFF]" : "text-black"}`}>Gallery</a>
                 <a href="#about" onClick={(e) => { scrollTo("about")(e); setMenuOpen(false); }} className={`font-zuume font-bold text-7xl ${activeSection === "about" ? "text-[#00BBFF]" : "text-black"}`}>About</a>
             </div>
         </div>
@@ -95,27 +103,30 @@ export default function Navigation() {
                     <div
                         className="absolute h-24 bg-[#00BBFF] rounded-2xl outline-4 outline-[#00BBFF] transition-all duration-200 ease-in-out"
                         style={{
-                            transform: `translateY(${activeSection === "projects" ? 128 : activeSection === "about" ? 256 : 0}px)`,
-                            width: activeSection === "projects" ? "320px" : activeSection === "about" ? "236px" : "222px"
+                            transform: `translateY(${activeSection === "projects" ? 128 : activeSection === "gallery" ? 256 : activeSection === "about" ? 384 : 0}px)`,
+                            width: activeSection === "projects" ? "320px" : activeSection === "gallery" ? "268px" : activeSection === "about" ? "236px" : "222px"
                         }}
                     />
                     {/* clip container — same position as blue div, reveals white text */}
                     <div
                         className="absolute h-24 overflow-hidden rounded-2xl transition-all duration-200 ease-in-out pointer-events-none z-60"
                         style={{
-                            transform: `translateY(${activeSection === "projects" ? 128 : activeSection === "about" ? 256 : 0}px)`,
-                            width: activeSection === "projects" ? "320px" : activeSection === "about" ? "236px" : "222px"
+                            transform: `translateY(${activeSection === "projects" ? 128 : activeSection === "gallery" ? 256 : activeSection === "about" ? 384 : 0}px)`,
+                            width: activeSection === "projects" ? "320px" : activeSection === "gallery" ? "268px" : activeSection === "about" ? "236px" : "222px"
                         }}
                     >
                         <div
                             className="flex flex-col gap-8 transition-transform duration-200 ease-in-out z-50"
-                            style={{ transform: `translateY(-${activeSection === "projects" ? 128 : activeSection === "about" ? 256 : 0}px)` }}
+                            style={{ transform: `translateY(-${activeSection === "projects" ? 128 : activeSection === "gallery" ? 256 : activeSection === "about" ? 384 : 0}px)` }}
                         >
                             <div className="h-24 flex items-center justify-center">
                                 <span className={`font-zuume font-bold text-8xl px-8 text-white inline-block ${jigglingSection === "home" ? "animate-[jiggle_0.5s_ease-out]" : ""}`}>Home</span>
                             </div>
                             <div className="h-24 flex items-center justify-center">
                                 <span className={`font-zuume font-bold text-8xl px-8 text-white inline-block ${jigglingSection === "projects" ? "animate-[jiggle_0.5s_ease-out]" : ""}`}>Projects</span>
+                            </div>
+                            <div className="h-24 flex items-center justify-center">
+                                <span className={`font-zuume font-bold text-8xl px-8 text-white inline-block ${jigglingSection === "gallery" ? "animate-[jiggle_0.5s_ease-out]" : ""}`}>gallery</span>
                             </div>
                             <div className="h-24 flex items-center justify-center">
                                 <span className={`font-zuume font-bold text-8xl px-8 text-white inline-block ${jigglingSection === "about" ? "animate-[jiggle_0.5s_ease-out]" : ""}`}>About</span>
@@ -137,6 +148,14 @@ export default function Navigation() {
                                 <rect x="0" y="0" width="100%" height="100%" rx="16" ry="16" fill="none" stroke="#00BBFF" strokeWidth="3" strokeDasharray="10 8" style={{ animation: 'marching-ants 2s linear infinite' }} />
                             </svg>
                             <span className={`font-zuume font-bold text-8xl px-8 inline-block ${jigglingSection === "projects" ? "animate-[jiggle_0.5s_ease-out]" : ""}`}>Projects</span>
+                        </div>
+                    </a>
+                    <a href="#gallery" onClick={scrollTo("gallery")} className="relative group flex items-center justify-center z-50">
+                        <div className="relative w-[268px] h-24 flex items-center justify-center rounded-2xl">
+                            <svg className="absolute inset-0 w-full h-full overflow-visible pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                <rect x="0" y="0" width="100%" height="100%" rx="16" ry="16" fill="none" stroke="#00BBFF" strokeWidth="3" strokeDasharray="10 8" style={{ animation: 'marching-ants 2s linear infinite' }} />
+                            </svg>
+                            <span className={`font-zuume font-bold text-8xl px-8 inline-block ${jigglingSection === "gallery" ? "animate-[jiggle_0.5s_ease-out]" : ""}`}>gallery</span>
                         </div>
                     </a>
                     <a href="#about" onClick={scrollTo("about")} className="relative group flex items-center justify-center z-50">

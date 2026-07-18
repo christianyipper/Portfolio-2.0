@@ -1,0 +1,71 @@
+import type { PhotoGallery } from "./types";
+
+const photoGalleries: PhotoGallery[] = [
+    {
+        title: "Showcase 2025",
+        thumbnail: "/img/photography/showcase-2025/DSC07877BW.jpg",
+        thumbnailAlt: "BCHL Showcase 2025 cover",
+        images: [
+            { src: "/img/photography/showcase-2025/DSC07508.jpg", alt: "BCHL Showcase 2025", width: 6000, height: 4000 },
+            { src: "/img/photography/showcase-2025/DSC07393.jpg", alt: "BCHL Showcase 2025", width: 6000, height: 4000 },
+            { src: "/img/photography/showcase-2025/DSC07682.jpg", alt: "BCHL Showcase 2025", width: 4000, height: 6000 },
+            { src: "/img/photography/showcase-2025/DSC05441-Enhanced-NR.jpg", alt: "BCHL Showcase 2025", width: 6000, height: 4000 },
+            { src: "/img/photography/showcase-2025/DSC07877BW.jpg", alt: "BCHL Showcase 2025", width: 4000, height: 6000 },
+            { src: "/img/photography/showcase-2025/DSC05499-Enhanced-NR.jpg", alt: "BCHL Showcase 2025", width: 6000, height: 4000 },
+            { src: "/img/photography/showcase-2025/DSC05619-Enhanced-NR.jpg", alt: "BCHL Showcase 2025", width: 6000, height: 4000 },
+            { src: "/img/photography/showcase-2025/DSC05704-Enhanced-NR.jpg", alt: "BCHL Showcase 2025", width: 6000, height: 4000 },
+            { src: "/img/photography/showcase-2025/DSC07365.jpg", alt: "BCHL Showcase 2025", width: 6000, height: 4000 },
+            { src: "/img/photography/showcase-2025/DSC07500.jpg", alt: "BCHL Showcase 2025", width: 6000, height: 4000 },
+            { src: "/img/photography/showcase-2025/DSC07716.jpg", alt: "BCHL Showcase 2025", width: 4000, height: 6000 },
+            { src: "/img/photography/showcase-2025/DSC05768-Enhanced-NR.jpg", alt: "BCHL Showcase 2025", width: 6000, height: 4000 },
+            { src: "/img/photography/showcase-2025/DSC07565.jpg", alt: "BCHL Showcase 2025", width: 6000, height: 4000 },
+            { src: "/img/photography/showcase-2025/DSC05695-Enhanced-NR.jpg", alt: "BCHL Showcase 2025", width: 2625, height: 1750 },
+        ],
+    },
+    {
+        title: "Combine 2026",
+        thumbnail: "/img/photography/combine-2026/DSC08634.jpg",
+        thumbnailAlt: "Combine 2026 cover",
+        images: [
+            { src: "/img/photography/combine-2026/DSC08803.jpg", alt: "Combine 2026", width: 4000, height: 6000 },
+            { src: "/img/photography/combine-2026/DSC08895.jpg", alt: "Combine 2026", width: 4000, height: 6000 },
+            { src: "/img/photography/combine-2026/DSC08634.jpg", alt: "Combine 2026", width: 2923, height: 4384 },
+            { src: "/img/photography/combine-2026/DSC08657.jpg", alt: "Combine 2026", width: 3747, height: 5620 },
+            { src: "/img/photography/combine-2026/DSC08687.jpg", alt: "Combine 2026", width: 3093, height: 4640 },
+            { src: "/img/photography/combine-2026/DSC08833.jpg", alt: "Combine 2026", width: 3079, height: 4618 },
+            { src: "/img/photography/combine-2026/DSC08861.jpg", alt: "Combine 2026", width: 4000, height: 6000 },
+            { src: "/img/photography/combine-2026/DSC08873.jpg", alt: "Combine 2026", width: 3499, height: 5248 },
+            { src: "/img/photography/combine-2026/DSC08914.jpg", alt: "Combine 2026", width: 2717, height: 4075 },
+            { src: "/img/photography/combine-2026/DSC08963.jpg", alt: "Combine 2026", width: 3445, height: 5167 },
+            { src: "/img/photography/combine-2026/DSC08993.jpg", alt: "Combine 2026", width: 3715, height: 5573 },
+            { src: "/img/photography/combine-2026/DSC09009.jpg", alt: "Combine 2026", width: 4000, height: 6000 },
+            { src: "/img/photography/combine-2026/DSC08759.jpg", alt: "Combine 2026", width: 3808, height: 5712 },
+            { src: "/img/photography/combine-2026/DSC09012.jpg", alt: "Combine 2026", width: 3850, height: 5775 },
+            { src: "/img/photography/combine-2026/DSC09057.jpg", alt: "Combine 2026", width: 2603, height: 3905 },
+            { src: "/img/photography/combine-2026/DSC09064.jpg", alt: "Combine 2026", width: 3091, height: 4637 },
+            { src: "/img/photography/combine-2026/DSC09091.jpg", alt: "Combine 2026", width: 3071, height: 4607 },
+            { src: "/img/photography/combine-2026/DSC09127.jpg", alt: "Combine 2026", width: 3472, height: 5208 },
+
+        ],
+    },
+    {
+        title: "MacKonner x Zocker",
+        thumbnail: "/img/photography/mackonner-shoot/DSC09576.jpg",
+        thumbnailAlt: "MacKonner x Zocker cover",
+        images: [
+            { src: "/img/photography/mackonner-shoot/DSC09253-edit.jpg", alt: "MacKonner x Zocker", width: 4000, height: 6000 },
+            { src: "/img/photography/mackonner-shoot/DSC09503.jpg", alt: "MacKonner x Zocker", width: 4975, height: 3317 },
+            { src: "/img/photography/mackonner-shoot/DSC09425-edit.jpg", alt: "MacKonner x Zocker", width: 3803, height: 5705 },
+            { src: "/img/photography/mackonner-shoot/DSC09442.jpg", alt: "MacKonner x Zocker", width: 4000, height: 6000 },
+            { src: "/img/photography/mackonner-shoot/MacKonner-Shoot-1.jpg", alt: "MacKonner x Zocker", width: 1080, height: 1350 },
+            { src: "/img/photography/mackonner-shoot/DSC09517.jpg", alt: "MacKonner x Zocker", width: 3729, height: 5593 },
+            { src: "/img/photography/mackonner-shoot/DSC09533.jpg", alt: "MacKonner x Zocker", width: 4000, height: 6000 },
+            { src: "/img/photography/mackonner-shoot/DSC09547.jpg", alt: "MacKonner x Zocker", width: 4000, height: 6000 },
+            { src: "/img/photography/mackonner-shoot/DSC09576.jpg", alt: "MacKonner x Zocker", width: 3557, height: 5336 },
+            { src: "/img/photography/mackonner-shoot/DSC09579-2.jpg", alt: "MacKonner x Zocker", width: 4000, height: 6000 },
+            { src: "/img/photography/mackonner-shoot/DSC09583.jpg", alt: "MacKonner x Zocker", width: 3758, height: 5637 },
+        ],
+    },
+];
+
+export default photoGalleries;

@@ -3,6 +3,7 @@
 import Home from "./home";
 import About from "./about";
 import Projects from "./projects";
+import Gallery from "./gallery";
 
 export default function Allpages() {
     return (
@@ -13,6 +14,10 @@ export default function Allpages() {
 
             <section id="projects" className="relative w-full">
                 <Projects />
+            </section>
+
+            <section id="gallery" className="relative w-full">
+                <Gallery />
             </section>
 
             <section id="about" className="relative w-full">

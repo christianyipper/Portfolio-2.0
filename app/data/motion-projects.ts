@@ -104,6 +104,19 @@ const motionProjects: Project[] = [
         screens: [],
     },
     {
+        title: "MacKonner Ad",
+        client: "Team MacKonner",
+        subtitle: "",
+        description: "",
+        icons: ["Photoshop", "Figma"],
+
+        logo: "",
+        logoAlt: "Team MacKonner",
+        thumbnail: "/img/photography/mackonner-shoot/MacKonner-Shoot-1.jpg",
+        thumbnailAlt: "/img/blank-bg-1080x1450.jpg",
+        screens: [],
+    },
+    {
         title: "Pathway 2026",
         client: "BCHL",
         subtitle: "",
@@ -116,7 +129,6 @@ const motionProjects: Project[] = [
         thumbnailAlt: "/img/blank-bg-1080x1450.jpg",
         screens: [],
     },
-    
     {
         title: "Playoffs 2025",
         client: "BCHL Refs",
@@ -147,21 +159,21 @@ const motionProjects: Project[] = [
         videoThumbnail: "/img/blank-bg-1080x1450.jpg",
         screens: [],
     },
-    {
-        title: "Standings 2025",
-        client: "BCHL Refs",
-        subtitle: "",
-        description: "",
-        icons: ["AfterEffects", "Illustrator"],
+    // {
+    //     title: "Standings 2025",
+    //     client: "BCHL Refs",
+    //     subtitle: "",
+    //     description: "",
+    //     icons: ["AfterEffects", "Illustrator"],
 
-        logo: "",
-        logoAlt: "BCHL Officials logo",
-        thumbnail: "/img/blank-bg-1080x1450.jpg",
-        thumbnailAlt: "Video background",
-        video: "/img/bchlrefs/2025-standings/standings-thumb-2025.mp4",
-        videoThumbnail: "/img/blank-bg-1080x1450.jpg",
-        screens: [],
-    },
+    //     logo: "",
+    //     logoAlt: "BCHL Officials logo",
+    //     thumbnail: "/img/blank-bg-1080x1450.jpg",
+    //     thumbnailAlt: "Video background",
+    //     video: "/img/bchlrefs/2025-standings/standings-thumb-2025.mp4",
+    //     videoThumbnail: "/img/blank-bg-1080x1450.jpg",
+    //     screens: [],
+    // },
 ];
 
 export default motionProjects;

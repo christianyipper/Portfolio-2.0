@@ -5,7 +5,7 @@ export default function Home() {
         <section className="relative grid grid-rows-[1fr_auto] items-center rounded-4xl sm:my-12">
             
             <div className="relative w-full h-full flex flex-col sm:flex-row items-center justify-center pt-8 gap-4 sm:gap-8">
-                <svg id="Yipper_Logo" data-name="Yipper Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 441" className="w-16 group">
+                <svg id="Yipper_Logo" data-name="Yipper Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 441" className="w-28 group">
                     <g id="Logo">
                         <g id="Yipper">
                             {/* <path className="fill-black group-hover:animate-[blinking_0.3s_ease_forwards_alternate] opacity-0" d="M264.29,7.14c15.79,0,28.57,12.79,28.57,28.57v369.56c0,15.79-12.79,28.57-28.57,28.57H35.71c-15.79,0-28.57-12.79-28.57-28.57V35.71c0-15.79,12.79-28.57,28.57-28.57h228.57M264.29,0H35.71C16.01,0,0,16.01,0,35.71v369.56c0,19.7,16.01,35.71,35.71,35.71h228.57c19.7,0,35.71-16.01,35.71-35.71V35.71c0-19.7-16.01-35.71-35.71-35.71h0Z"/> */}
@@ -24,10 +24,10 @@ export default function Home() {
                         </g>
                     </g>
                 </svg>
-                <div className="w-0.5 h-3/4 bg-black hidden sm:block"/>
+                <div className="w-2 h-3/4 bg-black hidden sm:block"/>
                 <div className="flex flex-col justify-center items-start">
-                    <h1 className="font-zuume font-bold text-[36px] sm:text-[48px] -mt-2">Yipper Creative</h1>
-                    <span className="font-zuume font-bold text-[24px] sm:text-[32px] text-[#00BBFF] -mt-4">Motion | Design | Media</span>
+                    <h1 className="font-zuume font-bold text-[36px] sm:text-[96px] sm:-mt-2">Yipper Creative</h1>
+                    <span className="font-zuume font-bold text-[24px] sm:text-[64px] text-[#00BBFF] sm:-mt-12">Motion | Design | Media</span>
                     {/* <div className="relative flex flex-row">
                         <a href="mailto:christian@yipper.ca" className="group relative h-14 -mt-4 flex items-center justify-center rounded-2xl text-[#00BBFF] hover:text-white cursor-pointer hover:bg-[#00BBFF] transition duration-200 ease ">
                         <span className="font-zuume font-bold text-[48px] inline-block transition-transform duration-200 ease group-hover:scale-90">Start your project.</span>

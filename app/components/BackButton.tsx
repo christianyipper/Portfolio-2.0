@@ -2,12 +2,12 @@
 
 import { useTransition } from "../context/TransitionContext";
 
-export default function BackButton() {
+export default function BackButton({ to = "/#projects" }: { to?: string }) {
     const { navigate } = useTransition();
 
     return (
         <button
-            onClick={() => navigate("/#projects")}
+            onClick={() => navigate(to)}
             className="inline-flex items-center gap-2 font-aktiv text-sm text-black/50 hover:text-black transition-colors duration-200 cursor-pointer"
         >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
