@@ -55,7 +55,7 @@ export default async function PhotoGalleryPage({ params }: { params: Promise<{ s
                         <PhotoGalleryGrid images={gallery.images} />
                     </section>
                 </div>
-                <ProjectNav prev={prevGallery} next={nextGallery} />
+                <ProjectNav prev={prevGallery} next={nextGallery} basePath="/photos" />
                 <Footer />
             </div>
         </PageWrapper>

@@ -13,13 +13,13 @@ interface NavProject {
     thumbnailAlt: string;
 }
 
-function NavCard({ project, label }: { project: NavProject; label: string }) {
+function NavCard({ project, label, basePath }: { project: NavProject; label: string; basePath: string }) {
     const { navigate } = useTransition();
 
     return (
         <div
             className="flex-1 bg-white rounded-4xl shadow-2xl overflow-hidden cursor-pointer group"
-            onClick={() => navigate(`/projects/${project.slug}`)}
+            onClick={() => navigate(`${basePath}/${project.slug}`)}
         >
             <div className="relative aspect-video w-full overflow-hidden">
                 {project.video ? (
@@ -47,18 +47,18 @@ function NavCard({ project, label }: { project: NavProject; label: string }) {
     );
 }
 
-export default function ProjectNav({ prev, next }: { prev?: NavProject; next?: NavProject }) {
+export default function ProjectNav({ prev, next, basePath = "/projects" }: { prev?: NavProject; next?: NavProject; basePath?: string }) {
     if (!prev && !next) return null;
 
     return (
         <div className="flex flex-row gap-4">
             {prev ? (
-                <NavCard project={prev} label="Previous" />
+                <NavCard project={prev} label="Previous" basePath={basePath} />
             ) : (
                 <div className="flex-1" />
             )}
             {next ? (
-                <NavCard project={next} label="Next" />
+                <NavCard project={next} label="Next" basePath={basePath} />
             ) : (
                 <div className="flex-1" />
             )}

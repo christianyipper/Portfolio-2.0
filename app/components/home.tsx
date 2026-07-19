@@ -5,10 +5,9 @@ export default function Home() {
         <section className="relative grid grid-rows-[1fr_auto] items-center rounded-4xl sm:my-12">
             
             <div className="relative w-full h-full flex flex-col sm:flex-row items-center justify-center pt-8 gap-4 sm:gap-8">
-                <svg id="Yipper_Logo" data-name="Yipper Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 441" className="w-28 group">
+                {/* <svg id="Yipper_Logo" data-name="Yipper Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 441" className="w-28 group">
                     <g id="Logo">
                         <g id="Yipper">
-                            {/* <path className="fill-black group-hover:animate-[blinking_0.3s_ease_forwards_alternate] opacity-0" d="M264.29,7.14c15.79,0,28.57,12.79,28.57,28.57v369.56c0,15.79-12.79,28.57-28.57,28.57H35.71c-15.79,0-28.57-12.79-28.57-28.57V35.71c0-15.79,12.79-28.57,28.57-28.57h228.57M264.29,0H35.71C16.01,0,0,16.01,0,35.71v369.56c0,19.7,16.01,35.71,35.71,35.71h228.57c19.7,0,35.71-16.01,35.71-35.71V35.71c0-19.7-16.01-35.71-35.71-35.71h0Z"/> */}
                         <g>
                             <path className="fill-black group-hover:fill-[#00BBFF] group-hover:animate-[blinking_0.3s_0.1s_ease_forwards_alternate] opacity-0 transition-colors ease duration-200" d="M70.31,364.66l-6.34,10.64c-.27.47-.94.46-1.23,0l-6.29-10.64c-.13-.21-.36-.34-.61-.34h-11.3c-.57,0-.9.63-.6,1.1l13.04,20.13c.07.11.11.24.11.39v11.49c0,.4.31.71.71.71h10.79c.4,0,.71-.31.71-.71v-11.53c0-.14.04-.27.11-.39l13.04-20.09c.31-.47-.03-1.1-.6-1.1h-10.97c-.26,0-.49.13-.61.34h.03Z"/>
                             <path className="fill-black group-hover:fill-[#00BBFF] group-hover:animate-[blinking_0.3s_0.3s_ease_forwards_alternate] opacity-0 transition-colors ease duration-200" d="M87.17,365.03v32.39c0,.4.31.71.71.71h10.79c.4,0,.71-.31.71-.71v-32.39c0-.4-.31-.71-.71-.71h-10.79c-.4,0-.71.31-.71.71Z"/>
@@ -23,7 +22,15 @@ export default function Home() {
                             <rect className="fill-black group-hover:fill-[#00BBFF] transition-colors ease duration-200" x="185.71" y="42.86" width="71.43" height="71.43" rx="10" ry="10"/>
                         </g>
                     </g>
-                </svg>
+                </svg> */}
+                <video
+                        src="/img/yipper-logo-ani.mp4"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="w-28"
+                    />
                 <div className="w-2 h-3/4 bg-black hidden sm:block"/>
                 <div className="flex flex-col justify-center items-start">
                     <h1 className="font-zuume font-bold text-[36px] sm:text-[96px] sm:-mt-2">Yipper Creative</h1>
