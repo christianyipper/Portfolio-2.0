@@ -49,7 +49,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
     const nextProject = currentIndex < allProjects.length - 1 ? makeNavProject(allProjects[currentIndex + 1]) : undefined;
 
     return (
-        <PageWrapper>
+        <PageWrapper key={slug}>
             <div className="flex flex-col mt-8 gap-4">
                 <div className="flex flex-col gap-8">
                     <div className="grid grid-cols-12 gap-4 bg-white rounded-4xl shadow-2xl p-4 md:p-8">
