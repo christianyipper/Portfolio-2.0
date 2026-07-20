@@ -45,24 +45,22 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         thumbnail: p.thumbnail,
         thumbnailAlt: p.thumbnailAlt,
     });
-    const prevProject = currentIndex > 0 ? makeNavProject(allProjects[currentIndex - 1]) : undefined;
-    const nextProject = currentIndex < allProjects.length - 1 ? makeNavProject(allProjects[currentIndex + 1]) : undefined;
+    const prevProject = makeNavProject(allProjects[(currentIndex - 1 + allProjects.length) % allProjects.length]);
+    const nextProject = makeNavProject(allProjects[(currentIndex + 1) % allProjects.length]);
 
     return (
         <PageWrapper key={slug}>
             <div className="flex flex-col mt-8 gap-4">
+                <div className="sticky top-4 z-40 w-fit">
+                    <BackButton />
+                </div>
                 <div className="flex flex-col gap-8">
                     <div className="grid grid-cols-12 gap-4 bg-white rounded-4xl shadow-2xl p-4 md:p-8">
-
-                        {/* Back button */}
-                        <div className="col-span-12">
-                            <BackButton />
-                        </div>
 
                         {/* Row 1: Text (9 cols) + Main video (3 cols, portrait) */}
                         <div className="col-span-8 flex flex-col gap-4">
                             {project.client && (
-                                <p className="-mb-4 font-aktiv font-black text-sm text-[#00bbff] tracking-widest">{project.client}</p>
+                                <p className="-mb-6 font-black text-2xl! text-[#00bbff] tracking-widest">{project.client}</p>
                             )}
                             <h1 className="font-zuume font-bold text-[36px] md:text-8xl leading-none">{project.title}</h1>
                             {project.subtitle && (

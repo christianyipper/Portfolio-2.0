@@ -120,7 +120,7 @@ const motionProjects: Project[] = [
         title: "Pathway 2026",
         client: "BCHL",
         subtitle: "",
-        description: "",
+        description: "This was my first project incorporating my photography into a design composition. The challenge with this project was to recreate a realistic name and number for the officials in the photo. A combination of textures, lighting and shadows, and transform tools were used to create a realistic look.",
         icons: ["Photoshop", "Figma"],
 
         logo: "",
@@ -133,7 +133,7 @@ const motionProjects: Project[] = [
         title: "Playoffs 2025",
         client: "BCHL Refs",
         subtitle: "",
-        description: "",
+        description: "Coming soon.",
         icons: ["AfterEffects", "Illustrator"],
 
         logo: "",
@@ -148,7 +148,7 @@ const motionProjects: Project[] = [
         title: "Halloween 2025",
         client: "BCHL Refs",
         subtitle: "",
-        description: "",
+        description: "Coming soon.",
         icons: ["AfterEffects", "Illustrator"],
 
         logo: "",

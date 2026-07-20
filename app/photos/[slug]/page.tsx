@@ -25,18 +25,17 @@ export default async function PhotoGalleryPage({ params }: { params: Promise<{ s
         thumbnail: g.thumbnail,
         thumbnailAlt: g.thumbnailAlt,
     });
-    const prevGallery = currentIndex > 0 ? makeNavGallery(photoGalleries[currentIndex - 1]) : undefined;
-    const nextGallery = currentIndex < photoGalleries.length - 1 ? makeNavGallery(photoGalleries[currentIndex + 1]) : undefined;
+    const prevGallery = makeNavGallery(photoGalleries[(currentIndex - 1 + photoGalleries.length) % photoGalleries.length]);
+    const nextGallery = makeNavGallery(photoGalleries[(currentIndex + 1) % photoGalleries.length]);
 
     return (
         <PageWrapper key={slug}>
             <div className="flex flex-col mt-8 gap-4">
+                <div className="sticky top-4 z-40 w-fit">
+                    <BackButton to="/#gallery" />
+                </div>
                 <div className="flex flex-col gap-8">
                     <div className="grid grid-cols-12 gap-4 bg-white rounded-4xl shadow-2xl p-4 md:p-8">
-                        <div className="col-span-12">
-                            <BackButton to="/#photos" />
-                        </div>
-
                         <div className="col-span-12 flex flex-col gap-4">
                             {gallery.client && (
                                 <p className="-mb-4 font-aktiv font-black text-sm text-[#00bbff] tracking-widest">{gallery.client}</p>
