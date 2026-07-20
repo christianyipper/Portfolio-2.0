@@ -18,7 +18,7 @@ export default function About() {
         <div className="relative flex flex-col gap-4">
             <section className="flex justify-center items-start h-full bg-white p-4 md:p-8 rounded-4xl shadow-2xl
             ">
-                <div className="relative w-full overflow-hidden
+                <div className="relative w-full
                 max-sm:p-2 max-sm:pl-4
                 ">
                     <div className="max-sm:border-b-2 border-black/20 max-sm:pb-8 max-sm:mb-8
@@ -66,7 +66,7 @@ export default function About() {
                         max-sm:flex-col max-sm:w-full max-sm:pt-0 max-sm:pb-16
                         ">
                             <div className="">
-                                <div className="flex flex-row gap-2">.
+                                <div className="flex flex-row gap-2">
                                     <AfterEffects/>
                                     <Premiere/>
                                     <Illustrator/>

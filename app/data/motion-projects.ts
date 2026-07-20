@@ -77,8 +77,8 @@ const motionProjects: Project[] = [
         title: "Combine Ad 2026",
         client: "BCHL Refs",
         subtitle: "",
-        description: "",
-        icons: ["AfterEffects", "Illustrator"],
+        description: "Creating a short marketing campaign for the BCHL Officiating Combine 2026 was one of my favourite projects to work on. My main focus was bringing a new style to the BCHL Refs social media to set them apart from traditional sports graphics. I used Photoshop for photo raw and editing, Figma for layout and design systems, and After Effects to bring the final composition to life.",
+        icons: ["Photoshop", "AfterEffects", "Figma"],
 
         logo: "",
         logoAlt: "BCHL Officials logo",
@@ -107,7 +107,7 @@ const motionProjects: Project[] = [
         title: "MacKonner Ad",
         client: "Team MacKonner",
         subtitle: "",
-        description: "",
+        description: "A quick ad for professional athlete MacKonner Dy. Working on a tight deadline was the main challenge for this project, as I had to shoot, edit, and design the composition in a weekend. I wanted to keep the design simple and clean by using 2 subject photos with a simple background of a court, net, and zocker logos stamped around for texture. Figma allowed me to quickly create the layout and design system.",
         icons: ["Photoshop", "Figma"],
 
         logo: "",
