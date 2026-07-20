@@ -25,9 +25,9 @@ export default function About() {
                     relative flex flex-row justify-start items-center gap-4 w-0 h-0 pointer-events-none opacity-0
                     max-sm:opacity-100 max-sm:w-fit max-sm:h-auto
                     ">
-                        <Image 
+                        <Image
                             className="rounded-full"
-                            src="/img/yipper-pfp-a75.png"
+                            src="/img/yipper-pfp.png"
                             alt="Yipper profile"
                             width={64}
                             height={64}
