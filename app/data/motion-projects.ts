@@ -20,14 +20,19 @@ const motionProjects: Project[] = [
         title: "BCHL 27 Mockup",
         client: "BCHL Refs",
         subtitle: "",
-        description: "A fun design based on EA Sports' NHL 27 cover. I used one of my photos from the BCHL Showcase where I got to play with the lighting and exposure in post-production. I played with motion blur and glowing effects to make it unique from past NHL cover art. Added some colour adjustments to make a warm orange atmosphere that reflects the referee branding.",
+        description: "A fun design based on EA Sports' NHL 27 cover. I used one of my own photos (plus one from the BCHL team) where I got to play with the lighting and exposure in post-production. I played with motion blur and glowing effects to make it unique from past NHL cover art. Added some colour adjustments to make a warm orange atmosphere that reflects the referee branding.",
         icons: ["Photoshop", "Figma"],
 
         logo: "",
         logoAlt: "BCHL Officials logo",
-        thumbnail: "/img/bchlrefs/bchl-27-referee-cover.jpg",
-        thumbnailAlt: "/img/blank-bg-1080x1450.jpg",
-        screens: [],
+        thumbnail: "/img/blank-bg-1080x1450.jpg",
+        thumbnailAlt: "Video background",
+        video: "/img/bchlrefs/2027-cover/bchl-27-cover.mp4",
+        videoThumbnail: "/img/blank-bg-1080x1450.jpg",
+        screens: [
+            { src: "/img/bchlrefs/2027-cover/bchl-27-referee-cover.jpg",         type: "image", label: "Referee Edition" },
+            { src: "/img/bchlrefs/2027-cover/bchl-27-liney-cover.jpg",   type: "image", label: "Liney Edition" },
+        ],
     },
     {
         title: "Playoffs 2026",
