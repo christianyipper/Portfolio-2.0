@@ -20,6 +20,8 @@ export default function Navigation() {
         }
 
         const ids = ["home", "projects", "gallery", "about"];
+        // "home" has no nav pill of its own — it's just used to detect
+        // the top of the page so the pill can hide while there.
         const observers: IntersectionObserver[] = [];
 
         ids.forEach((id) => {
@@ -43,6 +45,13 @@ export default function Navigation() {
         return () => clearTimeout(t);
     }, [activeSection]);
 
+
+    const sectionOrder = ["projects", "gallery", "about"];
+    const sectionWidths: Record<string, string> = { projects: "320px", gallery: "268px", about: "236px" };
+    const pillIndex = sectionOrder.indexOf(activeSection);
+    const pillVisible = pillIndex >= 0;
+    const pillY = pillVisible ? pillIndex * 128 : 0;
+    const pillWidth = sectionWidths[activeSection] ?? "320px";
 
     const scrollTo = (id: string) => (e: React.MouseEvent) => {
         e.preventDefault();
@@ -75,7 +84,7 @@ export default function Navigation() {
         {/* Mobile slide-in overlay */}
         <div className={`fixed inset-y-0 right-0 w-72 bg-white shadow-2xl z-[199] flex flex-col gap-8 p-8 md:hidden transition-transform duration-300 ease-in-out ${menuOpen ? "translate-x-0" : "translate-x-full"}`}>
             <div className="flex flex-col gap-4 mt-12">
-                <a href="#home" onClick={(e) => { scrollTo("home")(e); setMenuOpen(false); }} className={`font-zuume font-bold text-7xl ${activeSection === "home" ? "text-[#00BBFF]" : "text-black"}`}>Home</a>
+                {/* Home is reachable via the logo — no separate nav entry */}
                 <a href="#projects" onClick={(e) => { scrollTo("projects")(e); setMenuOpen(false); }} className={`font-zuume font-bold text-7xl ${activeSection === "projects" ? "text-[#00BBFF]" : "text-black"}`}>Projects</a>
                 <a href="#gallery" onClick={(e) => { scrollTo("gallery")(e); setMenuOpen(false); }} className={`font-zuume font-bold text-7xl ${activeSection === "gallery" ? "text-[#00BBFF]" : "text-black"}`}>Gallery</a>
                 <a href="#about" onClick={(e) => { scrollTo("about")(e); setMenuOpen(false); }} className={`font-zuume font-bold text-7xl ${activeSection === "about" ? "text-[#00BBFF]" : "text-black"}`}>About</a>
@@ -83,45 +92,42 @@ export default function Navigation() {
         </div>
 
         {/* Desktop nav */}
-        <div className="hidden md:flex flex-col items-center justify-between h-full py-8">
-            <section className="relative flex flex-col items-center">
-                {/* logo */}
-                <a href="#home" onClick={scrollTo("home")} className="z-50
-                pb-4
-                ">
-                    <video
-                        src="/img/yipper-logo-ani.mp4"
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="w-1/5 min-h-0 object-cover mx-auto z-10"
-                    />
-                </a>
+        <div className="hidden md:flex flex-col items-center h-full py-12">
+            {/* logo */}
+            <a href="#home" onClick={scrollTo("home")} className="z-50
+            ">
+                <video
+                    src="/img/yipper-logo-ani.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-24 min-h-0 object-cover mx-auto z-10"
+                />
+            </a>
+
+            <section className="relative flex-1 flex flex-col items-center justify-center">
                 <div className="relative flex flex-col items-center gap-8">
                     {/* sliding blue background */}
                     <div
-                        className="absolute h-24 bg-[#00BBFF] rounded-2xl outline-4 outline-[#00BBFF] transition-all duration-200 ease-in-out"
+                        className={`absolute h-24 bg-[#00BBFF] rounded-2xl outline-4 outline-[#00BBFF] transition-all duration-200 ease-in-out ${pillVisible ? "opacity-100" : "opacity-0"}`}
                         style={{
-                            transform: `translateY(${activeSection === "projects" ? 128 : activeSection === "gallery" ? 256 : activeSection === "about" ? 384 : 0}px)`,
-                            width: activeSection === "projects" ? "320px" : activeSection === "gallery" ? "268px" : activeSection === "about" ? "236px" : "222px"
+                            transform: `translateY(${pillY}px)`,
+                            width: pillWidth
                         }}
                     />
                     {/* clip container — same position as blue div, reveals white text */}
                     <div
-                        className="absolute h-24 overflow-hidden rounded-2xl transition-all duration-200 ease-in-out pointer-events-none z-60"
+                        className={`absolute h-24 overflow-hidden rounded-2xl transition-all duration-200 ease-in-out pointer-events-none z-60 ${pillVisible ? "opacity-100" : "opacity-0"}`}
                         style={{
-                            transform: `translateY(${activeSection === "projects" ? 128 : activeSection === "gallery" ? 256 : activeSection === "about" ? 384 : 0}px)`,
-                            width: activeSection === "projects" ? "320px" : activeSection === "gallery" ? "268px" : activeSection === "about" ? "236px" : "222px"
+                            transform: `translateY(${pillY}px)`,
+                            width: pillWidth
                         }}
                     >
                         <div
                             className="flex flex-col gap-8 transition-transform duration-200 ease-in-out z-50"
-                            style={{ transform: `translateY(-${activeSection === "projects" ? 128 : activeSection === "gallery" ? 256 : activeSection === "about" ? 384 : 0}px)` }}
+                            style={{ transform: `translateY(-${pillY}px)` }}
                         >
-                            <div className="h-24 flex items-center justify-center">
-                                <span className={`font-zuume font-bold text-8xl px-8 text-white inline-block ${jigglingSection === "home" ? "animate-[jiggle_0.5s_ease-out]" : ""}`}>Home</span>
-                            </div>
                             <div className="h-24 flex items-center justify-center">
                                 <span className={`font-zuume font-bold text-8xl px-8 text-white inline-block ${jigglingSection === "projects" ? "animate-[jiggle_0.5s_ease-out]" : ""}`}>Projects</span>
                             </div>
@@ -133,15 +139,7 @@ export default function Navigation() {
                             </div>
                         </div>
                     </div>
-                    {/* black text nav links */}
-                    <a href="#home" onClick={scrollTo("home")} className="relative group flex items-center justify-center z-50">
-                        <div className="relative w-[222px] h-24 flex items-center justify-center rounded-2xl">
-                            <svg className="absolute inset-0 w-full h-full overflow-visible pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                                <rect x="0" y="0" width="100%" height="100%" rx="16" ry="16" fill="none" stroke="#00BBFF" strokeWidth="3" strokeDasharray="10 8" style={{ animation: 'marching-ants 2s linear infinite' }} />
-                            </svg>
-                            <span className={`font-zuume font-bold text-8xl px-8 inline-block ${jigglingSection === "home" ? "animate-[jiggle_0.5s_ease-out]" : ""}`}>Home</span>
-                        </div>
-                    </a>
+                    {/* black text nav links — Home is reachable via the logo above */}
                     <a href="#projects" onClick={scrollTo("projects")} className="relative group flex items-center justify-center z-50">
                         <div className="relative w-[320px] h-24 flex items-center justify-center rounded-2xl">
                             <svg className="absolute inset-0 w-full h-full overflow-visible pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200">

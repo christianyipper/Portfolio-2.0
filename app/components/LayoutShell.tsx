@@ -8,7 +8,7 @@ export default function LayoutShell({ children }: { children: React.ReactNode })
             <div className="md:pr-[25%]">
                 {children}
             </div>
-            <nav className="hidden md:block fixed right-0 top-0 h-screen w-[25%]">
+            <nav className="md:fixed md:right-0 md:top-0 md:h-screen md:w-[25%]">
                 <Navigation />
             </nav>
         </main>

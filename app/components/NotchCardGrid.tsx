@@ -215,7 +215,9 @@ export default function NotchCardGrid<T extends NotchCardEntry>({
             </div>
 
             <section className="h-full bg-white p-4 md:p-8 rounded-4xl shadow-2xl">
-                <h2 className="font-zuume text-[36px] md:text-[64px] font-bold pb-4">{heading}</h2>
+                <div className="-mt-5">
+                    <h2 className="font-zuume text-[36px] md:text-[64px] font-bold pb-4">{heading}</h2>
+                </div>
                 <div
                     className="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-8"
                     onMouseMove={(e) => { targetPos.current = { x: e.clientX, y: e.clientY }; }}

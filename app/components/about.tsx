@@ -15,7 +15,7 @@ import Footer from "../components/footer";
 
 export default function About() {
     return (
-        <div className="relative flex flex-col gap-4">
+        <div className="relative flex flex-col gap-8">
             <section className="flex justify-center items-start h-full bg-white p-4 md:p-8 rounded-4xl shadow-2xl
             ">
                 <div className="relative w-full
@@ -38,7 +38,9 @@ export default function About() {
                             <p className="font-aktiv">Creative Designer</p>
                         </article>
                     </div>
-                    <h2 className="font-zuume font-bold text-[36px] md:text-[64px] pb-4">About Me</h2>
+                    <div className="-mt-5">
+                        <h2 className="font-zuume font-bold text-[36px] md:text-[64px] pb-4">About Me</h2>
+                    </div>
                     <article className="space-y-4 text-base text-black font-nunito pb-8">
                         {bioData.bio.map((paragraph, index) => (
                             <p key={index}>{paragraph}</p>
@@ -88,6 +90,59 @@ export default function About() {
                     </div>
                 </div>
             </section>
+            <div className="relative flex flex-row max-sm:flex-col gap-4">
+                <section className="flex-1 flex justify-center items-start h-full bg-white p-4 md:p-8 rounded-4xl shadow-2xl">
+                    <div className="relative w-full">
+                        <div className="-mt-5">
+                            <h2 className="font-zuume font-bold text-[36px] md:text-[64px] pb-4">My Calendar</h2>
+                        </div>
+                        <div className="relative flex flex-row max-sm:flex-col gap-4 -mt-2">
+                            <div className="relative flex-1 flex flex-row justify-start items-center gap-4 bg-white p-4 pr-20 rounded-2xl shadow-lg">
+                                <span className="absolute -top-1 right-0 bg-[#00BBFF] text-white font-nunito text-[12px]! px-3 py-1 rounded-full">{bioData.past.date}</span>
+                                <Image
+                                    className="rounded-full"
+                                    src="/img/mackonner/mackonner-pfp.jpg"
+                                    alt="Yipper profile"
+                                    width={64}
+                                    height={64}
+                                />
+                                <article className="whitespace-nowrap">
+                                    <p className="font-nunito">{bioData.past.title}</p>
+                                    <p className="font-aktiv">{bioData.past.subtitle}</p>
+                                </article>
+                            </div>
+                            <div className="relative flex-1 flex flex-row justify-start items-center gap-4 bg-white p-4 pr-20 rounded-2xl shadow-lg">
+                                <span className="absolute -top-1 right-0 bg-[#00BBFF] text-white font-nunito text-[12px]! px-3 py-1 rounded-full">{bioData.current.date}</span>
+                                <Image
+                                    className="rounded-full"
+                                    src="/img/bchlrefs/bchl-pfp.png"
+                                    alt="Yipper profile"
+                                    width={64}
+                                    height={64}
+                                />
+                                <article className="whitespace-nowrap">
+                                    <p className="font-nunito">{bioData.current.title}</p>
+                                    <p className="font-aktiv">{bioData.current.subtitle}</p>
+                                </article>
+                            </div>
+                            <div className="relative flex-1 flex flex-row justify-start items-center gap-4 bg-white p-4 pr-20 rounded-2xl shadow-lg">
+                                <span className="absolute -top-1 right-0 bg-[#00BBFF] text-white font-nunito text-[12px]! px-3 py-1 rounded-full">{bioData.future.date}</span>
+                                <Image
+                                    className="rounded-full"
+                                    src="/img/nhl-pfp.png"
+                                    alt="Yipper profile"
+                                    width={64}
+                                    height={64}
+                                />
+                                <article className="whitespace-nowrap">
+                                    <p className="font-nunito">{bioData.future.title}</p>
+                                    <p className="font-aktiv">{bioData.future.subtitle}</p>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
             <Footer />
         </div>
     );

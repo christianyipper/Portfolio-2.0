@@ -1,6 +1,21 @@
 {
     "bio": [
-        "Hey, I’m Christian, a creative designer immersed in the sports world. My experiences as a hockey player and referee has shaped my creative approach to visual storytelling; bringing a bold perspective to your ideas. Recently, I've been focusing on bringing unique experiences to social media through motion design and athlete composition.",
-        "Currently, I'm creating content for professional athlete MacKonner Dy and the BCHL officiating team. Through my work, I've helped brands grow to reach larger audiences, increase engagement, and achieve a better user experience."
-    ]
+        "I'm Christian, a creative who grew up on the ice. Years as a hockey player and referee taught me to read a play before it happens and that instinct now shapes how I build visual stories. I bring that same read to design and athlete-focused content, no generative AI involved. Every frame is made by hand, keeping my carbon footprint small and my work distinct in an increasingly AI-saturated market.",
+        "Currently, I'm creating content for professional athlete MacKonner Dy and the BCHL officiating team."
+    ],
+    "past": {
+        "title": "Team MacKonner PB",
+        "subtitle": "Graphic Designer",
+        "date": "Current"
+    },
+    "current": {
+        "title": "BCHL Refs",
+        "subtitle": "Content Creator",
+        "date": "Current"
+    },
+    "future": {
+        "title": "NHL Exposure Combine",
+        "subtitle": "On-Ice Official",
+        "date": "2026"
+    }
 }
